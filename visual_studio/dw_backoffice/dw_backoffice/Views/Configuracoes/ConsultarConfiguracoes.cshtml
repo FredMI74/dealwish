@@ -1,0 +1,80 @@
+﻿
+@{
+    ViewData["Title"] = "ConsultarConfiguracoes";
+}
+
+<div style="padding-left: 5%; padding-top: 1%; padding-right: 5%">
+    <div>
+        <a id="fechar" asp-controller="Home" asp-action="Index"> <img style="width: 28px;" src="~/images/fechar.svg" /></a>
+        <h4>Consultar Configurações <img style="width: 20px;" src="~/images/loader.gif" id="loaderImg" hidden></h4>
+    </div>
+    <hr />
+    <form asp-controller="Configuracoes" asp-action="ConsultarConfiguracoesPost" method="post" onsubmit="disableObj(ConsultarBtn);showObj(loaderImg)">
+
+            <div class="form-row">
+                <div class="form-group col-md-1">
+                    <label for="id">Código</label>
+                    <input class="form-control" autocomplete="off" id="id" name="id" type="number" />
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="codigo">Configuração</label>
+                    <input class="form-control" autocomplete="off" id="codigo" name="codigo" type="text" />
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="valor">Valor</label>
+                    <input class="form-control" autocomplete="off" id="valor" name="valor" type="text" />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-2">
+                    <button class="btn btn-info col-6" id="ConsultarBtn" type="submit"><i class="fas fa-search"></i> Consultar</button>
+                </div>
+            </div>
+
+    </form>
+    <hr />
+    <table class="table table-fixed table-striped table-sm">
+        <thead class="thead-dark">
+            <tr>
+                <th class="col-lg-3">Código</th>
+                <th class="col-lg-3">Configuração</th>
+                <th class="col-lg-3">Valor</th>
+                <th class="col-lg-3">Ação</th>
+            </tr>
+        </thead>
+            @foreach (var configuracao in ViewBag.configuracoes)
+            {
+                <tr>
+                    <td class="col-lg-3">@configuracao.Id</td>
+                    <td class="col-lg-3">@configuracao.Codigo</td>
+                    <td class="col-lg-3">@configuracao.Valor</td>
+                    <td class="col-lg-3">
+                        <a asp-area="" asp-controller="Configuracoes" asp-action="AcaoEditarConfiguracoes" asp-route-id="@configuracao.Id"><img style="margin: 2px; width: 30px;" title="Editar configuração" src="~/images/editar.svg"></a>
+                    </td>
+                </tr>
+            }
+    </table>
+    @if (ViewBag.responseStatusCode == "OK")
+    {
+        @if (ViewBag.erro)
+        {
+            <h4 style="color : red">@ViewBag.mensagem</h4>
+        }
+        else
+        {
+            @if (ViewBag.configuracoes.Count == 0)
+            {
+                <h5 style="color : red">Nenhum registro encontrado.</h5>
+            }
+        }
+
+    }
+    else
+    {
+        <h4 style="color : red"> @ViewBag.responseStatusCode </h4>
+    }
+</div>
+
+
+

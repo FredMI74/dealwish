@@ -1,0 +1,80 @@
+﻿
+@{
+    ViewData["Title"] = "ConsultarInadimplentes";
+}
+
+<div style="padding-left: 5%; padding-top: 1%; padding-right: 5%">
+    <div>
+        <a id="fechar" asp-controller="Home" asp-action="Index"> <img style="width: 28px;" src="~/images/fechar.svg" /></a>
+        <h4>
+            Inadimplentes
+            <img style="width: 20px;" src="~/images/loader.gif" id="loaderImg" hidden>
+        </h4>
+    </div>
+    <hr />
+    <form onsubmit="disableObj(BloquearInadimplentesBtn);disableObj(AtualizarInadimplentesBtn);showObj(loaderImg)">
+
+        <div class="row">
+            <div class="col-md-2">
+                <button class="btn btn-info col-6" id="AtualizarInadimplentesBtn" asp-area="" asp-controller="Contratos" asp-action="AtualizarInadimplentes"><i class="fas fa-sync-alt"></i> Atualizar</button>
+                @if (ViewBag.bkf == true || ViewBag.tin == true)
+                {
+                    <button class="btn btn-warning col-5" id="BloquearInadimplentesBtn" asp-area="" asp-controller="Contratos" asp-action="BloquearInadimplentes" onclick=" return Confirmar('Bloquear contratos?')"><i class="fas fa-lock"></i> Bloquear</button>
+                }
+            </div>
+        </div>
+
+    </form>
+    <hr />
+    <table class="table table-fixed-large table-striped table-sm">
+        <thead class="thead-dark">
+            <tr>
+                <th class="col-lg-1">Código</th>
+                <th class="col-lg-4">Razão Social</th>
+                <th class="col-lg-3">Plano</th>
+                <th class="col-lg-2">Situação</th>
+                <th class="col-lg-1">Dia vct.</th>
+                <th class="col-lg-1">Data Início</th>
+            </tr>
+        </thead>
+        @foreach (var contrato in ViewBag.contratos)
+        {
+            <tr>
+                <td class="col-lg-1">@contrato.Id</td>
+                <td class="col-lg-4">@contrato.Razao_social</td>
+                <td class="col-lg-3">@contrato.Desc_plano</td>
+                <td class="col-lg-2">@contrato.Desc_situacao</td>
+                <td class="col-lg-1">@contrato.Dia_vct</td>
+                <td class="col-lg-1">@contrato.Data_inicio.ToString("dd/MM/yyyy")</td>
+            </tr>
+        }
+    </table>
+
+
+    @if (ViewBag.responseStatusCode == "OK")
+    {
+        @if (ViewBag.erro || (ViewBag.linhasafetadas == 0 && ViewBag.bloqueando))
+        {
+            <h4 style="color : red">@ViewBag.mensagem</h4>
+        }
+        else
+        {
+            @if (ViewBag.bloqueando)
+            {
+                <h4 style="color : green">Contratos bloqueados.</h4>
+            }
+            else
+            {
+                @if (ViewBag.contratos.Count == 0)
+                {
+                    <h5 style="color : red">Nenhum registro encontrado.</h5>
+                }
+            }
+        }
+    }
+    else
+    {
+        <h4 style="color : red"> @ViewBag.responseStatusCode </h4>
+    }
+</div>
+

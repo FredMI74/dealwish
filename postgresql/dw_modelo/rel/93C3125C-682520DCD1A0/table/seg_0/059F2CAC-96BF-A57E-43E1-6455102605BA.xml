@@ -1,0 +1,128 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="059F2CAC-96BF-A57E-43E1-6455102605BA" schemaObject="CC7D603D-7CCC-CCE9-FD85-FFC055EC548B" name="desejos">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-24 23:46:37 UTC</createdTime>
+<commentInRDBMS>Desejos do usuário de Aplicativo, o que ele deseja comprar</commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<ordsAlias>table_4</ordsAlias>
+<shouldGeneratescript>true</shouldGeneratescript>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="A6308C9F-D2DD-6E7F-44EB-48D63DE444C6">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-24 23:47:44 UTC</createdTime>
+<commentInRDBMS>Identificação do produto desejado</commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="descricao" id="A0A00565-53D1-F877-9707-021470568B95">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-24 23:47:44 UTC</createdTime>
+<commentInRDBMS>Descrição do produto desejado</commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>4000</dataTypeSize>
+<ownDataTypeParameters>4000,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="id_usuario" id="CF49234F-B0B0-AFFD-D6EF-4A9C15691253">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-24 23:48:06 UTC</createdTime>
+<commentInRDBMS>Identificação do usuário (usuarios.id)</commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="63CAFFB2-3DF8-3F13-0474-0CF32CEDE679" referredColumn="FAF6DDC2-B3EC-CCC2-B60E-A133DB87D21B"/>
+</associations>
+</Column>
+<Column name="id_tipo_produto" id="B45378D2-B616-3899-D338-EFDB35AED1B8">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-24 23:48:45 UTC</createdTime>
+<commentInRDBMS>Identificação do tipo de produto desejado</commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="DD8F0F04-BC37-7741-2FC2-F8E72DFF33BF" referredColumn="F0CC879C-4771-4099-5BE6-52222191E468"/>
+</associations>
+</Column>
+<Column name="id_situacao" id="C9B646E0-F8E1-385D-60D3-006886C1A731">
+<createdBy>fredm</createdBy>
+<createdTime>2018-08-01 10:39:28 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="E6F3C387-81AB-315C-2FE8-CE3D5411AB3C" referredColumn="55EF855D-8619-4B9A-74BE-5AFE232D36F9"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="FF3E9157-847C-3EBE-6FEF-5EF7289429B1" name="desejos_PK">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-24 23:47:44 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A6308C9F-D2DD-6E7F-44EB-48D63DE444C6"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="54FF4BD8-5B7E-578F-E467-758D773AF53B" name="desejos_usuarios_FK">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-24 23:48:06 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="CF49234F-B0B0-AFFD-D6EF-4A9C15691253"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="22332FC6-C63C-31EA-CEFD-199B38281EDB" name="desejos_tp_produtos_FK">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-24 23:48:45 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B45378D2-B616-3899-D338-EFDB35AED1B8"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="146CC20B-D715-6BD9-62A7-6B83E70F3D98" name="desejos_situacoes_FK">
+<createdBy>fredm</createdBy>
+<createdTime>2018-08-01 10:39:28 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C9B646E0-F8E1-385D-60D3-006886C1A731"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

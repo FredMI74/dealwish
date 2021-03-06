@@ -1,0 +1,330 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="300BDA4F-6CDD-1522-7246-11CB3EF189C1" schemaObject="CC7D603D-7CCC-CCE9-FD85-FFC055EC548B" name="usuarios">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-24 11:12:51 UTC</createdTime>
+<commentInRDBMS><![CDATA[Usuários, cadastro unificado onde o usuário pode ser do aplicativo, da empresa ou da retaguarda]]></commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<ordsAlias>table_4</ordsAlias>
+<endOfScript><![CDATA[insert into dealwish.usuarios (id, email, senha, nome, cpf, aplicativo, retaguarda, empresa, id_situacao, data_nasc) 
+values (0, 'dummy', 'null', 'dummy', '00000000000','N','N', 'N', 2, '1900-01-01');
+
+CREATE OR REPLACE TRIGGER usuarios_insert_update
+BEFORE INSERT OR UPDATE ON dealwish.usuarios
+         FOR EACH ROW
+BEGIN
+   :NEW.aplicativo := UPPER(:NEW.aplicativo);
+   :NEW.retaguarda := UPPER(:NEW.retaguarda);
+   :NEW.empresa := UPPER(:NEW.empresa);
+   :NEW.email := lower(:NEW.email);
+
+   IF (:NEW.aplicativo ='S' and :NEW.id_cidade_ap is null) THEN
+      RAISE_APPLICATION_ERROR (-20101, 'ID_CIDADE_AP obrigatório quando APLICATIVO = S');
+   ELSIF (:NEW.aplicativo = 'N' and :NEW.id_cidade_ap is not null) THEN
+        RAISE_APPLICATION_ERROR (-20101, 'ID_CIDADE_AP permitido somente quando APLICATIVO = S');
+   END IF;
+
+   IF (:NEW.empresa ='S' and :NEW.id_empresa is null) THEN
+      RAISE_APPLICATION_ERROR (-20101, 'ID_EMPRESA obrigatório quando EMPRESA = S');
+   ELSIF (:NEW.empresa = 'N' and :NEW.id_empresa is not null) THEN
+        RAISE_APPLICATION_ERROR (-20101, 'ID_EMPRESA permitido somente quando EMPRESA = S');
+   END IF;
+END;
+/
+]]></endOfScript>
+<shouldGeneratescript>true</shouldGeneratescript>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="FAF6DDC2-B3EC-CCC2-B60E-A133DB87D21B">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-24 11:13:34 UTC</createdTime>
+<commentInRDBMS><![CDATA[identificação do usuário]]></commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="email" id="5716FC48-5592-791D-C534-C92B535D7C27">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-24 11:14:54 UTC</createdTime>
+<commentInRDBMS><![CDATA[e-mail do usuário, utilizado como nome do login]]></commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="senha" id="C6F137D7-4478-0D7A-6B85-F1880C05B292">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-24 11:15:39 UTC</createdTime>
+<commentInRDBMS><![CDATA[senha do usuário em MD5]]></commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>4000</dataTypeSize>
+<ownDataTypeParameters>4000,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="nome" id="69A552B3-B040-9F88-F7C9-29780A87DD0C">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-24 11:16:06 UTC</createdTime>
+<commentInRDBMS><![CDATA[nome do usuário]]></commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="data_nasc" id="18F5BD5B-E9D1-03FF-8F7C-CD871AC55A6E">
+<createdBy>fredm</createdBy>
+<createdTime>2020-07-05 11:23:38 UTC</createdTime>
+<commentInRDBMS><![CDATA[Data de nascimento]]></commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="cpf" id="DA89F8F8-5EDA-494B-3878-7DA3B3C0CE6F">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-26 00:51:35 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>15</dataTypeSize>
+<ownDataTypeParameters>15,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0</beginValue>
+<endValue>9</endValue>
+</rangeDef>
+</listOfRanges>
+</Column>
+<Column name="aplicativo" id="4D1BA4D2-B8B3-0E0C-6ECA-BF0C9C8146C8">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-24 23:01:07 UTC</createdTime>
+<commentInRDBMS><![CDATA[Usuário do aplicativo (S/N)]]></commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<constraintName>usuarios_aplicativo_CK</constraintName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<listOfValues>
+<valueDef value="N" description="Não"/>
+<valueDef value="S" description="Sim"/>
+</listOfValues>
+<defaultValue>N</defaultValue>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<defaultOntNull>true</defaultOntNull>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="retaguarda" id="22DE66E6-6BF8-571A-E7FB-B827CD2BFE3C">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-24 23:06:35 UTC</createdTime>
+<commentInRDBMS><![CDATA[usuário do sistema (S/N)]]></commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<constraintName>usuarios_retaguarda_CK</constraintName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<listOfValues>
+<valueDef value="N" description="Não"/>
+<valueDef value="S" description="Sim"/>
+</listOfValues>
+<defaultValue>N</defaultValue>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<defaultOntNull>true</defaultOntNull>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="empresa" id="5B779D66-64CF-65AD-3C43-FCAFC579DB21">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-24 23:06:35 UTC</createdTime>
+<commentInRDBMS><![CDATA[usuário de empresa  (S/N)]]></commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<constraintName>usuarios_loja_CK</constraintName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<listOfValues>
+<valueDef value="N" description="Não"/>
+<valueDef value="S" description="Sim"/>
+</listOfValues>
+<defaultValue>N</defaultValue>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<defaultOntNull>true</defaultOntNull>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="id_cidade_ap" id="83800AF8-1835-D9C8-08D6-D0DB34F2BC38">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-26 00:17:24 UTC</createdTime>
+<commentInRDBMS><![CDATA[obrigatório quando usuário tipo aplicativo]]></commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="39573E8A-CAAA-7E08-557F-91077E38D77E" referredColumn="03767F8B-2920-98E1-6890-A07D773FF24F"/>
+</associations>
+</Column>
+<Column name="id_situacao" id="36092156-1ED8-EC1A-E3AA-06D75783772C">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-30 22:21:28 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="DF2086AC-74A9-C612-21CF-AE3F55044F16" referredColumn="55EF855D-8619-4B9A-74BE-5AFE232D36F9"/>
+</associations>
+</Column>
+<Column name="id_empresa" id="6363D224-CD59-DAFF-D945-26AD2D336D6F">
+<createdBy>fredm</createdBy>
+<createdTime>2018-09-13 10:33:35 UTC</createdTime>
+<commentInRDBMS><![CDATA[Identificação da empresa]]></commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="F25D5ACF-AC91-CCD4-8EFD-48512E3A025B" referredColumn="D338C01E-1C12-4493-CF1F-2494D0B377BD"/>
+</associations>
+</Column>
+<Column name="id_usuario_log" id="DE4F7361-0E1D-2E2C-FC74-48AEE4D92E91">
+<createdBy>fredm</createdBy>
+<createdTime>2019-03-21 09:07:24 UTC</createdTime>
+<commentInRDBMS><![CDATA[usuário que incluiu ou alterou o registro]]></commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="65452841-7393-AF5A-1060-11817571D64E" referredColumn="FAF6DDC2-B3EC-CCC2-B60E-A133DB87D21B"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="ABDD8A19-709F-0966-C3EB-0A0306708418" name="usuarios_PK">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-24 11:13:34 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="FAF6DDC2-B3EC-CCC2-B60E-A133DB87D21B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="E0CBD001-AF65-DF30-4CEB-221A84A09CF1" name="usuarios_email_UN">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-24 11:17:31 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="5716FC48-5592-791D-C534-C92B535D7C27"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="21444120-31D2-ED15-21C6-4EA2D773F06F" name="usuarios_id_IDX">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-24 11:17:31 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="FAF6DDC2-B3EC-CCC2-B60E-A133DB87D21B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="961F5F43-20CF-8D2A-83C0-A174D22E3FDE" name="usuarios_email_IDX">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-24 11:17:31 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="5716FC48-5592-791D-C534-C92B535D7C27"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A04FA432-98A7-F683-181D-5618803F22E0" name="usuarios_cpf_IDX">
+<createdBy>fredm</createdBy>
+<createdTime>2019-04-15 22:57:40 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="DA89F8F8-5EDA-494B-3878-7DA3B3C0CE6F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="79837A1B-A2D6-D227-D6FC-AEF1202C7CD2" name="usuarios_cidades_FK">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-26 00:17:24 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="83800AF8-1835-D9C8-08D6-D0DB34F2BC38"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="86350631-DCB6-44D0-E78A-9A9E1EBC9316" name="usuarios_situacoes_FK">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-30 22:21:28 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="36092156-1ED8-EC1A-E3AA-06D75783772C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="2FAFB9CA-E914-4ABA-6567-61E9CB98D4AE" name="usuarios_empresas_FK">
+<createdBy>fredm</createdBy>
+<createdTime>2018-09-13 10:33:35 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="6363D224-CD59-DAFF-D945-26AD2D336D6F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="49BFC019-F7C7-DA55-656A-F34F4F3A0AEF" name="usuarios_usuarios_FK">
+<createdBy>fredm</createdBy>
+<createdTime>2019-03-21 09:07:24 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="DE4F7361-0E1D-2E2C-FC74-48AEE4D92E91"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,100 @@
+﻿
+@{
+    ViewData["Title"] = "IncluirUsuarios";
+}
+
+
+<div style="padding-left: 5%; padding-top: 1%; padding-right: 5%">
+    <div>
+        <a id="fechar" asp-controller="Home" asp-action="Index"> <img style="width: 28px;" src="~/images/fechar.svg" /></a>
+        <h4>Incluir Usuários <img style="width: 20px;" src="~/images/loader.gif" id="loaderImg" hidden></h4>
+    </div>
+    <hr />
+
+
+    <form asp-controller="Usuarios" asp-action="IncluirUsuariosPost" method="post" onsubmit="disableObj(IncluirBtn);showObj(loaderImg)">
+
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label for="nome">Nome</label>
+                <input class="form-control" autocomplete="off" id="nome" name="nome" type="text" value="@ViewBag.nome" />
+            </div>
+            <div class="form-group col-md-3">
+                <label for="email">e-mail</label>
+                <input class="form-control" autocomplete="off" id="email" name="email" type="text" value="@ViewBag.email" />
+            </div>
+            <div class="form-group col-md-2">
+                <label for="data_nasc">Data nasc.</label>
+                <input class="form-control" autocomplete="off" id="data_nasc" name="data_nasc" type="date" value="@ViewBag.data_nasc" />
+            </div>
+            <div class="form-group col-md-1">
+                <label for="cpf">CPF</label>
+                <input class="form-control" autocomplete="off" id="cpf" name="cpf" type="text" value="@ViewBag.cpf" />
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-1">
+                <div class="form-check">
+                    @if (ViewBag.aplicativo == "S")
+                    {
+                        <input type="checkbox" class="form-check-input" name="aplicativo" value="S" checked>
+                    }
+                    else
+                    {
+                        <input type="checkbox" class="form-check-input" name="aplicativo" value="S">
+                    }
+                    <label class="form-check-label" for="aplicativo">Aplicativo</label>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-2">
+                <label for="situacao">Situação</label>
+                <select class="form-control" name="id_situacao">
+                    <option value="" selected disabled hidden></option>
+                    @foreach (var situacao in ViewBag.situacoes)
+                    {
+                        @if (situacao.Id == ViewBag.id_situacao)
+                        {
+                            <option value="@situacao.Id" selected>@situacao.Descricao</option>
+                        }
+                        else
+                        {
+                            <option value="@situacao.Id">@situacao.Descricao</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="form-group col-md-2">
+                <label for="password">Senha</label>
+                <input class="form-control" autocomplete="off" id="senha1" name="senha1" type="password" value="@ViewBag.senha1" />
+            </div>
+            <div class="form-group col-md-2">
+                <label for="password">Conf. Senha</label>
+                <input class="form-control" autocomplete="off" id="senha2" name="senha2" type="password" value="@ViewBag.senha2" />
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="group col-md-2">
+                <button class="btn btn-success col-5" id="IncluirBtn" type="submit"><i class="fas fa-check"></i> Incluir</button>
+            </div>
+        </div>
+    </form>
+    <hr />
+    @if (ViewBag.responseStatusCode == "OK")
+    {
+        @if (ViewBag.erro || ViewBag.id == 0)
+        {
+            <h4 style="color : red">@ViewBag.mensagem</h4>
+        }
+        else
+        {
+            <h4 style="color : green">Usuário incluído. Código: @ViewBag.id</h4>
+        }
+    }
+    else
+    {
+        <h4 style="color : red"> @ViewBag.responseStatusCode </h4>
+    }
+</div>

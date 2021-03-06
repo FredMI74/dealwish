@@ -1,0 +1,155 @@
+﻿
+@{
+    ViewData["Title"] = "EditarContratos";
+}
+
+
+    <div style="padding-left: 5%; padding-top: 1%; padding-right: 5%">
+        <div>
+            <a id="fechar" asp-controller="Home" asp-action="Index"> <img style="width: 28px;" src="~/images/fechar.svg" /></a>
+            <h4>Editar Contrato <img style="width: 20px;" src="~/images/loader.gif" id="loaderImg" hidden></h4>
+        </div>
+        <hr />
+        @if (@ViewBag.id != 0)
+        {
+            <form asp-controller="Contratos" asp-action="EditarContratosPost" method="post" onsubmit="disableObj(SalvarBtn);disableObj(CancelarBtn);showObj(loaderImg)">
+                <h6 for="id">Código: @ViewBag.id</h6>
+                <input class="form-control" autocomplete="off" id="id" name="id" type="hidden" value="@ViewBag.id" />
+                <hr />
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="Empresa">Empresa</label>
+                        <input type="number" name="id_empresa" id="id_empresa" hidden value="@ViewBag.id_empresa" />
+                        <input type="text" name="razao_social" id="razao_social" class="form-control" autocomplete="off" value="@ViewBag.razao_social" />
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="Plano">Plano</label>
+                        <select class="form-control" name="id_plano">
+                            <option value="" selected disabled hidden></option>
+                            @foreach (var plano in ViewBag.planos)
+                            {
+                                @if (plano.Id == ViewBag.id_plano)
+                                {
+                                    <option value="@plano.Id" selected>@plano.Descricao</option>
+                                }
+                                else
+                                {
+                                    <option value="@plano.Id">@plano.Descricao</option>
+                                }
+
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="Situacao">Situação</label>
+                        <select class="form-control" name="id_situacao">
+                            <option value="" selected disabled hidden></option>
+                            @foreach (var situacao in ViewBag.situacoes)
+                            {
+                                @if (situacao.Id == ViewBag.id_situacao)
+                                {
+                                    <option value="@situacao.Id" selected>@situacao.Descricao</option>
+                                }
+                                else
+                                {
+                                    <option value="@situacao.Id">@situacao.Descricao</option>
+                                }
+
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group col-md-1">
+                        <label for="dia_vct">Dia vencimento</label>
+                        <br />
+                        <input class="form-control" autocomplete="off" id="dia_vct" name="dia_vct" type="number" value="@ViewBag.dia_vct" />
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="data_inicio">Data ínicio</label>
+                        <br />
+                        <input class="form-control" autocomplete="off" id="data_inicio" name="data_inicio" type="date" value="@ViewBag.data_inicio" />
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="data_bloqueio">Data bloqueio</label>
+                        <br />
+                        <input class="form-control" autocomplete="off" id="data_bloqueio" name="data_inicio" type="date" value="@ViewBag.data_bloqueio" />
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="data_termino">Data término</label>
+                        <br />
+                        <input class="form-control" autocomplete="off" id="data_termino" name="data_termino" type="date" value="@ViewBag.data_termino" />
+                    </div>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-md-2">
+                        <button class="btn btn-success col-5" id="SalvarBtn" type="submit"><i class="fas fa-check"></i> Salvar</button>
+                        <button class="btn btn-danger col-5" id="CancelarBtn" type="button" value="Cancelar" onclick="location.href='@Url.Action("RefazerUltimaConsultaContrato", "Contratos")'"><i class="fas fa-times"></i> Cancelar</button>
+                    </div>
+                </div>
+            </form>
+        }
+        else
+        {
+            <div class="row">
+                <div class="col-md-2">
+                  <button class="btn btn-info col-5" type="button" value="Voltar" onclick="location.href='@Url.Action("RefazerUltimaConsultaContrato", "Contratos")'"><i class="fas fa-arrow-left"></i> Voltar</button>
+                </div>
+            </div>
+        }
+        <hr />
+        @if (ViewBag.responseStatusCode == "OK")
+        {
+            @if (ViewBag.erro || ViewBag.linhasafetadas == 0)
+            {
+                <h4 style="color : red">@ViewBag.mensagem</h4>
+            }
+            else
+            {
+                @if (ViewBag.linhasafetadas >= 1)
+                {
+                    <h4 style="color : green">Contrato atualizado.</h4>
+                }
+            }
+        }
+        else
+        {
+            <h4 style="color : red"> @ViewBag.responseStatusCode </h4>
+        }
+    </div>
+
+@section Scripts{
+    <script type="text/javascript" src="~/lib/jquery-typeahead/bootstrap3-typeahead.js"></script>
+
+    <script>
+        var url = '@Url.Action("ConsultarEmpresasAutoCompletar", "Empresas")';
+
+        $('#razao_social').typeahead({
+            source: function (query, process) {
+                post(url, query, process);
+            },
+            minLength: 2,
+            afterSelect: function (item) {
+                $("#id_empresa").val(item.id);
+            }
+        });
+
+        function post(url, query, process) {
+            $.ajax({
+                type: "POST",
+                url: url,
+                dataType: "json",
+                data: { razao_social: query },
+                success: function (response) {
+                    process(response);
+                },
+                failure: function (response) {
+                    alert(response);
+                }
+            });
+        }
+
+    </script>
+}
+

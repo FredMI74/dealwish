@@ -1,0 +1,191 @@
+﻿
+@{
+    ViewData["Title"] = "ConsultarFaturas";
+}
+
+<div style="padding-left: 5%; padding-top: 1%; padding-right: 5%">
+    <div>
+        <a id="fechar" asp-controller="Home" asp-action="Index"> <img style="width: 28px;" src="~/images/fechar.svg" /></a>
+        <h4>Consultar Faturas <img style="width: 20px;" src="~/images/loader.gif" id="loaderImg" hidden></h4>
+    </div>
+    <hr />
+    <form asp-controller="Faturas" asp-action="ConsultarFaturasPost" method="post" onsubmit="disableObj(ConsultarBtn);showObj(loaderImg)">
+        <div class="form-row">
+            <div class="form-group col-md-1">
+                <label for="id">Código</label>
+                <input class="form-control" autocomplete="off" id="id" name="id" type="number" />
+            </div>
+            <div class="form-group col-md-1">
+                <label for="id">Cód. Empresa</label>
+                <input class="form-control" autocomplete="off" id="id_empresa" name="id_empresa" type="number" />
+            </div>
+            <div class="form-group col-md-3">
+                <label for="Empresa">Empresa</label>
+                <input type="number" name="id_empresa" id="id_empresa" hidden value="@ViewBag.id_empresa" />
+                <input type="text" name="razao_social" id="razao_social" class="form-control" autocomplete="off" value="@ViewBag.razao_social" />
+            </div>
+            <div class="form-group col-md-1">
+                <label for="id">Mês</label>
+                <input class="form-control" autocomplete="off" id="mes" name="mes" type="number" />
+            </div>
+            <div class="form-group col-md-1">
+                <label for="id">Ano</label>
+                <input class="form-control" autocomplete="off" id="ano" name="ano" type="number" />
+            </div>
+            <div class="form-group col-md-2">
+                <label for="descricao">Nosso Número</label>
+                <input class="form-control" autocomplete="off" id="nosso_numero" name="nosso_numero" type="text" />
+            </div>
+            <div class="form-group col-md-3">
+                <label for="situacao">Situação</label>
+                <select class="form-control" name="id_situacao">
+                    <option value="" selected disabled hidden></option>
+                    @foreach (var situacao in ViewBag.situacoes)
+                    {
+                        <option value="@situacao.Id">@situacao.Descricao</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2">
+                <button class="btn btn-info col-6" id="ConsultarBtn" type="submit"><i class="fas fa-search"></i> Consultar</button>
+            </div>
+            @if (ViewBag.faturas.Count > 0)
+            {
+        <div class="col-md-10" align="right">
+            @if (ViewBag.tin == true || ViewBag.bkf == true)
+            {
+                <button class="btn btn-success col-1" id="GerarRemessaNFBtn" onclick="disableObj(GerarRemessaNFBtn);location.href='@Url.Action("GerarRemessaNF", "Faturas")'"><i class="fas fa-download"></i> NF</button>
+                <button class="btn btn-success col-1" id="GerarPIXBtn" onclick="disableObj(GerarPIXBtn);location.href='@Url.Action("GerarPIX", "Faturas")'"><i class="fas fa-cog"></i> PIX</button>
+                <button class="btn btn-success col-1" id="GerarRemessaBoletoBtn" onclick="disableObj(GerarRemessaBoletoBtn);location.href='@Url.Action("GerarRemessaBoleto", "Faturas")'"><i class="fas fa-download"></i> Boleto</button>
+            }
+            <a asp-area="" asp-controller="Faturas" asp-action="ExportarCSV" class="btn btn-primary col-1">
+                <i class="fas fa-download"></i> CSV
+
+            </a>
+        </div>
+            }
+        </div>
+    </form>
+    <hr />
+
+    <table class="table table-fixed table-striped table-sm">
+        <thead class="thead-dark">
+            <tr>
+                <th class="col-lg-1">Cód/Nosso Nº</th>
+                <th class="col-lg-1">Empresa</th>
+                <th class="col-lg-1">Mês/Ano</th>
+                <th class="col-lg-1">Valor</th>
+                <th class="col-lg-1">Data vct.</th>
+                <th class="col-lg-1">Data pg.</th>
+                <th class="col-lg-1">Multa</th>
+                <th class="col-lg-1">Juros</th>
+                <th class="col-lg-1">Valor pg.</th>
+                <th class="col-lg-1">Qtd. Ofertas</th>
+                <th class="col-lg-1">Situação</th>
+                @if (ViewBag.bkf == true || ViewBag.tin == true)
+                {
+                    <th class="col-lg-1">Ação</th>
+                }
+            </tr>
+        </thead>
+        @foreach (var fatura in ViewBag.faturas)
+        {
+            <tr>
+                <td class="col-lg-1">@fatura.Id/@fatura.Nosso_numero</td>
+                <td class="col-lg-1">@fatura.Id_empresa-@fatura.Razao_social</td>
+                <td class="col-lg-1">@fatura.Mes/@fatura.Ano</td>
+                <td class="col-lg-1">@string.Format("{0:R$ #,###,##0.00}", fatura.Valor)</td>
+                <td class="col-lg-1">@fatura.Data_vct.ToString("dd/MM/yyyy")</td>
+                @if (fatura.Data_pg.ToString("dd/MM/yyyy") == "01/01/0001")
+                {
+                    <td class="col-lg-1"></td>
+                    <td class="col-lg-1"></td>
+                    <td class="col-lg-1"></td>
+                    <td class="col-lg-1"></td>
+                }
+                else
+                {
+                    <td class="col-lg-1">@fatura.Data_pg.ToString("dd/MM/yyyy")</td>
+                    <td class="col-lg-1">@string.Format("{0:R$ #,###,##0.00}", fatura.Multa)</td>
+                    <td class="col-lg-1">@string.Format("{0:R$ #,###,##0.00}", fatura.Juros)</td>
+                    <td class="col-lg-1">@string.Format("{0:R$ #,###,##0.00}", fatura.Valor_pg)</td>
+                }
+
+                <td class="col-lg-1">@fatura.Qtd_ofertas</td>
+                <td class="col-lg-1">@fatura.Desc_situacao</td>
+                @if (ViewBag.bkf == true || ViewBag.tin == true)
+                {
+                    <td class="col-lg-1">
+                        <a asp-area="" asp-controller="Faturas" asp-action="AcaoBaixarFaturas" asp-route-id="@fatura.Id"><img style="margin: 2px; width: 30px;" title="Baixar fatura" src="~/images/baixar_fatura.svg"></a>
+                        <a asp-area="" asp-controller="Faturas" asp-action="CancelarFaturas" asp-route-id="@fatura.Id" onclick=" return Confirmar('Cancelar fatura?')"><img style="margin: 2px; width: 30px;" title="Cancelar fatura" src="~/images/cancelar_fatura.svg"></a>
+                        <a asp-area="" asp-controller="Faturas" asp-action="ExcluirFaturas" asp-route-id="@fatura.Id" onclick=" return Confirmar('Excluir fatura?')"><img style="margin: 2px; width: 30px;" title="Excluir fatura" src="~/images/excluir.svg"></a>
+                    </td>
+                }
+            </tr>
+        }
+    </table>
+    @if (ViewBag.responseStatusCode == "OK")
+    {
+        @if (ViewBag.erro || (ViewBag.linhasafetadas == 0 && ViewBag.excluindo))
+        {
+            <h4 style="color : red">@ViewBag.mensagem</h4>
+        }
+        else
+        {
+            @if (ViewBag.excluindo)
+            {
+                <h4 style="color : green">@ViewBag.mensagem</h4>
+            }
+            else
+            {
+                @if (ViewBag.faturas.Count == 0)
+                {
+                    <h5 style="color : red">Nenhum registro encontrado.</h5>
+                }
+            }
+
+
+        }
+    }
+    else
+    {
+        <h4 style="color : red"> @ViewBag.responseStatusCode </h4>
+    }
+</div>
+
+@section Scripts{
+    <script type="text/javascript" src="~/lib/jquery-typeahead/bootstrap3-typeahead.js"></script>
+
+    <script>
+        var url = '@Url.Action("ConsultarEmpresasAutoCompletar", "Empresas")';
+
+        $('#razao_social').typeahead({
+            source: function (query, process) {
+                post(url, query, process);
+            },
+            minLength: 2,
+            afterSelect: function (item) {
+                $("#id_empresa").val(item.id);
+            }
+        });
+
+        function post(url, query, process) {
+            $.ajax({
+                type: "POST",
+                url: url,
+                dataType: "json",
+                data: { razao_social: query },
+                success: function (response) {
+                    process(response);
+                },
+                failure: function (response) {
+                    alert(response);
+                }
+            });
+        }
+
+    </script>
+}

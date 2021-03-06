@@ -1,0 +1,78 @@
+﻿
+@{
+    ViewData["Title"] = "ConsultarFaturasAbertas";
+}
+
+
+<div style="padding-left: 5%; padding-top: 1%; padding-right: 5%">
+    <div>
+        <a id="fechar" asp-controller="Home" asp-action="Index"> <img style="width: 28px;" src="~/images/fechar.svg" /></a>
+        <h4>Faturas Abertas<img style="width: 20px;" src="~/images/loader.gif" id="loaderImg" hidden></h4>
+    </div>
+    <hr />
+    <form onsubmit="disableObj(EfetivarFaturasAbertasBtn);disableObj(AtualizarFaturasAbertasBtn);showObj(loaderImg)">
+        <div class="row">
+            <div class="col-md-2">
+                @if (ViewBag.bkf == true || ViewBag.tin == true)
+                {
+                    <button class="btn btn-success col-5" id="EfetivarFaturasAbertasBtn" asp-area="" asp-controller="Faturas" asp-action="EfetivarFaturasAbertas" onclick=" return Confirmar('Efetivar faturas?')"><i class="fas fa-bolt"></i> Efetivar</button>
+                }
+                <button class="btn btn-info col-6" id="AtualizarFaturasAbertasBtn" asp-area="" asp-controller="Faturas" asp-action="AtualizarFaturasAbertas"><i class="fas fa-sync-alt"></i> Atualizar</button>
+            </div>
+        </div>
+    </form>
+    <hr />
+    <table class="table table-fixed-large table-striped table-sm">
+        <thead class="thead-dark">
+            <tr>
+                <th class="col-lg-1">Mês</th>
+                <th class="col-lg-1">Ano</th>
+                <th class="col-lg-1">Cód. Empresa</th>
+                <th class="col-lg-5">Razão Social</th>
+                <th class="col-lg-1">Valor</th>
+                <th class="col-lg-1">Data Vct.</th>
+                <th class="col-lg-1">Qtd. Ofertas</th>
+                <th class="col-lg-1">Situação</th>
+            </tr>
+        </thead>
+        @foreach (var fatura in ViewBag.faturas)
+            {
+                <tr>
+                    <td class="col-lg-1">@fatura.Mes</td>
+                    <td class="col-lg-1">@fatura.Ano</td>
+                    <td class="col-lg-1">@fatura.Id_empresa</td>
+                    <td class="col-lg-5">@fatura.Razao_social</td>
+                    <td class="col-lg-1">@string.Format("{0:R$ #,###,##0.00}", fatura.Valor)</td>
+                    <td class="col-lg-1">@fatura.Data_vct.ToString("dd/MM/yyyy")</td>
+                    <td class="col-lg-1">@fatura.Qtd_ofertas</td>
+                    <td class="col-lg-1">@fatura.Desc_situacao</td>
+                </tr>
+            }
+    </table>
+    @if (ViewBag.responseStatusCode == "OK")
+    {
+        @if (ViewBag.erro || (ViewBag.linhasafetadas == 0 && ViewBag.efetivando))
+        {
+            <h4 style="color : red">@ViewBag.mensagem</h4>
+        }
+        else
+        {
+            @if (ViewBag.efetivando)
+            {
+                <h4 style="color : green">Faturas efetivadas.</h4>
+            }
+            else
+            {
+                @if (ViewBag.faturas.Count == 0)
+                {
+                    <h5 style="color : red">Nenhum registro encontrado.</h5>
+                }
+            }
+
+        }
+    }
+    else
+    {
+        <h4 style="color : red"> @ViewBag.responseStatusCode </h4>
+    }
+</div>

@@ -1,0 +1,118 @@
+﻿
+@{
+    ViewData["Title"] = "ConsultarUsuarios";
+}
+
+<div style="padding-left: 5%; padding-top: 1%; padding-right: 5%">
+    <div>
+        <a id="fechar" asp-controller="Home" asp-action="Index"> <img style="width: 28px;" src="~/images/fechar.svg" /></a>
+        <h4>Consultar Usuários <img style="width: 20px;" src="~/images/loader.gif" id="loaderImg" hidden></h4>
+    </div>
+    <hr />
+    <form asp-controller="Usuarios" asp-action="ConsultarUsuariosPost" method="post" onsubmit="disableObj(ConsultarBtn);showObj(loaderImg)">
+        <div class="form-row">
+            <div class="form-group col-md-1">
+                <label for="id">Código</label>
+                <input class="form-control" autocomplete="off" id="id" name="id" type="number" />
+            </div>
+            <div class="form-group col-md-3">
+                <label for="nome">Nome</label>
+                <input style="width:100%" class="form-control" autocomplete="off" id="nome" name="nome" type="text" />
+            </div>
+            <div class="form-group col-md-3">
+                <label for="nome">e-mail</label>
+                <input class="form-control" autocomplete="off" id="email" name="email" type="text" />
+            </div>
+            <div class="form-group col-md-2">
+                <label for="cpf">CPF</label>
+                <input class="form-control" autocomplete="off" id="cpf" name="cpf" type="text" />
+            </div>
+            <div class="form-group col-md-2">
+                <label for="situacao">Situação</label>
+                <select class="form-control" name="id_situacao">
+                    <option value="" selected disabled hidden></option>
+                    @foreach (var situacao in ViewBag.situacoes)
+                    {
+                        <option value="@situacao.Id">@situacao.Descricao</option>
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                <button class="btn btn-info col-6" id="ConsultarBtn" type="submit"><i class="fas fa-search"></i> Consultar</button>
+            </div>
+        </div>
+    </form>
+    <hr />
+    <table class="table table-fixed table-striped table-sm">
+        <thead class="thead-dark">
+            <tr>
+                <th class="col-lg-1">Código</th>
+                <th class="col-lg-2">Nome</th>
+                <th class="col-lg-2">e-mail</th>
+                <th class="col-lg-1">CPF</th>
+                <th class="col-lg-1">Aplicativo</th>
+                <th class="col-lg-1">Situação</th>
+                <th class="col-lg-1">Cidade</th>
+                <th class="col-lg-1">Empresa</th>
+                <th class="col-lg-2">Ação</th>
+            </tr>
+        </thead>
+        @foreach (var usuario in ViewBag.usuarios)
+        {
+            <tr>
+                <td class="col-lg-1">@usuario.Id</td>
+                <td class="col-lg-2">@usuario.Nome</td>
+                <td class="col-lg-2">@usuario.Email</td>
+                <td class="col-lg-1">@usuario.Cpf</td>
+                <td class="col-lg-1">@usuario.Aplicativo</td>
+                <td class="col-lg-1">@usuario.Desc_situacao</td>
+                <td class="col-lg-1">@usuario.Nome_cidade_ap</td>
+                <td class="col-lg-1">@usuario.Razao_social</td>
+                <td class="col-lg-2">
+                    <a asp-area="" asp-controller="Usuarios" asp-action="AcaoEditarUsuarios" asp-route-id="@usuario.Id"><img style="margin: 5px; width: 32px;" title="Editar usuário" src="~/images/editar.svg"></a>
+                    <a asp-area="" asp-controller="Usuarios" asp-action="AcaoGrupoPermissoesUsuarios" asp-route-id_usuario="@usuario.Id" asp-route-nome="@usuario.Nome" asp-route-email="@usuario.Email"><img style="margin: 5px; width: 32px;" title="Grupos do usuário" src="~/images/grupo.svg"></a>
+                    <a asp-area="" asp-controller="Usuarios" asp-action="ReiniciarSenhaUsuarios" asp-route-email="@usuario.Email" onclick=" return Confirmar('Reinicializar senha?')"><img style="margin: 5px; width: 32px;" title="Reinicializar senha" src="~/images/reset_pwd.svg"></a>
+                    @if (usuario.Id != ViewBag.id_usuario_logado)
+                    {
+                        <a asp-area="" asp-controller="Usuarios" asp-action="ExcluirUsuarios" asp-route-id="@usuario.Id" onclick=" return Confirmar('Excluir usuário?')"><img style="margin: 5px; width: 32px;" title="Excluir usuário" src="~/images/excluir.svg"></a>
+                    }
+                </td>
+            </tr>
+        }
+    </table>
+    @if (ViewBag.responseStatusCode == "OK")
+    {
+        @if (ViewBag.erro || (ViewBag.linhasafetadas == 0 && ViewBag.acao != ""))
+        {
+            <h4 style="color : red">@ViewBag.mensagem</h4>
+        }
+        else
+        {
+            @if (ViewBag.acao == "E")
+            {
+                <h4 style="color : green">Usuário excluído.</h4>
+            }
+            else
+            {
+                @if (ViewBag.acao == "R")
+                {
+                    <h4 style="color : green">Senha enviada para o e-mail do usuário.</h4>
+                }
+                else
+                {
+                    @if (ViewBag.usuarios.Count == 0)
+                    {
+                        <h5 style="color : red"> Nenhum registro encontrado.</h5>
+                    }
+                }
+            }
+        }
+    }
+    else
+    {
+        <h4 style="color : red"> @ViewBag.responseStatusCode </h4>
+    }
+</div>
+

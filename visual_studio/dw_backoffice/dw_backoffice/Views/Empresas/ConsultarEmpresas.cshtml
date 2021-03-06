@@ -1,0 +1,178 @@
+﻿
+@{
+    ViewData["Title"] = "ConsultarEmpresas";
+}
+
+<div style="padding-left: 5%; padding-top: 1%; padding-right: 5%">
+    <div>
+        <a id="fechar" asp-controller="Home" asp-action="Index"> <img style="width: 28px;" src="~/images/fechar.svg" /></a>
+        <h4>Consultar Empresas <img style="width: 20px;" src="~/images/loader.gif" id="loaderImg" hidden></h4>
+    </div>
+    <hr />
+    <form asp-controller="Empresas" asp-action="ConsultarEmpresasPost" method="post" onsubmit="disableObj(ConsultarBtn);showObj(loaderImg)">
+        <div class="form-row">
+            <div class="form-group col-md-1">
+                <label for="id">Código</label>
+                <input style="width:100%" class="form-control" autocomplete="off" id="id" name="id" type="number" />
+            </div>
+            <div class="form-group col-md-2">
+                <label for="fantasia">Nome fantasia</label>
+                <input style="width:100%" class="form-control" autocomplete="off" id="nfantasia" name="fantasia" type="text" />
+            </div>
+
+            <div class="form-group col-md-2">
+                <label for="razao_social">Razão Social</label>
+                <input style="width:100%" class="form-control" autocomplete="off" id="razao_social" name="razao_social" type="text" />
+            </div>
+
+            <div class="form-group col-md-1">
+                <label for="cnpj">CNPJ</label>
+                <input style="width:100%" class="form-control" autocomplete="off" id="cnpj" name="cnpj" type="text" />
+            </div>
+            <div class="form-group col-md-2">
+                <label for="endereco">Endereço</label>
+                <input style="width:100%" class="form-control" autocomplete="off" id="endereco" name="endereco" type="text" />
+            </div>
+            <div class="form-group col-md-1">
+                <label for="uf">UF</label>
+                <select class="form-control" id="uf" name="uf">
+                    <option value="" selected disabled hidden></option>
+                    <option value="AC">Acre</option>
+                    <option value="AL">Alagoas</option>
+                    <option value="AP">Amapá</option>
+                    <option value="AM">Amazonas</option>
+                    <option value="BA">Bahia</option>
+                    <option value="CE">Ceará</option>
+                    <option value="DF">Distrito Federal</option>
+                    <option value="ES">Espírito Santo</option>
+                    <option value="GO">Goiás</option>
+                    <option value="MA">Maranhão</option>
+                    <option value="MT">Mato Grosso</option>
+                    <option value="MS">Mato Grosso do Sul</option>
+                    <option value="MG">Minas Gerais</option>
+                    <option value="PA">Pará</option>
+                    <option value="PB">Paraíba</option>
+                    <option value="PR">Paraná</option>
+                    <option value="PE">Pernambuco</option>
+                    <option value="PI">Piauí</option>
+                    <option value="RJ">Rio de Janeiro</option>
+                    <option value="RN">Rio Grande do Norte</option>
+                    <option value="RS">Rio Grande do Sul</option>
+                    <option value="RO">Rondônia</option>
+                    <option value="RR">Roraima</option>
+                    <option value="SC">Santa Catarina</option>
+                    <option value="SP">São Paulo</option>
+                    <option value="SE">Sergipe</option>
+                    <option value="TO">Tocantins</option>
+                </select>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="cidade">Cidade</label>
+                <input type="number" name="id_cidade" id="id_cidade" hidden />
+                <input type="text" name="nome_cidade" id="nome_cidade" class="form-control" autocomplete="off" />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2">
+                <button class="btn btn-info col-6" id="ConsultarBtn" type="submit"><i class="fas fa-search"></i> Consultar</button>
+            </div>
+        </div>
+    </form>
+    <hr />
+    <table class="table table-fixed table-striped table-sm">
+        <thead class="thead-dark">
+            <tr>
+                <th class="col-lg-1">Código</th>
+                <th class="col-lg-1">Logo</th>
+                <th class="col-lg-3">Fantasia</th>
+                <th class="col-lg-3">Razão Social</th>
+                <th class="col-lg-2">CNPJ</th>
+                @if (ViewBag.bkc == true || ViewBag.tin == true)
+                {
+                    <th class="col-lg-2">Ação</th>
+                }
+            </tr>
+        </thead>
+        @foreach (var empresa in ViewBag.empresas)
+        {
+            <tr>
+                <td class="col-lg-1">@empresa.Id</td>
+                <td class="col-lg-1">
+                    <img style="width: 32px;" src="@empresa.Logo" />
+                </td>
+                <td class="col-lg-3">@empresa.Fantasia</td>
+                <td class="col-lg-3">@empresa.Razao_social</td>
+                <td class="col-lg-2">@empresa.Cnpj</td>
+                @if (ViewBag.bkc == true || ViewBag.tin == true)
+                {
+                    <td class="col-lg-2">
+                        <a asp-area="" asp-controller="Empresas" asp-action="AcaoEditarEmpresas" asp-route-id="@empresa.Id"><img style="margin: 2px; width: 30px;" title="Editar empresa" src="~/images/editar.svg"></a>
+                        <a asp-area="" asp-controller="Empresas" asp-action="ExcluirEmpresas" asp-route-id="@empresa.Id" onclick=" return Confirmar('Excluir empresa?')"><img style="margin: 2px; width: 30px;" title="Excluir empresa" src="~/images/excluir.svg"></a>
+                    </td>
+                }
+            </tr>
+        }
+    </table>
+    @if (ViewBag.responseStatusCode == "OK")
+    {
+        @if (ViewBag.erro || (ViewBag.linhasafetadas == 0 && ViewBag.excluindo))
+        {
+            <h4 style="color : red">@ViewBag.mensagem</h4>
+        }
+        else
+        {
+            @if (ViewBag.excluindo)
+            {
+                <h4 style="color : green">Empresa excluída.</h4>
+            }
+            else
+            {
+                @if (ViewBag.empresas.Count == 0)
+                {
+                    <h5 style="color : red">Nenhum registro encontrado.</h5>
+                }
+            }
+
+        }
+    }
+    else
+    {
+        <h4 style="color : red"> @ViewBag.responseStatusCode </h4>
+    }
+</div>
+
+@section Scripts{
+    <script type="text/javascript" src="~/lib/jquery-typeahead/bootstrap3-typeahead.js"></script>
+
+    <script>
+        var url = '@Url.Action("ConsultarCidadesAutoCompletar", "Cidades")';
+
+        $('#nome_cidade').typeahead({
+            source: function (query, process) {
+                post(url, query, process);
+            },
+            minLength: 2,
+            afterSelect: function (item) {
+                $("#id_cidade").val(item.id);
+            }
+        });
+
+        function post(url, query, process) {
+            $.ajax({
+                type: "POST",
+                url: url,
+                dataType: "json",
+                data: { nome: query },
+                success: function (response) {
+                    process(response);
+                },
+                failure: function (response) {
+                    alert(response);
+                }
+            });
+        }
+
+    </script>
+}
+

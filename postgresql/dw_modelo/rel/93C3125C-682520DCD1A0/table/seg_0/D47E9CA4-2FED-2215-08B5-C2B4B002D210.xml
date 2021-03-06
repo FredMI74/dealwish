@@ -1,0 +1,322 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="D47E9CA4-2FED-2215-08B5-C2B4B002D210" schemaObject="CC7D603D-7CCC-CCE9-FD85-FFC055EC548B" name="ofertas">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-26 00:34:21 UTC</createdTime>
+<commentInRDBMS>Registro das ofertas das empresas aos usuários</commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<ordsAlias>table_7</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="DF9D4780-5A47-B75A-DDB3-629567115177">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-26 00:41:24 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="id_desejo" id="A65F83BC-36A8-3DD2-A821-3D6BAF08D6ED">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-26 00:41:50 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="17EE0826-99E4-3088-4DAB-4DF57A81CE3A" referredColumn="A6308C9F-D2DD-6E7F-44EB-48D63DE444C6"/>
+</associations>
+</Column>
+<Column name="id_empresa" id="D7355EB4-3FE2-25DD-010C-704FCC1EDB14">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-26 00:42:19 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="BF588901-F45B-B3B7-5B38-77A6BBA38997" referredColumn="D338C01E-1C12-4493-CF1F-2494D0B377BD"/>
+</associations>
+</Column>
+<Column name="valor" id="9EF7415C-7201-33A4-25CE-112D364B818C">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-26 00:42:49 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>15</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,15,2</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="url" id="03136716-8568-4EA8-A807-295464F1D8EB">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-29 00:15:23 UTC</createdTime>
+<commentInRDBMS>LInk da oferta da empresa</commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>4000</dataTypeSize>
+<ownDataTypeParameters>4000,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="descricao" id="CF927835-8980-B92A-80AF-ACFF34B68258">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-29 00:15:23 UTC</createdTime>
+<commentInRDBMS>Descrição da oferta (marca, modelo, dimesões, etc.)</commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>4000</dataTypeSize>
+<ownDataTypeParameters>4000,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="validade" id="10350DEA-2E7C-743F-26A6-6F3BDAE770D1">
+<createdBy>fredm</createdBy>
+<createdTime>2018-08-01 10:35:20 UTC</createdTime>
+<commentInRDBMS>data de validade da oferta</commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="id_usuario" id="47FFCF0F-52F6-00AE-925B-8C19FE9D9E67">
+<createdBy>fredm</createdBy>
+<createdTime>2018-10-29 10:04:33 UTC</createdTime>
+<commentInRDBMS>Identificação do usuário que incluiu a oferta</commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="4FEDED6B-7F1F-1EFF-AA59-B6434E8BFC16" referredColumn="FAF6DDC2-B3EC-CCC2-B60E-A133DB87D21B"/>
+</associations>
+</Column>
+<Column name="data" id="110C66D0-6509-7FAA-A08E-3B6EBABC5B0E">
+<createdBy>fredm</createdBy>
+<createdTime>2018-10-31 10:23:53 UTC</createdTime>
+<commentInRDBMS>Data da oferta</commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<defaultValue>TRUNC(SYSDATE)</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="id_situacao" id="7F0FEBCA-116D-5D30-6204-95880BA65A12">
+<createdBy>fredm</createdBy>
+<createdTime>2018-10-31 10:24:41 UTC</createdTime>
+<commentInRDBMS>Identificação da situação (SITUACOES)</commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<defaultValue>1</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="517BA33E-51E4-480C-F280-7F17494D665F" referredColumn="55EF855D-8619-4B9A-74BE-5AFE232D36F9"/>
+</associations>
+</Column>
+<Column name="id_fatura" id="800CAFCA-5421-0C25-E258-513DA9890003">
+<createdBy>fredm</createdBy>
+<createdTime>2018-10-31 23:29:36 UTC</createdTime>
+<commentInRDBMS>Identificação da fatura, nulo = oferta ainda não faturada</commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="F7380953-89C3-8BA6-75F4-C6ACA67E7868" referredColumn="06DFB386-77F7-26C4-5182-3583C9823A60"/>
+</associations>
+</Column>
+<Column name="lida" id="ADE9D4FD-41E7-64D0-0221-98FCB50F68A5">
+<createdBy>fredm</createdBy>
+<createdTime>2018-12-24 16:06:25 UTC</createdTime>
+<commentInRDBMS>Oferta lida (S/N)</commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<listOfValues>
+<valueDef value="N" description="Não"/>
+<valueDef value="S" description="Sim"/>
+</listOfValues>
+<defaultValue>N</defaultValue>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="like_unlike" id="894C43C5-3F00-9C84-3473-288BC327E7A3">
+<createdBy>fredm</createdBy>
+<createdTime>2018-12-24 16:07:33 UTC</createdTime>
+<commentInRDBMS>Like Unlike da oferta (N/L/U)</commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<listOfValues>
+<valueDef value="L" description="Like"/>
+<valueDef value="N" description="Não avaliadoi"/>
+<valueDef value="U" description="Unlike"/>
+</listOfValues>
+<defaultValue>N</defaultValue>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="destaque" id="D5892CA8-7526-66BC-8E6D-1ABE40BDFBFF">
+<createdBy>fredm</createdBy>
+<createdTime>2019-04-01 22:50:35 UTC</createdTime>
+<commentInRDBMS>oferta destacada</commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<listOfValues>
+<valueDef value="N" description="Não"/>
+<valueDef value="S" description="Sim"/>
+</listOfValues>
+<defaultValue>N</defaultValue>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="id_usuario_log" id="3CE62F75-45D9-ECA5-7B1D-3D93A0BCF716">
+<createdBy>fredm</createdBy>
+<createdTime>2019-03-22 09:08:31 UTC</createdTime>
+<commentInRDBMS>usuário que incluiu ou alterou o registro</commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="5EDB9A0A-1A3C-F906-F9B9-3639F298F0E6" referredColumn="FAF6DDC2-B3EC-CCC2-B60E-A133DB87D21B"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="E44B785F-C47C-EAC4-1439-9954F8736637" name="ofertas_PK">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-26 00:41:24 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="DF9D4780-5A47-B75A-DDB3-629567115177"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="E24204A7-8141-A41A-64E2-33C03387E395" name="ofertas_data_IDX">
+<createdBy>fredm</createdBy>
+<createdTime>2018-10-31 10:52:05 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="110C66D0-6509-7FAA-A08E-3B6EBABC5B0E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A966ADF8-F08B-0BC8-A3DC-46F950186710" name="ofertas_desejo_IDX">
+<createdBy>fredm</createdBy>
+<createdTime>2018-10-31 10:53:01 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A65F83BC-36A8-3DD2-A821-3D6BAF08D6ED"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="46865F99-D5EB-B7FE-533E-BEB0583F7B88" name="ofertas_desejos_FK">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-26 00:41:50 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A65F83BC-36A8-3DD2-A821-3D6BAF08D6ED"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A34C6518-BFC1-FCC9-69EE-B90FE3A38C3F" name="ofertas_empresas_FK">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-26 00:42:19 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D7355EB4-3FE2-25DD-010C-704FCC1EDB14"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="23CDA661-DFBC-0D90-0BDB-B73594813142" name="ofertas_usuarios_FK">
+<createdBy>fredm</createdBy>
+<createdTime>2018-10-29 10:04:33 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="47FFCF0F-52F6-00AE-925B-8C19FE9D9E67"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="60CC9C48-1BB7-7D16-09D7-A57A5575CEBB" name="ofertas_situacoes_FK">
+<createdBy>fredm</createdBy>
+<createdTime>2018-10-31 10:24:41 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="7F0FEBCA-116D-5D30-6204-95880BA65A12"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="5F8058AB-1CE4-7C18-B651-EDE971D6FC25" name="ofertas_faturas_FK">
+<createdBy>fredm</createdBy>
+<createdTime>2018-10-31 23:29:36 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="800CAFCA-5421-0C25-E258-513DA9890003"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="4CAD37CB-69E1-57EF-2E1F-71D75F03267F" name="ofertas_usuarios_FKv1">
+<createdBy>fredm</createdBy>
+<createdTime>2019-03-22 09:08:31 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="3CE62F75-45D9-ECA5-7B1D-3D93A0BCF716"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

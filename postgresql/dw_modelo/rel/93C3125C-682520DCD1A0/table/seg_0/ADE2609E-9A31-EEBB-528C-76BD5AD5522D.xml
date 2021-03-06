@@ -1,0 +1,418 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="ADE2609E-9A31-EEBB-528C-76BD5AD5522D" schemaObject="CC7D603D-7CCC-CCE9-FD85-FFC055EC548B" name="empresas">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-26 00:00:46 UTC</createdTime>
+<commentInRDBMS>Cadastro de empresas que podem realizar ofertas ao desejos dos usuários</commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<ordsAlias>table_5</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="D338C01E-1C12-4493-CF1F-2494D0B377BD">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-26 00:02:29 UTC</createdTime>
+<commentInRDBMS>Identificação da empresa</commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="fantasia" id="74EBB333-0C41-F07B-BA58-7B9E2B7F2B27">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-26 00:02:50 UTC</createdTime>
+<commentInRDBMS>Nome fantasia</commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>150</dataTypeSize>
+<ownDataTypeParameters>150,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="razao_social" id="18AE8E82-225B-F776-22D8-7BB8F821C1DF">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-26 00:08:26 UTC</createdTime>
+<commentInRDBMS>Razão social</commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>150</dataTypeSize>
+<ownDataTypeParameters>150,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="cnpj" id="5768EFC1-F52C-B9A0-88A3-BE9EFEE7B709">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-26 00:08:26 UTC</createdTime>
+<commentInRDBMS>CNPJ</commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>15</dataTypeSize>
+<ownDataTypeParameters>15,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="insc_est" id="48FDBBAE-DB81-C4F9-6330-4F05745D35D3">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-31 10:35:04 UTC</createdTime>
+<commentInRDBMS>Inscrição estadua</commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="url" id="AE592C8A-A3A6-FBA1-A103-2A6D33ED44BC">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-26 00:08:26 UTC</createdTime>
+<commentInRDBMS>site da empresa</commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>150</dataTypeSize>
+<ownDataTypeParameters>150,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="email_com" id="4589F806-38FB-A3C4-131E-C1142E756475">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-26 00:08:26 UTC</createdTime>
+<commentInRDBMS>e-mail comercial  da empresa</commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>150</dataTypeSize>
+<ownDataTypeParameters>150,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="email_sac" id="BE083F3E-7244-C79D-3F3E-FF06609CB9CD">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-26 00:08:26 UTC</createdTime>
+<commentInRDBMS>E-mail de atendimento ao consumidor</commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>150</dataTypeSize>
+<ownDataTypeParameters>150,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="fone_com" id="DCFEAA56-66D0-B727-0F98-C0B0872499C5">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-26 00:08:26 UTC</createdTime>
+<commentInRDBMS>Telefone comercial</commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>15</dataTypeSize>
+<ownDataTypeParameters>15,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="fone_sac" id="F99F13BA-4A97-F410-1146-51730628397A">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-26 00:08:26 UTC</createdTime>
+<commentInRDBMS>Telefone de atendimento ao consumidor</commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>15</dataTypeSize>
+<ownDataTypeParameters>15,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="endereco" id="6AE866E7-17AA-6B51-1C10-E561C67E9D26">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-26 00:09:40 UTC</createdTime>
+<commentInRDBMS>endereço </commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>150</dataTypeSize>
+<ownDataTypeParameters>150,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="numero" id="EBA88984-7363-4DC4-8A7F-E7B48E5BB3FE">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-26 00:11:29 UTC</createdTime>
+<commentInRDBMS>númerodo endereço&lt;br/&gt;</commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>10</dataTypeSize>
+<ownDataTypeParameters>10,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0</beginValue>
+<endValue>9</endValue>
+</rangeDef>
+</listOfRanges>
+</Column>
+<Column name="complemento" id="ABDBF87E-325A-8955-0367-F45138B5BEF5">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-26 00:11:29 UTC</createdTime>
+<commentInRDBMS>complemento de endereço</commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="bairro" id="D61954F2-C265-8AE9-5606-AC0A9CB8392C">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-26 00:11:29 UTC</createdTime>
+<commentInRDBMS>bairro</commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="cep" id="658C619C-862D-D7B0-D351-7F303CE7FACF">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-26 00:11:29 UTC</createdTime>
+<commentInRDBMS>CEP</commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>10</dataTypeSize>
+<ownDataTypeParameters>10,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0</beginValue>
+<endValue>9</endValue>
+</rangeDef>
+</listOfRanges>
+</Column>
+<Column name="endereco_cob" id="DB8951EB-0E1B-CA9E-C75A-51FE67CA4FCC">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-26 00:13:20 UTC</createdTime>
+<commentInRDBMS>endereço de cobrança&lt;br/&gt;</commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>150</dataTypeSize>
+<ownDataTypeParameters>150,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="numero_cob" id="73462EBD-793C-3AA5-BCC0-D6F93CA8F49E">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-26 00:13:20 UTC</createdTime>
+<commentInRDBMS>númerodo endereço de cobrança&lt;br/&gt;</commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>10</dataTypeSize>
+<ownDataTypeParameters>10,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0</beginValue>
+<endValue>9</endValue>
+</rangeDef>
+</listOfRanges>
+</Column>
+<Column name="complemento_cob" id="2BAD9E16-5A9F-5E9C-3595-F9703A661929">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-26 00:13:20 UTC</createdTime>
+<commentInRDBMS>complemento de endereço de cobrança</commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="bairro_cob" id="3B02C3B0-7FB4-DE91-0A4D-F72E409560B4">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-26 00:13:20 UTC</createdTime>
+<commentInRDBMS>bairro de cobrança</commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="cep_cob" id="307E842C-8C38-F7A2-BF69-108E3D46B3CA">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-26 00:13:20 UTC</createdTime>
+<commentInRDBMS>CEP de cobrança</commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>10</dataTypeSize>
+<ownDataTypeParameters>10,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0</beginValue>
+<endValue>9</endValue>
+</rangeDef>
+</listOfRanges>
+</Column>
+<Column name="id_cidade" id="4EA17A81-3540-A9C1-295F-06D1CAF1D383">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-26 00:15:37 UTC</createdTime>
+<commentInRDBMS>cidade </commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="8ED47D7D-EA07-25BF-C287-8A5C84C82A6F" referredColumn="03767F8B-2920-98E1-6890-A07D773FF24F"/>
+</associations>
+</Column>
+<Column name="id_cidade_cob" id="76E66577-E0C2-7136-2A5D-A8B230781911">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-26 00:15:56 UTC</createdTime>
+<commentInRDBMS>cidade cobrança</commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="9448A119-A94A-FCB5-1332-35A2216AA01A" referredColumn="03767F8B-2920-98E1-6890-A07D773FF24F"/>
+</associations>
+</Column>
+<Column name="logo" id="95DDC246-FB6A-4F5C-1A11-B2D0DFD47664">
+<createdBy>fredm</createdBy>
+<createdTime>2018-10-08 10:13:56 UTC</createdTime>
+<commentInRDBMS>Ícone - PNG 64x64 - Base64 </commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT028</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="id_qualificacao" id="E0EF307C-9994-0F7A-2D89-0F2E3CC0BD5D">
+<createdBy>fredm</createdBy>
+<createdTime>2019-04-01 23:00:18 UTC</createdTime>
+<commentInRDBMS>Identificação da qualificação</commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<defaultValue>0</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="04AAF181-44FC-7F80-D50D-9A644D48ABD3" referredColumn="EA8BE4E4-5BD2-6B27-02E1-622A6448B628"/>
+</associations>
+</Column>
+<Column name="id_usuario_log" id="A056AA48-EF2B-3B2D-D7F7-7DF6332BB3F6">
+<createdBy>fredm</createdBy>
+<createdTime>2019-03-22 09:37:06 UTC</createdTime>
+<commentInRDBMS>usuário que incluiu ou alterou o registro</commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="5466BF99-1DBE-2879-10F6-5161ED469854" referredColumn="FAF6DDC2-B3EC-CCC2-B60E-A133DB87D21B"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="DD37DA4B-1757-5270-E5B4-B7B018D0D5A6" name="empresas_PK">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-26 00:02:29 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D338C01E-1C12-4493-CF1F-2494D0B377BD"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="F408ED9A-7DCC-75CF-148D-2385BEAA7FF9" name="empresas_cnpj_IDX">
+<createdBy>fredm</createdBy>
+<createdTime>2019-04-15 22:59:53 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="5768EFC1-F52C-B9A0-88A3-BE9EFEE7B709"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="76827B49-1DED-DECA-6BCD-DF65E227E47E" name="empresas_cidades_FK">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-26 00:15:37 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="4EA17A81-3540-A9C1-295F-06D1CAF1D383"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="1FF7EDCD-2558-7005-EDB3-667938641294" name="empresas_cidades_FKv2">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-26 00:15:56 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="76E66577-E0C2-7136-2A5D-A8B230781911"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="F74DB034-B769-0891-2E30-1DEC9D12CF58" name="empresas_usuarios_FK">
+<createdBy>fredm</createdBy>
+<createdTime>2019-03-22 09:37:06 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A056AA48-EF2B-3B2D-D7F7-7DF6332BB3F6"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="9C582842-AA48-2C7D-A47A-5C8A728B1CB7" name="empresas_qualificacoes_FK">
+<createdBy>fredm</createdBy>
+<createdTime>2019-04-01 23:00:18 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E0EF307C-9994-0F7A-2D89-0F2E3CC0BD5D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

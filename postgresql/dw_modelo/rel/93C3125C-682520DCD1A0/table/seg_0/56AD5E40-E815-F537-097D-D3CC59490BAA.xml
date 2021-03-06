@@ -1,0 +1,126 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="56AD5E40-E815-F537-097D-D3CC59490BAA" schemaObject="CC7D603D-7CCC-CCE9-FD85-FFC055EC548B" name="grp_usr">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-27 01:24:10 UTC</createdTime>
+<commentInRDBMS>Grupos de Usários a que o usuário pertence</commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<ordsAlias>table_15</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="FD2586A8-2082-40D0-51B7-700C5EA3A535">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-28 23:45:16 UTC</createdTime>
+<commentInRDBMS>identificação do grrupo do usuário</commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="id_usuario" id="32258BA9-48B8-7FEE-F30F-14092AB911CE">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-28 23:45:28 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="F80CF394-77B1-1359-4794-DAE253408F19" referredColumn="FAF6DDC2-B3EC-CCC2-B60E-A133DB87D21B"/>
+</associations>
+</Column>
+<Column name="id_grp_permissao" id="FAFD9EA4-5451-3650-07B3-B855AFB964AD">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-28 23:45:36 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="2599432B-F654-7563-786B-94890C0FC569" referredColumn="87266F4F-2C67-E546-B0ED-87A700D95030"/>
+</associations>
+</Column>
+<Column name="id_usuario_log" id="E7E4D27C-67A8-4155-A37B-2459B55FA5F0">
+<createdBy>fredm</createdBy>
+<createdTime>2019-03-21 10:11:34 UTC</createdTime>
+<commentInRDBMS>usuário que incluiu ou alterou o registro</commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="FAFD6B2B-46EB-5352-FFAE-45D2D5123E47" referredColumn="FAF6DDC2-B3EC-CCC2-B60E-A133DB87D21B"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="4F709881-CCCD-6B34-F25C-87900200185A" name="grp_usr_PK">
+<createdBy>fredm</createdBy>
+<createdTime>2019-08-05 00:41:26 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="FD2586A8-2082-40D0-51B7-700C5EA3A535"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="96D21B78-D947-3643-A9E9-6197E72B6E6A" name="grp_usr_grp_IDX">
+<createdBy>fredm</createdBy>
+<createdTime>2018-09-12 00:00:00 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="32258BA9-48B8-7FEE-F30F-14092AB911CE"/>
+<colUsage columnID="FAFD9EA4-5451-3650-07B3-B855AFB964AD"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="CE0C3A4A-164C-DAC3-4207-36D4B2C6AF46" name="grupos_usr_usuarios_FK">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-28 23:45:28 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="32258BA9-48B8-7FEE-F30F-14092AB911CE"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="09447CB9-C4E5-4DA5-2FFE-D862F0DA6B7F" name="grupos_usr_grp_permissoes_FK">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-28 23:45:36 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="FAFD9EA4-5451-3650-07B3-B855AFB964AD"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="21CB577F-2C09-5747-CFD1-54B78887F260" name="grp_usr_usuarios_FK">
+<createdBy>fredm</createdBy>
+<createdTime>2019-03-21 10:11:34 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E7E4D27C-67A8-4155-A37B-2459B55FA5F0"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

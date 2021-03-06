@@ -1,0 +1,226 @@
+﻿
+@{
+    ViewData["Title"] = "ConsultarOfertas";
+}
+
+<div style="padding-left: 5%; padding-top: 1%; padding-right: 5%">
+    <div>
+        <a id="fechar" asp-controller="Home" asp-action="Index"> <img style="width: 28px;" src="~/images/fechar.svg" /></a>
+        <h4>Ofertas <img style="width: 20px;" src="~/images/loader.gif" id="loaderImg" hidden></h4>
+    </div>
+    <hr />
+    @if (ViewBag.tipo_consulta == "D") //Desejo
+    {
+        <div class="row">
+            <div class="col-md-2">
+                <a class="btn btn-info col-5" asp-area="" asp-controller="Desejos" asp-action="RefazerUltimaConsultaDesejo"><i class="fas fa-arrow-left"></i> Voltar</a>
+            </div>
+        </div>
+    }
+    else
+    {
+        @if (ViewBag.tipo_consulta == "F") //Fatura
+        {
+            <div class="row">
+                <div class="col-md-2">
+                    <a class="btn btn-info col-5" asp-area="" asp-controller="Faturas" asp-action="RefazerUltimaConsultaFatura"><i class="fas fa-arrow-left"></i> Voltar</a>
+                </div>
+            </div>
+        }
+        else // "M" - Menu
+        {
+            <form asp-controller="Ofertas" asp-action="ConsultarOfertasPost" method="post" onsubmit="disableObj(ConsultarBtn);showObj(loaderImg)">
+                <div class="form-row">
+                    <div class="form-group col-md-3">
+                        <input class="input input-sm" autocomplete="off" id="tipo_consulta" name="tipo_consulta" type="text" value="M" hidden />
+                        <label for="descricao">Descrição</label>
+                        <input style="width:100%" class="form-control" autocomplete="off" id="descricao" name="descricao" type="text" />
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="situacao">Situação</label>
+                        <select class="form-control" name="id_situacao">
+                            <option value="" selected disabled hidden></option>
+                            @foreach (var situacao in ViewBag.situacoes)
+                            {
+                                <option value="@situacao.Id">@situacao.Descricao</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label>Data Inicial</label>
+                        <input class="form-control" autocomplete="off" id="data_ini" name="data_ini" type="date" value="@ViewBag.data_ini" />
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label>Data Final</label>
+                        <input class="form-control" autocomplete="off" id="data_fim" name="data_fim" type="date" value="@ViewBag.data_fim" />
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-2">
+                        <button class="btn btn-info col-6" id="ConsultarBtn" type="submit"><i class="fas fa-search"></i> Consultar</button>
+                    </div>
+                </div>
+            </form>
+
+        }
+    }
+    <hr />
+    @if (ViewBag.tipo_consulta == "M" || !ViewBag.atualizando)
+    {
+        <table class="@(ViewBag.tipo_consulta == "M" ? "table table-fixed table-striped table-sm" : "table table-fixed-large table-striped table-sm")">
+            <thead class="thead-dark">
+                <tr>
+                    <th class="col-lg-1">Cód.</th>
+                    <th class="col-lg-1">Data</th>
+                    <th class="col-lg-1">Empresa</th>
+                    <th class="col-lg-1">Qualificação</th>
+                    <th class="col-lg-1">Usuário Inclusão</th>
+                    <th class="col-lg-1">Validade</th>
+                    <th class="col-lg-1">Valor</th>
+                    <th class="@(ViewBag.tipo_consulta == "F" ? "col-lg-3" : "col-lg-2")">Descrição</th>
+                    <th class="col-lg-1">&nbsp;</th>
+                    <th class="col-lg-1">Situação</th>
+                    @if (ViewBag.tipo_consulta == "D" || ViewBag.tipo_consulta == "M")
+                    {
+                        <th class="col-lg-1" width=100px>Ação</th>
+                    }
+                </tr>
+            </thead>
+            @foreach (var oferta in ViewBag.ofertas)
+            {
+                <tr style="@(ViewBag.tipo_consulta == "D" ? (oferta.Id_situacao != "1" ? "Background-color:#FFCCCC" : DateTime.Today > oferta.Validade ? "Background-color:#F5F0AE" : "") : "")">
+
+                    <td class="col-lg-1">@oferta.Id</td>
+                    <td class="col-lg-1">@oferta.Data.ToString("dd/MM/yyyy")</td>
+                    <td class="col-lg-1">@oferta.Fantasia</td>
+                    <td class="col-lg-1">@oferta.Desc_qualificacao</td>
+                    <td class="col-lg-1">@oferta.Usuario_inclusao</td>
+                    <td class="col-lg-1">@oferta.Validade.ToString("dd/MM/yyyy")</td>
+                    <td class="col-lg-1">@string.Format("{0:R$ #,###,##0.00}", oferta.Valor)</td>
+                    <td class="@(ViewBag.tipo_consulta == "F" ? "col-lg-3" : "col-lg-2")">@oferta.Descricao</td>
+                    <td class="col-lg-1">
+                        <div class="row">
+                            <div class="col-md-1">
+                                @if (oferta.Destaque == "S")
+                                {
+                                    <img style="margin: 5px; width: 24px;" src="~/images/destaque.svg">
+                                }
+                                else
+                                {
+                                    <a></a>
+                                }
+                            </div>
+                            <div class="col-md-1">
+                                @if (oferta.Lida == "S")
+                                {
+                                    <img style="margin: 5px; width: 24px;" src="~/images/tick.svg">
+                                }
+                                else
+                                {
+                                    <a></a>
+                                }
+                            </div>
+                            <div class="col-md-1">
+                                @{
+                                    switch (oferta.Like_unlike)
+                                    {
+                                        case "L":
+                                            <img style="margin: 5px; width: 28px;" src="~/images/like.svg">
+                                            break;
+                                        case "U":
+                                            <img style="margin: 5px; width: 28px;" src="~/images/unlike.svg">
+                                            break;
+                                        default:
+                                            <a></a>
+                                            break;
+                                    }
+                                }
+                            </div>
+                        </div>
+                    </td>
+                    <td class="col-lg-1">@oferta.Desc_situacao</td>
+                    @if (ViewBag.tipo_consulta == "D" || ViewBag.tipo_consulta == "M")
+                    {
+                        <td class="col-lg-1">
+                            @if (@oferta.Url != "-")
+                            {
+                                <a href="@oferta.Url" target="_blank"><img style="margin: 5px; width: 28px;" title="Ver oferta" src="~/images/ver_oferta.svg"></a>
+                            }
+                            @if (@oferta.Id_empresa == @ViewBag.Id_empresa_logada)
+                            {
+                                @if (oferta.Id_situacao == "1")
+                                {
+                                    <a asp-area="" asp-controller="Ofertas" asp-action="AtualizarSituacaoOferta" asp-route-id="@oferta.Id" asp-route-id_situacao="2" asp-route-tipo_consulta=@ViewBag.tipo_consulta onclick=" return Confirmar('Desativar oferta?')"><img style="margin: 5px; width: 32px;" title="Desativar oferta" src="~/images/excluir.svg"></a>
+                                }
+                                else
+                                {
+                                    <a asp-area="" asp-controller="Ofertas" asp-action="AtualizarSituacaoOferta" asp-route-id="@oferta.Id" asp-route-id_situacao="1" asp-route-tipo_consulta=@ViewBag.tipo_consulta onclick=" return Confirmar('Reativar oferta?')"><img style="margin: 5px; width: 28px;" title="Reativar oferta" src="~/images/refresh.svg"></a>
+                                }
+                            }
+                        </td>
+                    }
+                </tr>
+            }
+        </table>
+    }
+
+    @{
+        string classe_pagina_ante;
+        string classe_pagina_prox;
+    }
+
+    @if (ViewBag.ofertas.Count > 0)
+    {
+        @if (ViewBag.AntePag)
+        { classe_pagina_ante = "page-item"; }
+        else
+        { classe_pagina_ante = "page-item disabled"; }
+
+        @if (ViewBag.ProxPag)
+        { classe_pagina_prox = "page-item"; }
+        else
+        { classe_pagina_prox = "page-item disabled"; }
+
+        <ul class="pagination">
+            <li class="@classe_pagina_ante">
+                <a class="page-link" asp-area="" asp-controller="Ofertas" asp-action="AntePaginaOferta" asp-route-pagina=@ViewBag.Pagina asp-route-num_pag=@ViewBag.NumPag asp-route-tipo_consulta=@ViewBag.tipo_consulta asp-route-max_id=@ViewBag.MaxId>Anterior</a>
+            </li>
+            <li class="page-item disabled">
+                <a class="page-link">@ViewBag.Pagina</a>
+            </li>
+            <li class="@classe_pagina_prox">
+                <a class="page-link" asp-area="" asp-controller="Ofertas" asp-action="ProxPaginaOferta" asp-route-pagina=@ViewBag.Pagina asp-route-num_pag=@ViewBag.NumPag asp-route-tipo_consulta=@ViewBag.tipo_consulta asp-route-max_id=@ViewBag.MaxId>Próxima</a>
+            </li>
+        </ul>
+    }
+    else
+    {
+        @if (ViewBag.ProxPag)
+        {
+            <h5 style="color : red">Nenhum registro encontrado.</h5>
+        }
+
+    }
+
+
+    @if (ViewBag.responseStatusCode == "OK")
+    {
+        @if (ViewBag.erro || (ViewBag.linhasafetadas == 0 && ViewBag.atualizando))
+        {
+            <h4 style="color : red">@ViewBag.mensagem</h4>
+        }
+        else
+        {
+            @if (ViewBag.atualizando)
+            {
+                <h4 style="color : green">Oferta atualizada.</h4>
+            }
+        }
+    }
+    else
+    {
+        <h4 style="color : red"> @ViewBag.responseStatusCode </h4>
+    }
+</div>
+

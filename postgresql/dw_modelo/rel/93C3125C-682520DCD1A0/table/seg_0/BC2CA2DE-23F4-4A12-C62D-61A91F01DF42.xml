@@ -1,0 +1,111 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="BC2CA2DE-23F4-4A12-C62D-61A91F01DF42" schemaObject="CC7D603D-7CCC-CCE9-FD85-FFC055EC548B" name="tokens">
+<createdBy>fredm</createdBy>
+<createdTime>2019-03-20 09:39:58 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<splittedTableID>300BDA4F-6CDD-1522-7246-11CB3EF189C1</splittedTableID>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id_usuario" id="4D14A562-DFFA-ADC5-2E5A-E4E9981AA20E">
+<createdBy>fredm</createdBy>
+<createdTime>2019-03-20 09:39:59 UTC</createdTime>
+<commentInRDBMS>Identificação do Usário</commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="589F2F1E-750F-2807-1CA3-DF95C34FD687" referredColumn="FAF6DDC2-B3EC-CCC2-B60E-A133DB87D21B"/>
+</associations>
+</Column>
+<Column name="token" id="B4AA8614-2384-3F52-6D19-71FA51F9DAD9">
+<createdBy>fredm</createdBy>
+<createdTime>2018-08-16 00:26:00 UTC</createdTime>
+<commentInRDBMS>Token</commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>4000</dataTypeSize>
+<ownDataTypeParameters>4000,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="val_token" id="3CFCE8F8-23B2-C170-1DA0-FEE2D25E60F4">
+<createdBy>fredm</createdBy>
+<createdTime>2018-08-16 00:26:00 UTC</createdTime>
+<commentInRDBMS>validade do token</commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="token_app" id="5D200FDC-F67A-833B-2F8B-FFB83519BD58">
+<createdBy>fredm</createdBy>
+<createdTime>2018-10-24 23:44:59 UTC</createdTime>
+<commentInRDBMS>Token app para cloud messaging</commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>4000</dataTypeSize>
+<ownDataTypeParameters>4000,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="num_falhas_login" id="33626CA0-F3C4-7E55-9B82-F43394F5439B">
+<createdBy>fredm</createdBy>
+<createdTime>2019-03-20 10:50:47 UTC</createdTime>
+<commentInRDBMS>Número de tentativas de login sem sucesso</commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>1</dataTypePrecision>
+<defaultValue>0</defaultValue>
+<ownDataTypeParameters>,1,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="B4D2B485-FEB0-9718-B641-DA9DDF668309" name="tokens_PK">
+<createdBy>fredm</createdBy>
+<createdTime>2019-03-20 09:39:59 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="4D14A562-DFFA-ADC5-2E5A-E4E9981AA20E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="2CAADCF3-D96E-5386-6ECF-FE91F05EAA45" name="usuarios_token_IDX">
+<createdBy>fredm</createdBy>
+<createdTime>2018-08-16 00:39:09 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B4AA8614-2384-3F52-6D19-71FA51F9DAD9"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="5A110CB7-99E0-5F06-B4FD-99604F87A438" name="tokens_usuarios_FK">
+<createdBy>fredm</createdBy>
+<createdTime>2019-03-20 09:39:58 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="4D14A562-DFFA-ADC5-2E5A-E4E9981AA20E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

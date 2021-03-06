@@ -1,0 +1,331 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="F217FCCB-A20B-5B9C-ED1F-18D11DE11D46" schemaObject="CC7D603D-7CCC-CCE9-FD85-FFC055EC548B" name="permissoes">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-27 01:24:25 UTC</createdTime>
+<commentInRDBMS><![CDATA[Permissões dos usuários (menus, funcões, relatórios,  botões, etc.)]]></commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<ordsAlias>table_16</ordsAlias>
+<endOfScript><![CDATA[CREATE OR REPLACE TRIGGER permissoes_insert_update
+BEFORE INSERT OR UPDATE ON dealwish.permissoes
+         FOR EACH ROW
+BEGIN
+   :NEW.codigo := lower(:NEW.codigo);
+   if :NEW.descricao is null 
+     then :NEW.descricao := :NEW.codigo;
+   end if; 
+END;
+/
+insert into dealwish.permissoes (codigo) values ('api/consultar_usuario');
+insert into dealwish.permissoes (codigo) values ('api/excluir_usuario');
+insert into dealwish.permissoes (codigo) values ('api/atualizar_usuario');
+insert into dealwish.permissoes (codigo) values ('api/reiniciar_senha');
+insert into dealwish.permissoes (codigo) values ('api/trocar_senha');
+insert into dealwish.permissoes (codigo) values ('api/incluir_grp_permissao_usuario');
+insert into dealwish.permissoes (codigo) values ('api/excluir_grp_permissao_usuario');
+insert into dealwish.permissoes (codigo) values ('api/consultar_permissoes_usuario');
+insert into dealwish.permissoes (codigo) values ('api/consultar_grp_permissoes_usuario');
+insert into dealwish.permissoes (codigo) values ('api/consultar_cidade');
+insert into dealwish.permissoes (codigo) values ('api/consultar_config');
+insert into dealwish.permissoes (codigo) values ('api/incluir_config');
+insert into dealwish.permissoes (codigo) values ('api/excluir_config');
+insert into dealwish.permissoes (codigo) values ('api/atualizar_config');
+insert into dealwish.permissoes (codigo) values ('api/consultar_grp_permissao');
+insert into dealwish.permissoes (codigo) values ('api/incluir_grp_permissao');
+insert into dealwish.permissoes (codigo) values ('api/excluir_grp_permissao');
+insert into dealwish.permissoes (codigo) values ('api/atualizar_grp_permissao');
+insert into dealwish.permissoes (codigo) values ('api/incluir_permissao_grupo');
+insert into dealwish.permissoes (codigo) values ('api/excluir_permissao_grupo');
+insert into dealwish.permissoes (codigo) values ('api/consultar_permissao_grupo');
+insert into dealwish.permissoes (codigo) values ('api/consultar_grp_produto');
+insert into dealwish.permissoes (codigo) values ('api/consultar_todos_grp_produto');
+insert into dealwish.permissoes (codigo) values ('api/incluir_grp_produto');
+insert into dealwish.permissoes (codigo) values ('api/excluir_grp_produto');
+insert into dealwish.permissoes (codigo) values ('api/atualizar_grp_produto');
+insert into dealwish.permissoes (codigo) values ('api/consultar_permissao');
+insert into dealwish.permissoes (codigo) values ('api/consultar_plano');
+insert into dealwish.permissoes (codigo) values ('api/incluir_plano');
+insert into dealwish.permissoes (codigo) values ('api/excluir_plano');
+insert into dealwish.permissoes (codigo) values ('api/atualizar_plano');
+insert into dealwish.permissoes (codigo) values ('api/consultar_situacao');
+insert into dealwish.permissoes (codigo) values ('api/consultar_tp_produto');
+insert into dealwish.permissoes (codigo) values ('api/incluir_tp_produto');
+insert into dealwish.permissoes (codigo) values ('api/atualizar_tp_produto');
+insert into dealwish.permissoes (codigo) values ('api/excluir_tp_produto');
+insert into dealwish.permissoes (codigo) values ('api/consultar_desejo');
+insert into dealwish.permissoes (codigo) values ('api/incluir_desejo');
+insert into dealwish.permissoes (codigo) values ('api/excluir_desejo');
+insert into dealwish.permissoes (codigo) values ('api/atualizar_desejo');
+insert into dealwish.permissoes (codigo) values ('api/atualizar_situacao_desejo');
+insert into dealwish.permissoes (codigo) values ('api/consultar_empresa');
+insert into dealwish.permissoes (codigo) values ('api/incluir_empresa');
+insert into dealwish.permissoes (codigo) values ('api/excluir_empresa');
+insert into dealwish.permissoes (codigo) values ('api/atualizar_empresa');
+insert into dealwish.permissoes (codigo) values ('api/incluir_usr_emp');
+insert into dealwish.permissoes (codigo) values ('api/consultar_usr_emp');
+insert into dealwish.permissoes (codigo) values ('api/excluir_usr_emp');
+insert into dealwish.permissoes (codigo) values ('api/consultar_contrato');
+insert into dealwish.permissoes (codigo) values ('api/incluir_contrato');
+insert into dealwish.permissoes (codigo) values ('api/excluir_contrato');
+insert into dealwish.permissoes (codigo) values ('api/atualizar_contrato');
+insert into dealwish.permissoes (codigo) values ('api/consultar_fatura');
+insert into dealwish.permissoes (codigo) values ('api/incluir_fatura');
+insert into dealwish.permissoes (codigo) values ('api/excluir_fatura');
+insert into dealwish.permissoes (codigo) values ('api/atualizar_fatura');
+insert into dealwish.permissoes (codigo) values ('api/consultar_oferta');
+insert into dealwish.permissoes (codigo) values ('api/incluir_oferta');
+insert into dealwish.permissoes (codigo) values ('api/excluir_oferta');
+insert into dealwish.permissoes (codigo) values ('api/atualizar_oferta');
+insert into dealwish.permissoes (codigo) values ('api/consultar_faturas_abertas');
+insert into dealwish.permissoes (codigo) values ('api/efetivar_faturas_abertas');
+insert into dealwish.permissoes (codigo) values ('api/incluir_oferta_lote');
+insert into dealwish.permissoes (codigo) values ('api/atualizar_situacao_oferta');
+insert into dealwish.permissoes (codigo) values ('api/atualizar_like_unlike_oferta');
+insert into dealwish.permissoes (codigo) values ('api/atualizar_lida_oferta');
+insert into dealwish.permissoes (codigo) values ('api/processar_retorno_boleto');
+insert into dealwish.permissoes (codigo) values ('api/processar_retorno_nf');
+insert into dealwish.permissoes (codigo) values ('api/consultar_ultima_atualizacao_produtos');
+insert into dealwish.permissoes (codigo) values ('api/bloquear_contratos_inadimplentes');
+insert into dealwish.permissoes (codigo) values ('api/desbloquear_contrato');
+insert into dealwish.permissoes (codigo) values ('api/consultar_qualificacao');
+/
+delete from dealwish.perm_grp
+/
+insert into dealwish.perm_grp 
+select null, (select id from dealwish.grp_permissoes where codigo = 'tin'),
+p.id from dealwish.permissoes p
+where p.id not in (select id_permissao from dealwish.perm_grp where id_grp_Permissao = (select id from dealwish.grp_permissoes where codigo = 'tin'));
+/
+insert into dealwish.perm_grp 
+select null, (select id from dealwish.grp_permissoes where codigo = 'bki'),
+p.id from dealwish.permissoes p
+where p.codigo like '%consultar%' or codigo = 'api/trocar_senha';
+/
+insert into dealwish.perm_grp 
+select null, (select id from dealwish.grp_permissoes where codigo = 'app'),
+p.id from dealwish.permissoes p
+where p.codigo in 
+(
+'api/atualizar_lida_oferta',
+'api/atualizar_like_unlike_oferta',
+'api/atualizar_situacao_desejo',
+'api/atualizar_usuario',
+'api/consultar_desejo',
+'api/consultar_oferta',
+'api/consultar_todos_grp_produto', 
+'api/consultar_tp_produto', 
+'api/incluir_desejo',
+'api/trocar_senha',
+'api/consultar_ultima_atualizacao_produtos',
+'api/consultar_empresa',
+'api/excluir_usuario'
+);
+/
+insert into dealwish.perm_grp 
+select null, (select id from dealwish.grp_permissoes where codigo = 'fta'),
+p.id from dealwish.permissoes p
+where p.codigo in 
+(
+'api/atualizar_usuario',
+'api/consultar_empresa',
+'api/consultar_fatura',
+'api/consultar_grp_permissao',
+'api/consultar_grp_permissoes_usuario',
+'api/consultar_grp_produto',
+'api/consultar_oferta',
+'api/consultar_situacao',
+'api/consultar_tp_produto',
+'api/consultar_usuario',
+'api/excluir_grp_permissao_usuario',
+'api/excluir_usuario',
+'api/incluir_grp_permissao_usuario',
+'api/incluir_usuario',
+'api/login_usuario',
+'api/reiniciar_senha',
+'api/trocar_senha',
+'api/consultar_cidade'
+);
+/
+insert into dealwish.perm_grp 
+select null, (select id from dealwish.grp_permissoes where codigo = 'fto'),
+p.id from dealwish.permissoes p
+where p.codigo in 
+(
+'api/incluir_oferta_lote',
+'api/atualizar_situacao_oferta',
+'api/consultar_desejo',
+'api/consultar_empresa',
+'api/consultar_grp_produto',
+'api/consultar_oferta',
+'api/consultar_situacao',
+'api/consultar_tp_produto',
+'api/consultar_usuario',
+'api/incluir_oferta',
+'api/login_usuario',
+'api/reiniciar_senha',
+'api/retorno_oferta_lote',
+'api/trocar_senha',
+'api/consultar_cidade'
+);
+/
+insert into dealwish.perm_grp 
+select null, (select id from dealwish.grp_permissoes where codigo = 'bka'),
+p.id from dealwish.permissoes p
+where p.codigo in 
+(
+'api/atualizar_config',
+'api/atualizar_grp_produto',
+'api/atualizar_plano',
+'api/atualizar_tp_produto',
+'api/atualizar_usuario',
+'api/consultar_cidade',
+'api/consultar_config',
+'api/consultar_desejo',
+'api/consultar_grp_permissao',
+'api/consultar_grp_permissoes_usuario',
+'api/consultar_grp_produto',
+'api/consultar_oferta',
+'api/consultar_plano',
+'api/consultar_situacao',
+'api/consultar_tp_produto',
+'api/consultar_usuario',
+'api/excluir_desejo',
+'api/excluir_grp_permissao_usuario',
+'api/excluir_grp_produto',
+'api/excluir_oferta',
+'api/excluir_plano',
+'api/excluir_tp_produto',
+'api/excluir_usuario',
+'api/incluir_grp_permissao_usuario',
+'api/incluir_grp_produto',
+'api/incluir_plano',
+'api/incluir_tp_produto',
+'api/incluir_usuario',
+'api/reiniciar_senha',
+'api/trocar_senha',
+'api/consultar_qualificacao'
+);
+/
+insert into dealwish.perm_grp 
+select null, (select id from dealwish.grp_permissoes where codigo = 'bkc'),
+p.id from dealwish.permissoes p
+where p.codigo in 
+(
+'api/atualizar_contrato',
+'api/atualizar_empresa',
+'api/consultar_cidade',
+'api/consultar_config',
+'api/consultar_contrato',
+'api/consultar_empresa',
+'api/consultar_fatura',
+'api/consultar_grp_permissoes_usuario',
+'api/consultar_grp_produto',
+'api/consultar_plano',
+'api/consultar_situacao',
+'api/consultar_tp_produto',
+'api/consultar_usuario',
+'api/excluir_contrato',
+'api/excluir_empresa',
+'api/incluir_contrato',
+'api/incluir_empresa',
+'api/trocar_senha',
+'api/consultar_qualificacao'
+);
+/
+insert into dealwish.perm_grp 
+select null, (select id from dealwish.grp_permissoes where codigo = 'bkf'),
+p.id from dealwish.permissoes p
+where p.codigo in 
+(
+'api/atualizar_fatura',
+'api/atualizar_plano',
+'api/consultar_cidade',
+'api/consultar_config',
+'api/consultar_contrato',
+'api/consultar_empresa',
+'api/consultar_fatura',
+'api/consultar_faturas_abertas',
+'api/consultar_grp_permissao',
+'api/consultar_grp_permissoes_usuario',
+'api/consultar_plano',
+'api/consultar_situacao',
+'api/consultar_usuario',
+'api/efetivar_faturas_abertas',
+'api/excluir_fatura',
+'api/excluir_plano',
+'api/incluir_plano',
+'api/trocar_senha',
+'api/processar_retorno_boleto',
+'api/processar_retorno_nf',
+'api/bloquear_contratos_inadimplentes',
+'api/desbloquear_contrato',
+'api/consultar_qualificacao'
+/
+commit;
+/]]></endOfScript>
+<shouldGeneratescript>true</shouldGeneratescript>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="58A557A5-B706-1F97-7909-933C769F6CD9">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-28 23:38:36 UTC</createdTime>
+<commentInRDBMS><![CDATA[identificação da permissão]]></commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="descricao" id="E5746588-B53F-9A16-B035-BC8A0CF0E8D8">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-28 23:38:36 UTC</createdTime>
+<commentInRDBMS><![CDATA[descrição da descrição
+]]></commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="codigo" id="A41A5178-FF58-248D-B1AE-5562BE43D21F">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-28 23:38:36 UTC</createdTime>
+<commentInRDBMS><![CDATA[código da permissão]]></commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>150</dataTypeSize>
+<ownDataTypeParameters>150,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="0756F80A-9837-F39B-BCE2-96B3B0348924" name="permissoes_PK">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-28 23:38:36 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="58A557A5-B706-1F97-7909-933C769F6CD9"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="5FF2E884-E91A-248E-9F64-23B14FEB67E6" name="permissoes_cod_IDX">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-28 23:42:33 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A41A5178-FF58-248D-B1AE-5562BE43D21F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

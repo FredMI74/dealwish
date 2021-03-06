@@ -1,0 +1,142 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="5E774D80-C80F-31BD-2B97-70115DB2FC87" schemaObject="CC7D603D-7CCC-CCE9-FD85-FFC055EC548B" name="planos">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-26 00:34:27 UTC</createdTime>
+<commentInRDBMS>Planos das empresas</commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<ordsAlias>table_8</ordsAlias>
+<endOfScript>CREATE OR REPLACE TRIGGER planos_insert_update&lt;br/&gt;BEFORE INSERT OR UPDATE ON dealwish.planos&lt;br/&gt;         FOR EACH ROW&lt;br/&gt;BEGIN&lt;br/&gt;   :NEW.visualizacao := UPPER(:NEW.visualizacao);&lt;br/&gt;END;&lt;br/&gt;/&lt;br/&gt;</endOfScript>
+<shouldGeneratescript>true</shouldGeneratescript>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="EDEA40FF-4240-FBFE-0775-1648C7FAE6E5">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-26 00:38:35 UTC</createdTime>
+<commentInRDBMS>identificação do Plano</commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="descricao" id="9F77A18D-8FBD-DF94-5D6E-318892461B1D">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-26 00:38:35 UTC</createdTime>
+<commentInRDBMS>Descrição do Plano (Ouro, Prata e Bronze)</commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="qtd_ofertas" id="65030EE0-75ED-403E-AFF2-05EF66C8C97E">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-26 00:38:35 UTC</createdTime>
+<commentInRDBMS>Número de ofertas mensais incluídas no plano</commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="valor_mensal" id="A5B6F1D0-AD9E-4C95-312C-AFAF41D92EF8">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-26 00:38:35 UTC</createdTime>
+<commentInRDBMS>Valor mensal do plano</commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>15</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,15,2</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="valor_oferta" id="C61ADA47-F738-6053-A779-D7FF16E42DCB">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-26 00:38:35 UTC</createdTime>
+<commentInRDBMS>Valor para cada oferta avulsa após o término das ofertas contidas no plano</commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>15</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,15,2</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="visualizacao" id="6C22A09E-E510-4A21-34ED-E86BAAB913ED">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-26 00:38:35 UTC</createdTime>
+<commentInRDBMS>visualizacao de ofertas de outras empresas (N/P/E)</commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<listOfValues>
+<valueDef value="E" description="Preços e Empresas"/>
+<valueDef value="N" description="Não"/>
+<valueDef value="P" description="Preços"/>
+</listOfValues>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="id_usuario_log" id="E313A7EF-FBA8-3BBB-016D-DDC1A705CC7F">
+<createdBy>fredm</createdBy>
+<createdTime>2019-03-21 23:09:51 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="FE42C108-D3B4-7B99-AE97-3D3E754561E3" referredColumn="FAF6DDC2-B3EC-CCC2-B60E-A133DB87D21B"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="8D6724A6-E52F-5EFA-EC9E-DF84D71CB3BD" name="planos_PK">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-26 00:39:09 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="EDEA40FF-4240-FBFE-0775-1648C7FAE6E5"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="41A74FF9-6694-1E3C-16BF-254604886E09" name="planos_desc_IDX">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-29 00:04:17 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="9F77A18D-8FBD-DF94-5D6E-318892461B1D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="289B2241-F46A-9F65-2EE8-D8B0EFAE8F98" name="planos_usuarios_FK">
+<createdBy>fredm</createdBy>
+<createdTime>2019-03-21 23:09:50 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E313A7EF-FBA8-3BBB-016D-DDC1A705CC7F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

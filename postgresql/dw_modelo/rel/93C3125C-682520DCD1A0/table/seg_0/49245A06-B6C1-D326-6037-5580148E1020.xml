@@ -1,0 +1,316 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="49245A06-B6C1-D326-6037-5580148E1020" schemaObject="CC7D603D-7CCC-CCE9-FD85-FFC055EC548B" name="faturas">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-26 00:44:32 UTC</createdTime>
+<commentInRDBMS><![CDATA[Faturas das empresas, controle de contas a pagar e emissão de notas]]></commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<ordsAlias>table_10</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="06DFB386-77F7-26C4-5182-3583C9823A60">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-27 01:20:55 UTC</createdTime>
+<commentInRDBMS><![CDATA[identificação da fatura]]></commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="mes" id="8E9FA430-3680-42BD-A5DC-C04EC04571ED">
+<createdBy>fredm</createdBy>
+<createdTime>2018-08-02 10:27:36 UTC</createdTime>
+<commentInRDBMS><![CDATA[mês de referência]]></commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>2</dataTypePrecision>
+<ownDataTypeParameters>,2,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>1</beginValue>
+<endValue>12</endValue>
+</rangeDef>
+</listOfRanges>
+</Column>
+<Column name="ano" id="E24BDC66-AF6A-E6A2-62EB-3288564BE368">
+<createdBy>fredm</createdBy>
+<createdTime>2018-08-02 10:27:36 UTC</createdTime>
+<commentInRDBMS><![CDATA[ano dde referência]]></commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>4</dataTypePrecision>
+<ownDataTypeParameters>,4,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="id_empresa" id="73D45758-FCAE-7EBB-386D-046B87BD26C1">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-27 01:22:16 UTC</createdTime>
+<commentInRDBMS><![CDATA[Identificação da empresa (EMPRESAS)]]></commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="E6EF2159-0103-FF07-1CA3-DFB1157E391E" referredColumn="D338C01E-1C12-4493-CF1F-2494D0B377BD"/>
+</associations>
+</Column>
+<Column name="nosso_numero" id="F497B030-EFA0-70B2-3CBC-4DDA10AD4F15">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-28 23:56:21 UTC</createdTime>
+<commentInRDBMS><![CDATA[Nosso número do boleto]]></commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>15</dataTypeSize>
+<ownDataTypeParameters>15,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="valor" id="FB044137-FA75-B7E0-1D9A-D97923BC9A02">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-28 23:56:21 UTC</createdTime>
+<commentInRDBMS><![CDATA[valor da fatura]]></commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>15</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,15,2</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="data_vct" id="8D0EADAB-A80D-5037-E733-0E2DE85D8BCD">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-28 23:57:55 UTC</createdTime>
+<commentInRDBMS><![CDATA[data de vencimento]]></commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="data_pg" id="732B1A48-BDB2-7C60-1379-AF778E30240B">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-28 23:57:55 UTC</createdTime>
+<commentInRDBMS><![CDATA[data de pagamento]]></commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="multa" id="65275EB2-DEAC-D9F7-5996-7F850E6BC5EA">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-28 23:57:55 UTC</createdTime>
+<commentInRDBMS><![CDATA[valor da multa por pagamento em atraso]]></commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>15</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,15,2</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="juros" id="86791DB8-5277-47BF-D0A0-A8A15739FA10">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-28 23:57:55 UTC</createdTime>
+<commentInRDBMS><![CDATA[valor do juros  por pagamento em atraso]]></commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>15</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,15,2</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="valor_pg" id="21559F0C-9662-3607-E2B0-A8E0DD61D3DC">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-28 23:57:55 UTC</createdTime>
+<commentInRDBMS><![CDATA[valor pago]]></commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>15</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,15,2</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="qtd_ofertas" id="7A38866C-0D9D-DCF4-D6A6-03B7795959B2">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-29 00:06:59 UTC</createdTime>
+<commentInRDBMS><![CDATA[Quantidades de ofertas realizadas no mês]]></commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<defaultValue>0</defaultValue>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="id_situacao" id="0AAC1F20-0CDD-CEE3-E210-6407BEC97436">
+<createdBy>fredm</createdBy>
+<createdTime>2018-08-02 09:54:58 UTC</createdTime>
+<commentInRDBMS><![CDATA[Situação da fatura (SITUACOES)]]></commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="A5913F34-EADD-0368-7C0D-4880A252DFB3" referredColumn="55EF855D-8619-4B9A-74BE-5AFE232D36F9"/>
+</associations>
+</Column>
+<Column name="num_nfe" id="8CA1DDE3-154E-647B-D477-FDA43F4D0F2E">
+<createdBy>fredm</createdBy>
+<createdTime>2019-01-29 09:16:35 UTC</createdTime>
+<commentInRDBMS><![CDATA[Número da nota fiscal eletrônica]]></commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="serie_nfe" id="3C6A7788-A6BA-6A0C-B904-0F016D17106E">
+<createdBy>fredm</createdBy>
+<createdTime>2019-01-29 09:17:00 UTC</createdTime>
+<commentInRDBMS><![CDATA[Série da nota fiscal eletrônica]]></commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>5</dataTypeSize>
+<ownDataTypeParameters>5,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="id_usuario_log" id="51AF7848-30B2-3118-0BAA-4ACBEAFB6831">
+<createdBy>fredm</createdBy>
+<createdTime>2019-03-22 09:47:27 UTC</createdTime>
+<commentInRDBMS><![CDATA[usuário que incluiu ou alterou o registro]]></commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="EBDE4486-380E-570F-A2DF-003357FC0E51" referredColumn="FAF6DDC2-B3EC-CCC2-B60E-A133DB87D21B"/>
+</associations>
+</Column>
+<Column name="pix" id="B609F7C0-9D67-FE71-1728-958B90B13D6D">
+<createdBy>fredm</createdBy>
+<createdTime>2020-07-09 09:50:49 UTC</createdTime>
+<commentInRDBMS><![CDATA[QRCode para pagamentos PIX]]></commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>1000</dataTypeSize>
+<ownDataTypeParameters>1000,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="952B77D6-D679-DCB2-54B4-71F59A930D94" name="faturas_PK">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-27 01:20:55 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="06DFB386-77F7-26C4-5182-3583C9823A60"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="B15BC891-CC15-2A19-242C-EDDAE9369A02" name="faturas_nossonum_IDX">
+<createdBy>fredm</createdBy>
+<createdTime>2018-08-20 11:00:54 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F497B030-EFA0-70B2-3CBC-4DDA10AD4F15"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="2748E5A2-A3DD-5E5A-CAD6-351917F24FF7" name="faturas_mesano_IDX">
+<createdBy>fredm</createdBy>
+<createdTime>2018-08-20 11:01:53 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8E9FA430-3680-42BD-A5DC-C04EC04571ED"/>
+<colUsage columnID="E24BDC66-AF6A-E6A2-62EB-3288564BE368"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="3A48B746-4E62-AABE-F325-BB186F2FB23E" name="faturas_nfe_IDX">
+<createdBy>fredm</createdBy>
+<createdTime>2019-01-29 09:17:46 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8CA1DDE3-154E-647B-D477-FDA43F4D0F2E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="2146C65D-7053-E459-EB13-DC9D0A77F711" name="faturas_empresas_FK">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-27 01:22:16 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="73D45758-FCAE-7EBB-386D-046B87BD26C1"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="EEE4635E-3622-9F3B-BC47-DFE74DEF873C" name="faturas_situacoes_FK">
+<createdBy>fredm</createdBy>
+<createdTime>2018-08-02 09:54:58 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="0AAC1F20-0CDD-CEE3-E210-6407BEC97436"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="0519E181-1202-8FD5-D378-076C89B64066" name="faturas_usuarios_FK">
+<createdBy>fredm</createdBy>
+<createdTime>2019-03-22 09:47:27 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="51AF7848-30B2-3118-0BAA-4ACBEAFB6831"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,16 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="2205876D-4D77-780D-1092-D996E0E29B85" containerWithKeyObject="DDF108F2-224D-0962-B4E7-CC3839334350" localFKIndex="75C25A2A-FE07-5B3E-7ED3-C4C45F1AAC59" name="tp_produtos_usuarios_FK">
+<createdBy>fredm</createdBy>
+<createdTime>2019-03-21 23:42:30 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<referredTableLongName>dealwish.usuarios</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>300BDA4F-6CDD-1522-7246-11CB3EF189C1</referredTableID>
+<keyObject>ABDD8A19-709F-0966-C3EB-0A0306708418</keyObject>
+<referredKeyID>ABDD8A19-709F-0966-C3EB-0A0306708418</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>id</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

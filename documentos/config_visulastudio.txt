@@ -1,0 +1,11 @@
+Microsoft Visual Studio Community 2017  Versão 15.7.5
+
+dw_webservice
+  Dapper -Version 1.50.5
+  Oracle.ManagedDataAccess.Core -Version 2.12.0-beta2
+  IdentityServer.AccessTokenValidation version 2.6.0
+
+dw_identity
+  Dapper -Version 1.50.5
+  Oracle.ManagedDataAccess.Core -Version 2.12.0-beta2
+  IdentityServer4 version 2.2.0

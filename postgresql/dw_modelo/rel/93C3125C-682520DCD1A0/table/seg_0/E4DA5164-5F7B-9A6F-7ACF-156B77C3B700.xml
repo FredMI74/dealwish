@@ -1,0 +1,74 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="E4DA5164-5F7B-9A6F-7ACF-156B77C3B700" schemaObject="CC7D603D-7CCC-CCE9-FD85-FFC055EC548B" name="grp_permissoes">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-27 01:24:35 UTC</createdTime>
+<commentInRDBMS>Grupo de permissões que podem ser atribuídas à um usuário</commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<ordsAlias>table_17</ordsAlias>
+<endOfScript>insert into dealwish.grp_permissoes (descricao, codigo) values (&apos;Tecnologia da Informação&apos;, &apos;tin&apos;);&lt;br/&gt;insert into dealwish.grp_permissoes (descricao, codigo) values (&apos;Aplicativo&apos;, &apos;app&apos;);&lt;br/&gt;insert into dealwish.grp_permissoes (descricao, codigo) values (&apos;Backoffice Administrativo&apos;, &apos;bka&apos;);&lt;br/&gt;insert into dealwish.grp_permissoes (descricao, codigo) values (&apos;Backoffice Comercial&apos;, &apos;bkc&apos;);&lt;br/&gt;insert into dealwish.grp_permissoes (descricao, codigo) values (&apos;Backoffice Financeiro&apos;, &apos;bkf&apos;);&lt;br/&gt;insert into dealwish.grp_permissoes (descricao, codigo) values (&apos;Backoffice Informações&apos;, &apos;bki&apos;);&lt;br/&gt;insert into dealwish.grp_permissoes (descricao, codigo) values (&apos;Frontoffice Operação&apos;, &apos;fto&apos; );&lt;br/&gt;insert into dealwish.grp_permissoes (descricao, codigo) values (&apos;Frontoffice Administrativo&apos;, &apos;fta&apos; );&lt;br/&gt;/&lt;br/&gt;commit;&lt;br/&gt;/</endOfScript>
+<shouldGeneratescript>true</shouldGeneratescript>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="87266F4F-2C67-E546-B0ED-87A700D95030">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-28 23:35:54 UTC</createdTime>
+<commentInRDBMS>identificação do grupo de permissões</commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="descricao" id="729C8CD0-E347-11C0-A30D-D978A552581B">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-28 23:36:51 UTC</createdTime>
+<commentInRDBMS>descrição do grupo</commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="codigo" id="A9D128D8-6CAB-7B7B-ED34-0B54CDC3E667">
+<createdBy>fredm</createdBy>
+<createdTime>2018-10-20 12:07:38 UTC</createdTime>
+<commentInRDBMS>Código do grupo</commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>3</dataTypeSize>
+<ownDataTypeParameters>3,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="28977A2C-E06A-FDE9-1216-3BC41A8B8B94" name="grupos_PK">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-28 23:35:54 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="87266F4F-2C67-E546-B0ED-87A700D95030"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="31C54FAA-8A05-790A-F183-39EC150E866E" name="grp_permissoes_cod_IDX">
+<createdBy>fredm</createdBy>
+<createdTime>2018-10-20 12:07:57 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A9D128D8-6CAB-7B7B-ED34-0B54CDC3E667"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,126 @@
+﻿
+@{
+    ViewData["Title"] = "ConsultarFaturas";
+}
+
+<script type="text/javascript" src="~/lib/jquery-qrcode/qrcode.min.js"></script>
+
+
+<div style="padding-left: 5%; padding-top: 1%; padding-right: 5%">
+    <div>
+        <a id="fechar" asp-controller="Home" asp-action="Index"> <img style="width: 28px;" src="~/images/fechar.svg" /></a>
+        <h4> Faturas<img style="width: 20px;" src="~/images/loader.gif" id="loaderImg" hidden></h4>
+    </div>
+    <hr />
+    <form asp-controller="Faturas" asp-action="ConsultarFaturasPost" method="post" onsubmit="disableObj(ConsultarBtn);showObj(loaderImg)">
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label for="situacao">Situação</label>
+                <select class="form-control" name="id_situacao">
+                    <option value="" selected disabled hidden></option>
+                    @foreach (var situacao in ViewBag.situacoes)
+                    {
+                        <option value="@situacao.Id">@situacao.Descricao</option>
+                    }
+                    <option value="-1">Aberta</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                <button class="btn btn-info col-6" id="ConsultarBtn" type="submit"><i class="fas fa-search"></i> Consultar</button>
+            </div>
+        </div>
+    </form>
+    <hr />
+    <table class="table table-fixed table-striped table-sm">
+        <thead class="thead-dark">
+            <tr>
+                <th class="col-lg-1">Código</th>
+                <th class="col-lg-1">Nosso Número</th>
+                <th class="col-lg-1">Mês/Ano</th>
+                <th class="col-lg-1">Valor</th>
+                <th class="col-lg-1">Data vct.</th>
+                <th class="col-lg-1">Data pg.</th>
+                <th class="col-lg-1">Multa</th>
+                <th class="col-lg-1">Juros</th>
+                <th class="col-lg-1">Valor pg.</th>
+                <th class="col-lg-1">Qtd. Ofertas</th>
+                <th class="col-lg-1">Situação</th>
+                <th class="col-lg-1">Ação</th>
+            </tr>
+        </thead>
+        @foreach (var fatura in ViewBag.faturas)
+        {
+            <tr>
+                @if (fatura.Id == 0)
+                {
+                    <td class="col-lg-1"></td>
+                }
+                else
+                {
+                    <td class="col-lg-1">@fatura.Id</td>
+                }
+                <td class="col-lg-1">@fatura.Nosso_numero</td>
+                <td class="col-lg-1">@fatura.Mes/@fatura.Ano</td>
+                <td class="col-lg-1">@string.Format("{0:R$ #,###,##0.00}", fatura.Valor)</td>
+                <td class="col-lg-1">@fatura.Data_vct.ToString("dd/MM/yyyy")</td>
+                @if (fatura.Data_pg.ToString("dd/MM/yyyy") == "01/01/0001")
+                {
+                    <td class="col-lg-1"></td>
+                    <td class="col-lg-1"></td>
+                    <td class="col-lg-1"></td>
+                    <td class="col-lg-1"></td>
+                }
+                else
+                {
+                    <td class="col-lg-1">@fatura.Data_pg.ToString("dd/MM/yyyy")</td>
+                    <td class="col-lg-1">@string.Format("{0:R$ #,###,##0.00}", fatura.Multa)</td>
+                    <td class="col-lg-1">@string.Format("{0:R$ #,###,##0.00}", fatura.Juros)</td>
+                    <td class="col-lg-1">@string.Format("{0:R$ #,###,##0.00}", fatura.Valor_pg)</td>
+                }
+
+                <td class="col-lg-1">@fatura.Qtd_ofertas</td>
+                <td class="col-lg-1">@fatura.Desc_situacao</td>
+
+                <td class="col-lg-1">
+                    @if (fatura.Id != 0)
+                    {
+                        <a asp-area="" asp-controller="Ofertas" asp-action="AcaoConsultarOfertas" asp-route-tipo_consulta="F" asp-route-id_fatura="@fatura.Id"><img style="margin: 5px; width: 32px;" title="Listar ofertas" src="~/images/listar_ofertas.svg"></a>
+                    }
+                </td>
+                @if (fatura.Id_situacao == 9 && fatura.Pix != null)
+                {
+                    <td class="col-lg-2" align="left">
+                        <h6>QR Code para pagamento via PIX:</h6>
+                    </td>
+                    <td class="col-lg-10" align="left">
+                        <div id="pix_@fatura.Id"></div>
+                        <script type="text/javascript">
+                           new QRCode(document.getElementById("pix_@fatura.Id"), "@fatura.Pix");
+                        </script>
+                    </td>
+                }
+            </tr>
+        }
+    </table>
+    @if (ViewBag.responseStatusCode == "OK")
+    {
+        @if (ViewBag.erro)
+        {
+            <h4 style="color : red">@ViewBag.mensagem</h4>
+        }
+        else
+        {
+            @if (ViewBag.faturas.Count == 0)
+            {
+                <h5 style="color : red">Nenhum registro encontrado.</h5>
+            }
+        }
+
+    }
+    else
+    {
+        <h4 style="color : red"> @ViewBag.responseStatusCode </h4>
+    }
+</div>

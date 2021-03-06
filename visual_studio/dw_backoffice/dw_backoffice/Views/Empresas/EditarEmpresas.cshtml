@@ -1,0 +1,248 @@
+﻿
+@{
+    ViewData["Title"] = "EditarEmpresas";
+}
+
+
+    <div style="padding-left: 5%; padding-top: 1%; padding-right: 5%">
+        <div>
+            <a id="fechar" asp-controller="Home" asp-action="Index"> <img style="width: 28px;" src="~/images/fechar.svg" /></a>
+            <h4>Editar Empresa <img style="width: 20px;" src="~/images/loader.gif" id="loaderImg" hidden></h4>
+        </div>
+        <hr />
+
+        @if (@ViewBag.id != 0)
+        {
+            <form asp-controller="Empresas" asp-action="EditarEmpresasPost" method="post" onsubmit="disableObj(SalvarBtn);disableObj(CancelarBtn);showObj(loaderImg)">
+                <input class="form-control" autocomplete="off" id="id" name="id" type="hidden" value="@ViewBag.id" />
+                <h6 for="id">Código: @ViewBag.id</h6>
+                <input class="form-control" autocomplete="off" id="id" name="id" type="hidden" value="@ViewBag.id" />
+                <hr />
+
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="fantasia">Nome fantasia</label>
+                        <input style="width:100%" class="form-control" autocomplete="off" id="nfantasia" name="fantasia" type="text" value="@ViewBag.fantasia" />
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label for="razao_social">Razão Social</label>
+                        <input style="width:100%" class="form-control" autocomplete="off" id="razao_social" name="razao_social" type="text" value="@ViewBag.razao_social" />
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="cnpj">CNPJ</label>
+                        <input style="width:100%" class="form-control" autocomplete="off" id="cnpj" name="cnpj" type="text" value="@ViewBag.cnpj" />
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label for="insc_est">Insc. Est.</label>
+                        <input style="width:100%" class="form-control" autocomplete="off" id="insc_est" name="insc_est" type="text" value="@ViewBag.insc_est" />
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label for="url">Url</label>
+                        <input style="width:100%" class="form-control" autocomplete="off" id="url" name="url" type="text" value="@ViewBag.url" />
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label for="logo">Logo</label>
+                        <input style="width:100%" class="form-control" autocomplete="off" id="logo" name="logo" type="text" value="@ViewBag.logo" />
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="email_com">e-mail comercial</label>
+                        <input style="width:100%" class="form-control" autocomplete="off" id="email_com" name="email_com" type="text" value="@ViewBag.email_com" />
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="email_sac">e-mail SAC</label>
+                        <br />
+                        <input style="width:100%" class="form-control" autocomplete="off" id="email_sac" name="email_sac" type="text" value="@ViewBag.email_sac" />
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-3">
+                        <label for="endereco">Endereço</label>
+                        <input style="width:100%" class="form-control" autocomplete="off" id="endereco" name="endereco" type="text" value="@ViewBag.endereco" />
+                    </div>
+
+                    <div class="form-group col-md-1">
+                        <label for="numero">Número</label>
+                        <input style="width:100%" class="form-control" autocomplete="off" id="numero" name="numero" type="text" value="@ViewBag.numero" />
+                    </div>
+
+                    <div class="form-group col-md-2">
+                        <label for="complemento">Complemento</label>
+                        <input style="width:100%" class="form-control" autocomplete="off" id="complemento" name="complemento" type="text" value="@ViewBag.complemento" />
+                    </div>
+
+                    <div class="form-group col-md-2">
+                        <label for="bairro">Bairro</label>
+                        <input style="width:100%" class="form-control" autocomplete="off" id="bairro" name="bairro" type="text" value="@ViewBag.bairro" />
+                    </div>
+
+                    <div class="form-group col-md-2">
+                        <label for="cidade">Cidade</label>
+                        <input type="number" name="id_cidade" id="id_cidade" hidden value="@ViewBag.id_cidade" />
+                        <input type="text" name="nome_cidade" id="nome_cidade" class="form-control" autocomplete="off" value="@ViewBag.nome_cidade" />
+                    </div>
+
+                    <div class="form-group col-md-2">
+                        <label for="cep">cep</label>
+                        <input style="width:100%" class="form-control" autocomplete="off" id="cep" name="cep" type="text" value="@ViewBag.cep" />
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-3">
+                        <label for="endereco_cob">Endereço cob.</label>
+                        <input style="width:100%" class="form-control" autocomplete="off" id="endereco_cob" name="endereco_cob" type="text" value="@ViewBag.endereco_cob" />
+                    </div>
+
+                    <div class="form-group col-md-1">
+                        <label for="numero_cob">Número cob.</label>
+                        <input style="width:100%" class="form-control" autocomplete="off" id="numero_cob" name="numero_cob" type="text" value="@ViewBag.numero_cob" />
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="complemento_cob">Complemento cob.</label>
+                        <input style="width:100%" class="form-control" autocomplete="off" id="complemento_cob" name="complemento_cob" type="text" value="@ViewBag.complemento_cob" />
+                    </div>
+
+                    <div class="form-group col-md-2">
+                        <label for="bairro_cob">Bairro cob.</label>
+                        <input style="width:100%" class="form-control" autocomplete="off" id="bairro_cob" name="bairro_cob" type="text" value="@ViewBag.bairro_cob" />
+                    </div>
+
+                    <div class="form-group col-md-2">
+                        <label for="cidade_cob">Cidade cob.</label>
+                        <input type="number" name="id_cidade_cob" id="id_cidade_cob" hidden value="@ViewBag.id_cidade_cob" />
+                        <input type="text" name="nome_cidade_cob" id="nome_cidade_cob" class="form-control" autocomplete="off" value="@ViewBag.nome_cidade_cob" />
+                    </div>
+
+                    <div class="form-group col-md-2">
+                        <label for="cep_cob">CEP cob.</label>
+                        <input style="width:100%" class="form-control" autocomplete="off" id="cep_cob" name="cep_cob" type="text" value="@ViewBag.cep_cob" />
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="fone_com">Fone Comercial</label>
+                        <input style="width:100%" class="form-control" autocomplete="off" id="fone_com" name="fone_com" type="text" value="@ViewBag.fone_com" />
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label for="fone_com">Fone SAC 0800</label>
+                        <input style="width:100%" class="form-control" autocomplete="off" id="fone_sac" name="fone_sac" type="text" value="@ViewBag.fone_sac" />
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="qualificacao">Qualificação</label>
+                        <select class="form-control" name="id_qualificacao">
+                            <option value="" selected disabled hidden></option>
+                            @foreach (var qualificacao in ViewBag.qualificacoes)
+                            {
+                                @if (qualificacao.Id == ViewBag.id_qualificacao)
+                                {
+                                    <option value="@qualificacao.Id" selected>@qualificacao.Descricao</option>
+                                }
+                                else
+                                {
+                                    <option value="@qualificacao.Id">@qualificacao.Descricao</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-md-2">
+                        <button class="btn btn-success col-5" id="SalvarBtn" type="submit"><i class="fas fa-check"></i> Salvar</button>
+                        <button class="btn btn-danger col-5" id="CancelarBtn" type="button" value="Cancelar" onclick="location.href='@Url.Action("RefazerUltimaConsultaEmpresa", "Empresas")'"><i class="fas fa-times"></i> Cancelar</button>
+                    </div>
+                </div>
+
+            </form>
+        }
+        else
+        { 
+            <div class="row">
+                <div class="col-md-2">
+                    <button class="btn btn-info col-5" type="button" value="Voltar" onclick="location.href='@Url.Action("RefazerUltimaConsultaEmpresa", "Empresas")'"><i class="fas fa-arrow-left"></i> Voltar</button>
+                </div>
+            </div>
+        }
+        <hr />
+
+        @if (ViewBag.responseStatusCode == "OK")
+        {
+            @if (ViewBag.erro || ViewBag.linhasafetadas == 0)
+            {
+                <h4 style="color : red">@ViewBag.mensagem</h4>
+            }
+            else
+            {
+                @if (ViewBag.linhasafetadas >= 1)
+                {
+                    <h4 style="color : green">Empresa atualizada.</h4>
+                }
+            }
+        }
+        else
+        {
+            <h4 style="color : red"> @ViewBag.responseStatusCode </h4>
+        }
+    </div>
+
+@section Scripts{
+    <script type="text/javascript" src="~/lib/jquery-typeahead/bootstrap3-typeahead.js"></script>
+
+    <script>
+        var url = '@Url.Action("ConsultarCidadesAutoCompletar", "Cidades")';
+
+        $('#nome_cidade').typeahead({
+            source: function (query, process) {
+                post(url, query, process);
+            },
+            minLength: 2,
+            afterSelect: function (item) {
+                $("#id_cidade").val(item.id);
+            }
+        });
+
+        $('#nome_cidade_cob').typeahead({
+            source: function (query, process) {
+                post(url, query, process);
+            },
+            minLength: 2,
+            afterSelect: function (item) {
+                $("#id_cidade_cob").val(item.id);
+            }
+        });
+
+        function post(url, query, process) {
+            $.ajax({
+                type: "POST",
+                url: url,
+                dataType: "json",
+                data: { nome: query },
+                success: function (response) {
+                    process(response);
+                },
+                failure: function (response) {
+                    alert(response);
+                }
+            });
+        }
+
+    </script>
+}
+
+

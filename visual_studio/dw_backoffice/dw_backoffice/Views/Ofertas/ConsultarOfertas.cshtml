@@ -1,0 +1,122 @@
+﻿
+@{
+    ViewData["Title"] = "ConsultarOfertas";
+}
+
+
+<div style="padding-left: 5%; padding-top: 1%; padding-right: 5%">
+    <div>
+        <a id="fechar" asp-controller="Home" asp-action="Index"> <img style="width: 28px;" src="~/images/fechar.svg" /></a>
+        <h4>Ofertas <img style="width: 20px;" src="~/images/loader.gif" id="loaderImg" hidden></h4>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-md-2">
+            <a class="btn btn-info col-6" asp-area="" asp-controller="Desejos" asp-action="RefazerUltimaConsultaDesejo"><i class="fas fa-arrow-left"></i> Voltar</a>
+        </div>
+    </div>
+
+    <hr />
+    <table class="table table-fixed-large table-striped table-sm">
+        <thead class="thead-dark">
+            <tr>
+                <th class="col-lg-1">Código</th>
+                <th class="col-lg-2">Empresa</th>
+                <th class="col-lg-1">Validade</th>
+                <th class="col-lg-1">Valor</th>
+                <th class="col-lg-2">Descrição</th>
+                <th class="col-lg-1">Lida</th>
+                <th class="col-lg-1">Destaque</th>
+                <th class="col-lg-1">Like/Unlike</th>
+                @if (ViewBag.bka == true || ViewBag.tin == true)
+                {
+                    <th class="col-lg-2">Ação</th>
+                }
+            </tr>
+        </thead>
+        @foreach (var oferta in ViewBag.ofertas)
+        {
+            <tr>
+                <td class="col-lg-1">@oferta.Id</td>
+                <td class="col-lg-2">@oferta.Fantasia</td>
+                <td class="col-lg-1">@oferta.Validade.ToString("dd/MM/yyyy")</td>
+                <td class="col-lg-1">@string.Format("{0:R$ #,###,##0.00}", oferta.Valor)</td>
+                <td class="col-lg-2">@oferta.Descricao</td>
+                <td class="col-lg-1">
+                    @if (oferta.Lida == "S")
+                    {
+                        <img style="margin: 5px; width: 24px;" title="Ver oferta" src="~/images/tick.svg">
+                    }
+                    else
+                    {
+                        <a></a>
+                    }
+                </td>
+                <td class="col-lg-1">
+                    @if (oferta.Destaque == "S")
+                    {
+                        <img style="margin: 5px; width: 24px;" title="Ver oferta" src="~/images/tick.svg">
+                    }
+                    else
+                    {
+                        <a></a>
+                    }
+                </td>
+                <td class="col-lg-1">
+                    @{
+                        switch (oferta.Like_unlike)
+                        {
+                            case "L":
+                                <img style="margin: 5px; width: 28px;" title="Ver oferta" src="~/images/like.svg">
+                                break;
+                            case "U":
+                                <img style="margin: 5px; width: 28px;" title="Ver oferta" src="~/images/unlike.svg">
+                                break;
+                            default:
+                                <a></a>
+                                break;
+                        }
+                    }
+                </td>
+                <td class="col-lg-1">
+                    @if (@oferta.Url != "-")
+                    {
+                        <a href="@oferta.Url" target="_blank"><img style="margin: 5px; width: 28px;" title="Ver oferta" src="~/images/ver_oferta.svg"></a>
+                    }
+
+                    @if (ViewBag.bka == true || ViewBag.tin == true)
+                    {
+                        <a asp-area="" asp-controller="Ofertas" asp-action="ExcluirOfertas" asp-route-id="@oferta.Id" onclick=" return Confirmar('Excluir oferta?')"><img style="margin: 2px; width: 30px;" title="Excluir oferta" src="~/images/excluir.svg"></a>
+                    }
+                </td>
+            </tr>
+        }
+    </table>
+    @if (ViewBag.responseStatusCode == "OK")
+    {
+        @if (ViewBag.erro || (ViewBag.linhasafetadas == 0 && ViewBag.excluindo))
+        {
+            <h4 style="color : red">@ViewBag.mensagem</h4>
+        }
+        else
+        {
+            @if (ViewBag.excluindo)
+            {
+                <h4 style="color : green">Oferta excluída.</h4>
+            }
+            else
+            {
+                @if (ViewBag.ofertas.Count == 0)
+                {
+                    <h5 style="color : red">Nenhum registro encontrado.</h5>
+                }
+            }
+
+        }
+    }
+    else
+    {
+        <h4 style="color : red"> @ViewBag.responseStatusCode </h4>
+    }
+</div>
+

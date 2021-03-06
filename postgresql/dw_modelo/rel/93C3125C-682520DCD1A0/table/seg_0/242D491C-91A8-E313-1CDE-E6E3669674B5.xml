@@ -1,0 +1,168 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="242D491C-91A8-E313-1CDE-E6E3669674B5" schemaObject="CC7D603D-7CCC-CCE9-FD85-FFC055EC548B" name="situacoes">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-27 01:17:30 UTC</createdTime>
+<commentInRDBMS><![CDATA[Sistuação dos contratos]]></commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<ordsAlias>table_14</ordsAlias>
+<endOfScript><![CDATA[insert into dealwish.situacoes (id, descricao, contratos, usuarios, desejos, faturas, ofertas, produtos) values (1, 'Ativo', 'S', 'S', 'S', 'N', 'S','S');
+insert into dealwish.situacoes (id, descricao, contratos, usuarios, desejos, faturas, ofertas, produtos) values (2, 'Inativo', 'N', 'S', 'N', 'N', 'S','S');
+insert into dealwish.situacoes (id, descricao, contratos, usuarios, desejos, faturas, ofertas, produtos) values (3, 'Bloqueado', 'S', 'S', 'N', 'N', 'N','N');
+insert into dealwish.situacoes (id, descricao, contratos, usuarios, desejos, faturas, ofertas, produtos) values (4, 'Encerrado', 'S', 'N', 'N', 'N', 'N','N');
+insert into dealwish.situacoes (id, descricao, contratos, usuarios, desejos, faturas, ofertas, produtos) values (6, 'Realizado', 'N', 'N', 'S', 'N', 'N','N');
+insert into dealwish.situacoes (id, descricao, contratos, usuarios, desejos, faturas, ofertas, produtos) values (7, 'Não realizado', 'N', 'N', 'S', 'N', 'N','N');
+insert into dealwish.situacoes (id, descricao, contratos, usuarios, desejos, faturas, ofertas, produtos) values (8, 'Aberta', 'N', 'N', 'N', 'N', 'N','N');
+insert into dealwish.situacoes (id, descricao, contratos, usuarios, desejos, faturas, ofertas, produtos) values (9, 'A liquidar', 'N', 'N', 'N', 'S', 'N','N');
+insert into dealwish.situacoes (id, descricao, contratos, usuarios, desejos, faturas, ofertas, produtos) values (10, 'Liquidada', 'N', 'N', 'N', 'S', 'N','N');
+insert into dealwish.situacoes (id, descricao, contratos, usuarios, desejos, faturas, ofertas, produtos) values (11, 'Cancelada', 'N', 'N', 'N', 'S', 'N','N');
+insert into dealwish.situacoes (id, descricao, contratos, usuarios, desejos, faturas, ofertas, produtos) values (12, 'Gerar remessa nota fiscal', 'N', 'N', 'N', 'S', 'N','N');
+insert into dealwish.situacoes (id, descricao, contratos, usuarios, desejos, faturas, ofertas, produtos) values (13, 'Gerar cobrança', 'N', 'N', 'N', 'S', 'N','N');
+/
+commit;
+/]]></endOfScript>
+<shouldGeneratescript>true</shouldGeneratescript>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="55EF855D-8619-4B9A-74BE-5AFE232D36F9">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-27 01:18:03 UTC</createdTime>
+<commentInRDBMS><![CDATA[idenitifcação da situação]]></commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="descricao" id="A10204EF-15C0-4884-2880-378A8CFE5E05">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-27 01:19:36 UTC</createdTime>
+<commentInRDBMS><![CDATA[descrição da situação (Ativo, Bloqueado, Encerrado)]]></commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="contratos" id="50E98553-B9CC-E590-7A6E-8E57A3C1EB85">
+<createdBy>fredm</createdBy>
+<createdTime>2018-08-01 10:44:55 UTC</createdTime>
+<commentInRDBMS><![CDATA[situação aplica-se à contratos (S/N)]]></commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<listOfValues>
+<valueDef value="N" description="Não"/>
+<valueDef value="S" description="Sim"/>
+</listOfValues>
+<defaultValue>N</defaultValue>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="usuarios" id="519396E9-9150-9B4D-1A0C-41008B5747EC">
+<createdBy>fredm</createdBy>
+<createdTime>2018-08-01 10:46:31 UTC</createdTime>
+<commentInRDBMS><![CDATA[situação aplica-se à usuários (S/N)]]></commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<listOfValues>
+<valueDef value="N" description="Não"/>
+<valueDef value="S" description="Sim"/>
+</listOfValues>
+<defaultValue>N</defaultValue>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="desejos" id="6226EEB6-BB65-27FD-6B8B-ECFD36184CE0">
+<createdBy>fredm</createdBy>
+<createdTime>2018-08-01 10:46:31 UTC</createdTime>
+<commentInRDBMS><![CDATA[situação aplica-se à desejos (S/N)]]></commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<listOfValues>
+<valueDef value="N" description="Não"/>
+<valueDef value="S" description="Sim"/>
+</listOfValues>
+<defaultValue>N</defaultValue>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="faturas" id="3520C9A9-61C9-73C4-8BED-53290B855BA5">
+<createdBy>fredm</createdBy>
+<createdTime>2018-08-02 09:53:19 UTC</createdTime>
+<commentInRDBMS><![CDATA[situação aplica-se à faturas (S/N)]]></commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<listOfValues>
+<valueDef value="N" description="Não"/>
+<valueDef value="S" description="Sim"/>
+</listOfValues>
+<defaultValue>N</defaultValue>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ofertas" id="01751757-A072-045A-9FFF-E3572C330E38">
+<createdBy>fredm</createdBy>
+<createdTime>2018-10-31 10:25:54 UTC</createdTime>
+<commentInRDBMS><![CDATA[situação aplica-se à ofertas  (S/N)]]></commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<listOfValues>
+<valueDef value="N" description="Não"/>
+<valueDef value="S" description="Sim"/>
+</listOfValues>
+<defaultValue>N</defaultValue>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="produtos" id="CCBAB261-372D-33BA-66E2-5B65022996A7">
+<createdBy>fredm</createdBy>
+<createdTime>2018-11-03 10:17:41 UTC</createdTime>
+<commentInRDBMS><![CDATA[situação aplica-se à grupos e tipos de produtos  (S/N)]]></commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<listOfValues>
+<valueDef value="N" description="Não"/>
+<valueDef value="S" description="Sim"/>
+</listOfValues>
+<defaultValue>N</defaultValue>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="1A083E8B-BCE2-D4F3-A1A7-24444960D72C" name="situacao_PK">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-27 01:18:03 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="55EF855D-8619-4B9A-74BE-5AFE232D36F9"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

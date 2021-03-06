@@ -1,0 +1,65 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="25BBFE18-7CE5-CB14-C0E1-1D6A382A2D46" schemaObject="CC7D603D-7CCC-CCE9-FD85-FFC055EC548B" name="termo_servico">
+<createdBy>fredm</createdBy>
+<createdTime>2018-10-20 09:02:04 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<ordsAlias>table_18</ordsAlias>
+<endOfScript>insert into dealwish.termo_servico (corrente, texto) values (&apos;S&apos;,&lt;br/&gt;&apos;Termo de Serviço&lt;br/&gt;&lt;br/&gt;Lorem ipsum justo aliquam feugiat hac egestas ultrices magna malesuada, odio integer lacinia posuere ut aliquam justo torquent donec, habitant dolor a taciti odio phasellus semper tellus. interdum consectetur sem mauris massa ipsum cras luctus tortor dui, etiam eu ullamcorper fusce cras rhoncus enim congue ut, vivamus a gravida inceptos dui ut vivamus dictum. neque fusce donec nec primis ipsum aliquam condimentum ornare luctus, fusce et eget aliquam ipsum congue dolor euismod potenti, orci molestie hac massa tempor lacinia class ullamcorper. fermentum elementum maecenas massa lacinia interdum est scelerisque proin ultricies suscipit, varius enim lacinia accumsan posuere ut libero non sagittis magna diam, habitasse imperdiet tristique pellentesque primis dictum potenti euismod laoreet. &lt;br/&gt;&lt;br/&gt;Ut feugiat aenean dictum morbi hac aenean justo, adipiscing class vehicula sed elit semper erat, ut quisque sociosqu nam curabitur arcu. bibendum eros vel litora gravida maecenas risus sit non egestas, viverra gravida volutpat tortor per congue blandit habitasse condimentum, mattis mauris taciti lobortis tristique amet commodo nostra. convallis quisque pharetra nam netus interdum condimentum sagittis quisque risus accumsan placerat semper vulputate, faucibus dictum convallis tortor dapibus interdum ultrices fames auctor interdum pellentesque etiam, phasellus praesent faucibus sagittis elementum ultricies id turpis aenean etiam blandit auctor. purus donec praesent phasellus morbi quam, vel sollicitudin conubia luctus augue dapibus, venenatis nisi nec vitae. &lt;br/&gt;&lt;br/&gt;Turpis condimentum justo duis dictumst volutpat porttitor scelerisque, iaculis nostra sociosqu diam augue ultrices, cursus fringilla class vestibulum urna rutrum. vehicula risus semper aliquet praesent lorem enim suspendisse curabitur, convallis egestas accumsan cursus aliquam neque. at in nostra suspendisse lacinia morbi dictumst nulla posuere eu aenean hendrerit, commodo aenean mi fames erat orci litora metus vehicula. habitant pulvinar porta egestas ad suspendisse pellentesque quisque dui ornare dapibus, varius phasellus ad cursus cubilia metus commodo curabitur imperdiet ligula, condimentum nec a vehicula quam vulputate nullam orci cras. hendrerit blandit id habitant amet vivamus hendrerit, dictumst dui nam eget imperdiet dapibus mauris, diam neque ut aptent ipsum. &lt;br/&gt;&lt;br/&gt;Viverra mollis etiam curabitur neque a mattis cubilia ullamcorper himenaeos sem, laoreet semper ad sed placerat elementum inceptos nisi ante, lectus venenatis eu mattis augue suscipit enim potenti pellentesque. ipsum sagittis vivamus platea auctor phasellus accumsan sapien eu ante curabitur nam turpis, potenti morbi venenatis commodo amet pellentesque diam porttitor orci taciti aptent, sapien vulputate phasellus volutpat platea cubilia dapibus magna tincidunt luctus adipiscing. quisque eu porta rhoncus quisque himenaeos condimentum class primis, est velit auctor scelerisque nam nunc sociosqu, vitae aptent adipiscing auctor netus rhoncus molestie. habitant ac sodales curabitur dictum sociosqu rutrum neque tincidunt cras faucibus iaculis, condimentum metus ornare nostra aenean rhoncus aliquam duis donec ipsum convallis, ornare habitasse suspendisse fusce rutrum hac nisi luctus metus tempor. &lt;br/&gt;&lt;br/&gt;Quis nibh ad rutrum ante ultricies ligula eget fringilla in pulvinar, lacinia senectus auctor dui nulla dictumst nunc platea elementum, malesuada tincidunt dictum proin semper eros condimentum curae proin. etiam vestibulum dictum orci augue torquent dapibus etiam potenti sapien est lacinia, nisl rhoncus ornare et etiam nam arcu odio lorem vitae, gravida sapien tortor scelerisque ornare ipsum suscipit pharetra lacus velit. &apos;);&lt;br/&gt;/&lt;br/&gt;commit;&lt;br/&gt;/</endOfScript>
+<shouldGeneratescript>true</shouldGeneratescript>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="F4917EC1-DD0D-9CAD-5A7D-1FD081F093D7">
+<createdBy>fredm</createdBy>
+<createdTime>2018-10-20 09:03:16 UTC</createdTime>
+<commentInRDBMS>identificação do termo de serviço</commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="corrente" id="1EA0C957-2235-8187-B4B4-AFAEA477381E">
+<createdBy>fredm</createdBy>
+<createdTime>2018-10-20 09:03:16 UTC</createdTime>
+<commentInRDBMS>termo corrente (S/N)</commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<listOfValues>
+<valueDef value="N" description="Não"/>
+<valueDef value="S" description="Sim"/>
+</listOfValues>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="texto" id="7175AC60-9447-8203-0A74-2470144F2040">
+<createdBy>fredm</createdBy>
+<createdTime>2018-10-20 09:04:13 UTC</createdTime>
+<commentInRDBMS>Texto do termo de serviço</commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT028</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="B8868FA1-8402-1615-198E-25DA46E31AA9" name="termo_servico_PK">
+<createdBy>fredm</createdBy>
+<createdTime>2018-10-20 09:05:45 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F4917EC1-DD0D-9CAD-5A7D-1FD081F093D7"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

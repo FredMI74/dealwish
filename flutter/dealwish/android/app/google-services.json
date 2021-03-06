@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1005638050758",
+    "firebase_url": "https://dealwish-2174.firebaseio.com",
+    "project_id": "dealwish-2174",
+    "storage_bucket": "dealwish-2174.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1005638050758:android:c7ad43686ad4a9be",
+        "android_client_info": {
+          "package_name": "br.com.dealwish.dealwish"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1005638050758-1it8ujmm2du46f5p85ephg1kmtt9iuj9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBB0tCzcLXnpZaGG6E4dgJmcaCSJSXrkNQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,191 @@
+﻿
+@{
+    ViewData["Title"] = "ConsultarContratos";
+}
+
+<div style="padding-left: 5%; padding-top: 1%; padding-right: 5%">
+    <div>
+        <a id="fechar" asp-controller="Home" asp-action="Index"> <img style="width: 28px;" src="~/images/fechar.svg" /></a>
+        <h4>Consultar Contratos <img style="width: 20px;" src="~/images/loader.gif" id="loaderImg" hidden></h4>
+    </div>
+    <hr />
+    <form asp-controller="Contratos" asp-action="ConsultarContratosPost" method="post" onsubmit="disableObj(ConsultarBtn);showObj(loaderImg)">
+        <div class="form-row">
+            <div class="form-group col-md-1">
+                <label for="id">Código</label>
+                <input class="form-control" autocomplete="off" id="id" name="id" type="number" />
+            </div>
+            <div class="form-group col-md-2">
+                <label for="Empresa">Empresa</label>
+                <input type="number" name="id_empresa" id="id_empresa" hidden value="@ViewBag.id_empresa" />
+                <input type="text" name="razao_social" id="razao_social" class="form-control" autocomplete="off" value="@ViewBag.razao_social" />
+            </div>
+            <div class="form-group col-md-2">
+                <label for="Plano">Plano</label>
+                <select class="form-control" name="id_plano">
+                    <option value="" selected disabled hidden></option>
+                    @foreach (var plano in ViewBag.planos)
+                    {
+                        <option value="@plano.Id">@plano.Descricao</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group col-md-2">
+                <label for="Situacao">Situação</label>
+                <select class="form-control" name="id_situacao">
+                    <option value="" selected disabled hidden></option>
+                    @foreach (var situacao in ViewBag.situacoes)
+                    {
+                        <option value="@situacao.Id">@situacao.Descricao</option>
+                    }
+                </select>
+            </div>
+
+            <div class="form-group col-md-1">
+                <label for="dia_vct">Dia vencimento</label>
+                <input class="form-control" autocomplete="off" id="dia_vct" name="dia_vct" type="number" />
+            </div>
+            <div class="form-group col-md-2">
+                <label for="data_bloqueio">Data bloqueio</label>
+                <input class="form-control" autocomplete="off" id="data_bloqueio" name="data_bloqueio" type="date" />
+            </div>
+            <div class="form-group col-md-2">
+                <label for="data_termino">Data término</label>
+                <input class="form-control" autocomplete="off" id="data_termino" name="data_termino" type="date" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                <button class="btn btn-info col-6" id="ConsultarBtn" type="submit"><i class="fas fa-search"></i> Consultar</button>
+            </div>
+        </div>
+    </form>
+    <hr />
+    <table class="table table-fixed table-striped table-sm">
+        <thead class="thead-dark">
+            <tr>
+                <th class="col-lg-1">Código</th>
+                <th class="col-lg-3">Razão Social</th>
+                <th class="col-lg-2">Plano</th>
+                <th class="col-lg-1">Situação</th>
+                <th class="col-lg-1">Dia vct.</th>
+                <th class="col-lg-1">Data Início</th>
+                <th class="col-lg-1">Data Bloqueio</th>
+                <th class="col-lg-1">Data Término</th>
+                @if (ViewBag.bkf == true || ViewBag.bkc == true || ViewBag.tin == true)
+                {
+                    <th class="col-lg-1">Ação</th>
+                }
+            </tr>
+        </thead>
+        @foreach (var contrato in ViewBag.contratos)
+        {
+            <tr>
+                <td class="col-lg-1">@contrato.Id</td>
+                <td class="col-lg-3">@contrato.Razao_social</td>
+                <td class="col-lg-2">@contrato.Desc_plano</td>
+                <td class="col-lg-1">@contrato.Desc_situacao</td>
+                <td class="col-lg-1">@contrato.Dia_vct</td>
+                <td class="col-lg-1">@contrato.Data_inicio.ToString("dd/MM/yyyy")</td>
+                @if (contrato.Data_bloqueio.ToString("dd/MM/yyyy") == "01/01/0001")
+                {
+                    <td class="col-lg-1"></td>
+                }
+                else
+                {
+                    <td class="col-lg-1">@contrato.Data_bloqueio.ToString("dd/MM/yyyy")</td>
+                }
+                @if (contrato.Data_termino.ToString("dd/MM/yyyy") == "01/01/0001")
+                {
+                    <td class="col-lg-1"></td>
+                }
+                else
+                {
+                    <td class="col-lg-1">@contrato.Data_termino.ToString("dd/MM/yyyy")</td>
+                }
+                @if (ViewBag.bkf == true || ViewBag.bkc == true || ViewBag.tin == true)
+                {
+                    <td class="col-lg-1">
+                        @if (ViewBag.bkc == true || ViewBag.tin == true)
+                        {
+                            <a asp-area="" asp-controller="Contratos" asp-action="AcaoEditarContratos" asp-route-id="@contrato.Id"><img style="margin: 2px; width: 30px;" title="Editar contrato" src="~/images/editar.svg"></a>
+                            <a asp-area="" asp-controller="Contratos" asp-action="ExcluirContratos" asp-route-id="@contrato.Id" onclick=" return Confirmar('Excluir contrato?')"><img style="margin: 2px; width: 30px;" title="Excluir contrato" src="~/images/excluir.svg"></a>
+                        }
+                        @if ((ViewBag.bkf == true || ViewBag.tin == true) && contrato.Id_situacao == 3)
+                        {
+                            <a asp-area="" asp-controller="Contratos" asp-action="DesbloquearContratos" asp-route-id="@contrato.Id" onclick=" return Confirmar('Desbloquear contrato?')"><img style="margin: 2px; width: 30px;" title="Desbloquear contrato" src="~/images/desbloquear.svg"></a>
+                        }
+                    </td>
+                }
+            </tr>
+        }
+    </table>
+    @if (ViewBag.responseStatusCode == "OK")
+    {
+        @if (ViewBag.erro || (ViewBag.linhasafetadas == 0 && ViewBag.excluindo))
+        {
+            <h4 style="color : red">@ViewBag.mensagem</h4>
+        }
+        else
+        {
+            @if (ViewBag.acao == "E")
+            {
+                <h4 style="color : green">Contrato excluído.</h4>
+            }
+            else
+            {
+                @if (ViewBag.acao == "D")
+                {
+                    <h4 style="color : green">Contrato desbloqueado.</h4>
+                }
+                else
+                {
+                    @if (ViewBag.contratos.Count == 0)
+                    {
+                        <h5 style="color : red">Nenhum registro encontrado.</h5>
+                    }
+                }
+            }
+
+        }
+    }
+    else
+    {
+        <h4 style="color : red"> @ViewBag.responseStatusCode </h4>
+    }
+</div>
+
+@section Scripts{
+    <script type="text/javascript" src="~/lib/jquery-typeahead/bootstrap3-typeahead.js"></script>
+
+    <script>
+        var url = '@Url.Action("ConsultarEmpresasAutoCompletar", "Empresas")';
+
+        $('#razao_social').typeahead({
+            source: function (query, process) {
+                post(url, query, process);
+            },
+            minLength: 2,
+            afterSelect: function (item) {
+                $("#id_empresa").val(item.id);
+            }
+        });
+
+        function post(url, query, process) {
+            $.ajax({
+                type: "POST",
+                url: url,
+                dataType: "json",
+                data: { razao_social: query },
+                success: function (response) {
+                    process(response);
+                },
+                failure: function (response) {
+                    alert(response);
+                }
+            });
+        }
+
+    </script>
+}
+

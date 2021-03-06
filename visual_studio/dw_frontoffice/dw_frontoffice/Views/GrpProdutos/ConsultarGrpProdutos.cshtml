@@ -1,0 +1,73 @@
+﻿
+@{
+    ViewData["Title"] = "ConsultarGrpProdutos";
+}
+
+<div style="padding-left: 5%; padding-top: 1%; padding-right: 5%">
+    <div>
+        <a id="fechar" asp-controller="Home" asp-action="Index"> <img style="width: 28px;" src="~/images/fechar.svg" /></a>
+        <h4>Consultar Departamentos <img style="width: 20px;" src="~/images/loader.gif" id="loaderImg" hidden></h4>
+    </div>
+    <hr />
+    <form asp-controller="GrpProdutos" asp-action="ConsultarGrpProdutosPost" method="post" onsubmit="disableObj(ConsultarBtn);showObj(loaderImg)">
+        <div class="form-row">
+            <div class="form-group col-md-1">
+                <label for="id">Código</label>
+                <input class="form-control" autocomplete="off" id="id" name="id" type="number" />
+            </div>
+            <div class="form-group col-md-5">
+                <label for="descricao">Descrição</label>
+                <input class="form-control" autocomplete="off" id="descricao" name="descricao" type="text" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                <button class="btn btn-info col-6" id="ConsultarBtn" type="submit"><i class="fas fa-search"></i> Consultar</button>
+            </div>
+        </div>
+    </form>
+    <hr />
+    <table class="table table-fixed table-striped table-sm">
+        <thead class="thead-dark">
+            <tr>
+                <th class="col-lg-1">Código</th>
+                <th class="col-lg-10">Descrição</th>
+                <th class="col-lg-1">Icone</th>
+            </tr>
+        </thead>
+
+        @foreach (var grpproduto in ViewBag.grpprodutos)
+        {
+            <tr>
+
+                <td class="col-lg-1">@grpproduto.Id</td>
+                <td class="col-lg-10">@grpproduto.Descricao</td>
+                <td class="col-lg-1">
+                    <img src="@grpproduto.Icone" />
+                </td>
+            </tr>
+        }
+
+    </table>
+
+
+    @if (ViewBag.responseStatusCode == "OK")
+    {
+        @if (ViewBag.erro)
+        {
+            <h4 style="color : red">@ViewBag.mensagem</h4>
+        }
+        else
+        {
+            @if (ViewBag.grpprodutos.Count == 0)
+            {
+                <h5 style="color : red">Nenhum registro encontrado.</h5>
+            }
+        }
+
+    }
+    else
+    {
+        <h4 style="color : red"> @ViewBag.responseStatusCode </h4>
+    }
+</div>

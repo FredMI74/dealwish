@@ -1,0 +1,52 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="D53B1B85-1698-B8FC-C33A-A604C69B3363" schemaObject="CC7D603D-7CCC-CCE9-FD85-FFC055EC548B" name="qualificacoes">
+<createdBy>fredm</createdBy>
+<createdTime>2019-04-01 22:54:51 UTC</createdTime>
+<commentInRDBMS>Qualificação da empresa (informativo)</commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<ordsAlias>table_16</ordsAlias>
+<endOfScript>insert into dealwish.qualificacoes (id,descricao) values (0,&apos;Sem Qualificação&apos;);&lt;br/&gt;insert into dealwish.qualificacoes (id,descricao) values (1,&apos;Pequeno Porte&apos;);&lt;br/&gt;insert into dealwish.qualificacoes (id,descricao) values (2,&apos;Médio Porte&apos;);&lt;br/&gt;insert into dealwish.qualificacoes (id,descricao) values (3,&apos;Grande Porte&apos;);&lt;br/&gt;/&lt;br/&gt;commit;&lt;br/&gt;/</endOfScript>
+<shouldGeneratescript>true</shouldGeneratescript>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="EA8BE4E4-5BD2-6B27-02E1-622A6448B628">
+<createdBy>fredm</createdBy>
+<createdTime>2019-04-01 22:54:51 UTC</createdTime>
+<commentInRDBMS>identificação da qualificação</commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="descricao" id="BED58341-304C-1602-BDB3-A94A83B3800C">
+<createdBy>fredm</createdBy>
+<createdTime>2019-04-01 22:54:51 UTC</createdTime>
+<commentInRDBMS>descrição da qualificação&lt;br/&gt;</commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="B6CA3702-3CEE-F369-1797-8C1972A98F35" name="qualificacoes_PK">
+<createdBy>fredm</createdBy>
+<createdTime>2019-04-01 22:54:51 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="EA8BE4E4-5BD2-6B27-02E1-622A6448B628"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

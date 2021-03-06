@@ -1,0 +1,126 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="13B18E70-E445-BCE6-7FBB-BD314A7DB809" schemaObject="CC7D603D-7CCC-CCE9-FD85-FFC055EC548B" name="configuracoes">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-28 23:34:30 UTC</createdTime>
+<commentInRDBMS><![CDATA[Configurações do Sistema]]></commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<ordsAlias>table_18</ordsAlias>
+<endOfScript><![CDATA[insert into dealwish.configuracoes (codigo,valor) values ('codigo_empresa', '111');
+insert into dealwish.configuracoes (codigo,valor) values ('nome_empresa', 'Dealwish');
+insert into dealwish.configuracoes (codigo,valor) values ('numero_banco', '237');
+insert into dealwish.configuracoes (codigo,valor) values ('sequencia_remessa_boleto', '1');
+insert into dealwish.configuracoes (codigo,valor) values ('sequencia_dia_remessa_boleto', '1');
+insert into dealwish.configuracoes (codigo,valor) values ('ultimo_dia_geracao_remessa', '01/01/2019');
+insert into dealwish.configuracoes (codigo,valor) values ('carteira', '1');
+insert into dealwish.configuracoes (codigo,valor) values ('agencia', '2');
+insert into dealwish.configuracoes (codigo,valor) values ('conta_corrente', '3');
+insert into dealwish.configuracoes (codigo,valor) values ('inscricao_contribuinte', '1');
+insert into dealwish.configuracoes (codigo,valor) values ('serie_rps','111');
+insert into dealwish.configuracoes (codigo,valor) values ('sequencia_remessa_nf','1');
+insert into dealwish.configuracoes (codigo,valor) values ('cod_servico_prestado','123456');
+insert into dealwish.configuracoes (codigo,valor) values ('discriminacao_servico', 'Serviços de TI'); 
+insert into dealwish.configuracoes (codigo,valor) values ('num_max_tentativas_login', '5'); 
+insert into dealwish.configuracoes (codigo,valor) values ('ultima_atualizacao_produtos', '01/01/2019');
+insert into dealwish.configuracoes (codigo,valor) values ('num_faturas_abertas_bloqueio_contrato', '3');
+insert into dealwish.configuracoes (codigo,valor) values ('pix_chave_conta','pix@dealwish.com.br');
+insert into dealwish.configuracoes (codigo,valor) values ('pix_nome','DEALWISH');
+insert into dealwish.configuracoes (codigo,valor) values ('pix_cidade','BARUERI');
+/
+commit;
+/]]></endOfScript>
+<shouldGeneratescript>true</shouldGeneratescript>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="77DCB44C-6A19-02C5-0309-2122208DCE98">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-28 23:44:03 UTC</createdTime>
+<commentInRDBMS><![CDATA[identificação da configuração
+]]></commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<autoIncrementGenerateTrigger>false</autoIncrementGenerateTrigger>
+</Column>
+<Column name="codigo" id="C446EEDB-0445-3105-61D7-B89996E2EB41">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-28 23:44:03 UTC</createdTime>
+<commentInRDBMS><![CDATA[Código da configuração]]></commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="valor" id="EEB96B9F-DC83-1427-4630-87390A514998">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-28 23:44:03 UTC</createdTime>
+<commentInRDBMS><![CDATA[valor da configuração]]></commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>150</dataTypeSize>
+<ownDataTypeParameters>150,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="id_usuario_log" id="EE5734BD-0CFE-8EC3-B5D8-2C8EB407BC3C">
+<createdBy>fredm</createdBy>
+<createdTime>2019-03-21 23:23:08 UTC</createdTime>
+<commentInRDBMS><![CDATA[usuário que incluiu ou alterou o registro]]></commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="6D17EE50-C561-216D-0E37-F0C5803E1DEB" referredColumn="FAF6DDC2-B3EC-CCC2-B60E-A133DB87D21B"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="A15BEA56-967D-EE4E-339E-F142EED1C789" name="configuracoes_PK">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-28 23:44:03 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="EEB96B9F-DC83-1427-4630-87390A514998"/>
+<colUsage columnID="77DCB44C-6A19-02C5-0309-2122208DCE98"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="8198AAC0-E9D4-8A88-DB22-D1D07F209ECA" name="configuracoes_cod_IDX">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-28 23:44:31 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C446EEDB-0445-3105-61D7-B89996E2EB41"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="99AC70E6-0612-47EC-42BC-5277A2439E38" name="configuracoes_usuarios_FK">
+<createdBy>fredm</createdBy>
+<createdTime>2019-03-21 23:23:08 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="EE5734BD-0CFE-8EC3-B5D8-2C8EB407BC3C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

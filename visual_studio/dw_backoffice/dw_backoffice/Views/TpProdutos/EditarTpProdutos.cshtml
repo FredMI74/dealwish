@@ -1,0 +1,115 @@
+﻿
+@{
+    ViewData["Title"] = "EditarTpProdutos";
+}
+
+    <div style="padding-left: 5%; padding-top: 1%; padding-right: 5%">
+        <div>
+            <a id="fechar" asp-controller="Home" asp-action="Index"> <img style="width: 28px;" src="~/images/fechar.svg" /></a>
+            <h4>Editar Tipo de Produto <img style="width: 20px;" src="~/images/loader.gif" id="loaderImg" hidden></h4>
+        </div>
+        <hr />
+        @if (@ViewBag.id != 0)
+        {
+            <form asp-controller="TpProdutos" asp-action="EditarTpProdutosPost" method="post" onsubmit="disableObj(SalvarBtn);showObj(loaderImg)">
+                <h6 for="id">Código: @ViewBag.id</h6>
+                <hr />
+                <input class="form-control" autocomplete="off" id="id" name="id" type="hidden" value="@ViewBag.id" />
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="descricao">Descrição</label>
+                        <input class="form-control" autocomplete="off" id="descricao" name="descricao" type="text" value="@ViewBag.descricao" />
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="Grupo">Grupo</label>
+                        <select class="form-control" name="id_grp_prod">
+                            @foreach (var grpproduto in ViewBag.grpprodutos)
+                            {
+                                @if (grpproduto.Id == ViewBag.id_grp_prod)
+                                {
+                                    <option value="@grpproduto.Id" selected>@grpproduto.Descricao</option>
+                                }
+                                else
+                                {
+                                    <option value="@grpproduto.Id">@grpproduto.Descricao</option>
+                                }
+
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group col-md-1">
+                        <label for="ordem">Ordem</label>
+                        <input class="form-control" autocomplete="off" id="ordem" name="ordem" type="number" value="@ViewBag.ordem" />
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="situacao">Situação</label>
+                        <select class="form-control" name="id_situacao">
+                            <option value="" selected disabled hidden></option>
+                            @foreach (var situacao in ViewBag.situacoes)
+                            {
+                                @if (situacao.Id == ViewBag.id_situacao)
+                                {
+                                    <option value="@situacao.Id" selected>@situacao.Descricao</option>
+                                }
+                                else
+                                {
+                                    <option value="@situacao.Id">@situacao.Descricao</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-9">
+                        <label for="icone">Ícone 64x64 Base64</label>
+                        <input class="form-control" autocomplete="off" id="icone" name="icone" value="@ViewBag.icone" />
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-9">
+                        <label for="nome">Preenchimento</label>
+                        <textarea rows="10" cols="50" class="form-control" autocomplete="off" id="preenchimento" name="preenchimento" style="font-family:Courier New">@ViewBag.preenchimento</textarea>
+                    </div>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-md-2">
+                        <button class="btn btn-success col-5" id="SalvarBtn" type="submit"><i class="fas fa-check"></i> Salvar</button>
+                        <button class="btn btn-danger col-5" type="button" value="Cancelar" onclick="location.href='@Url.Action("RefazerUltimaConsultaTpProduto", "TpProdutos")'"><i class="fas fa-times"></i> Cancelar</button>
+                    </div>
+                </div>
+            </form>
+        }
+        else
+        {
+
+            <div class="row">
+                <div class="col-md-2">
+                   <button class="btn btn-info col-5" type="button" value="Voltar" onclick="location.href='@Url.Action("RefazerUltimaConsultaTpProduto", "TpProdutos")'"><i class="fas fa-arrow-left"></i> Voltar</button>
+                </div>
+            </div>
+        }
+        <hr />
+        @if (ViewBag.responseStatusCode == "OK")
+        {
+            @if (ViewBag.erro || ViewBag.linhasafetadas == 0)
+            {
+                <h4 style="color : red">@ViewBag.mensagem</h4>
+            }
+            else
+            {
+                @if (ViewBag.linhasafetadas >= 1)
+                {
+                    <h4 style="color : green">Tipo de Produtos atualizado.</h4>
+                }
+
+            }
+        }
+        else
+        {
+            <h4 style="color : red"> @ViewBag.responseStatusCode </h4>
+        }
+    </div>
+
+
+

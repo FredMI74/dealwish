@@ -1,0 +1,223 @@
+﻿
+@{
+    ViewData["Title"] = "ConsultarDesejos";
+}
+
+    <div style="padding-left: 5%; padding-top: 1%; padding-right: 5%">
+        <div>
+            <a id="fechar" asp-controller="Home" asp-action="Index"> <img style="width: 28px;" src="~/images/fechar.svg" /></a>
+            <h4>Consultar Desejos <img style="width: 20px;" src="~/images/loader.gif" id="loaderImg" hidden></h4>
+        </div>
+        <hr />
+        <form asp-controller="Desejos" asp-action="ConsultarDesejosPost" method="post" onsubmit="disableObj(ConsultarBtn);disableObj(ExportarCSVBtn);showObj(loaderImg)">
+            <div class="form-row">
+                <div class="form-group col-md-1">
+                    <label for="id">Código</label>
+                    <input class="form-control" autocomplete="off" id="id" name="id" type="number" />
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="descricao">Descrição</label>
+                    <input class="form-control" autocomplete="off" id="descricao" name="descricao" type="text" />
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="TpPpoduto">Tipo de Produto</label>
+                    <select class="form-control" name="id_tipo_produto">
+                        <option value="" selected disabled hidden></option>
+                        @{ var ultimo_grp_produto = ""; }
+
+                        @foreach (var tpproduto in ViewBag.tpprodutos)
+                        {
+                            @if (ultimo_grp_produto != tpproduto.Desc_grp_produto)
+                            {
+                                <option disabled>@tpproduto.Desc_grp_produto</option>
+                                ultimo_grp_produto = tpproduto.Desc_grp_produto;
+                            }
+                            <option value="@tpproduto.Id">&nbsp;&nbsp; @tpproduto.Descricao</option>
+                        }
+                    </select>
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="Ofertas">Ofertas</label>
+                    <select class="form-control" name="oferta">
+                        <option value="" selected disabled hidden></option>
+                        <option value="sem_oferta">Sem ofertas</option>
+                        <option value="com_oferta">Com ofertas</option>
+                        <option value="perdendo">Perdendo</option>
+                        <option value="like">Like</option>
+                        <option value="unlike">Unlike</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="uf">UF</label>
+                    <select class="form-control" id="uf" name="uf">
+                        <option value="" selected disabled hidden></option>
+                        <option value="AC">Acre</option>
+                        <option value="AL">Alagoas</option>
+                        <option value="AP">Amapá</option>
+                        <option value="AM">Amazonas</option>
+                        <option value="BA">Bahia</option>
+                        <option value="CE">Ceará</option>
+                        <option value="DF">Distrito Federal</option>
+                        <option value="ES">Espírito Santo</option>
+                        <option value="GO">Goiás</option>
+                        <option value="MA">Maranhão</option>
+                        <option value="MT">Mato Grosso</option>
+                        <option value="MS">Mato Grosso do Sul</option>
+                        <option value="MG">Minas Gerais</option>
+                        <option value="PA">Pará</option>
+                        <option value="PB">Paraíba</option>
+                        <option value="PR">Paraná</option>
+                        <option value="PE">Pernambuco</option>
+                        <option value="PI">Piauí</option>
+                        <option value="RJ">Rio de Janeiro</option>
+                        <option value="RN">Rio Grande do Norte</option>
+                        <option value="RS">Rio Grande do Sul</option>
+                        <option value="RO">Rondônia</option>
+                        <option value="RR">Roraima</option>
+                        <option value="SC">Santa Catarina</option>
+                        <option value="SP">São Paulo</option>
+                        <option value="SE">Sergipe</option>
+                        <option value="TO">Tocantins</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="cidade">Cidade</label>
+                    <input type="number" name="id_cidade" id="id_cidade" hidden />
+                    <input type="text" name="nome_cidade" id="nome_cidade" class="form-control" />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-2">
+                    <button class="btn btn-info col-6" id="ConsultarBtn" type="submit"><i class="fas fa-search"></i> Consultar</button>
+                </div>
+                <div class="col-md-10">
+                    @if (ViewBag.desejos.Count > 0)
+                    {
+                        <div align="right">
+                            <a asp-area="" asp-controller="Desejos" asp-action="ExportarCSV" class="btn btn-primary col-1">
+                                <span class="fas fa-download"></span> CSV
+                            </a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </form>
+        <hr />
+
+        <table class="table table-fixed table-striped table-sm">
+            <thead class="thead-dark">
+                <tr>
+                    <th class="col-lg-1">Cód.</th>
+                    <th class="col-lg-1">Icone</th>
+                    <th class="col-lg-5">Descrição</th>
+                    <th class="col-lg-2">Cidade/UF</th>
+                    <th class="col-lg-1">Tipo Prod.</th>
+                    <th class="col-lg-1">Ofertas Vál.</th>
+                    <th class="col-lg-1">Ação</th>
+                </tr>
+            </thead>
+            @foreach (var desejo in ViewBag.desejos)
+            {
+                <tr>
+                    <td class="col-lg-1">@desejo.Id</td>
+                    <td class="col-lg-1">
+                        <img height="32" width="32" src="@desejo.Icone_tp_produto" />
+                    </td>
+                    <td class="col-lg-5">@desejo.Descricao</td>
+                    <td class="col-lg-2">@desejo.Cidade/@desejo.Uf</td>
+                    <td class="col-lg-1">@desejo.Desc_tp_produto</td>
+                    <td class="col-lg-1" style="text-align:center">@desejo.Qtd_ofertas</td>
+                    <td class="col-lg-1">
+                        <a asp-area="" asp-controller="Ofertas" asp-action="IncluirOfertas" asp-route-id_desejo="@desejo.Id" asp-route-desejo="@desejo.Descricao"><img style="margin: 5px; width: 32px;" title="Incluir oferta" src="~/images/incluir_oferta.svg"></a>
+                        <a asp-area="" asp-controller="Ofertas" asp-action="AcaoConsultarOfertas" asp-route-tipo_consulta="D" asp-route-id_desejo="@desejo.Id"><img style="margin: 5px; width: 32px;" title="Listar ofertas" src="~/images/listar_ofertas.svg"></a>
+                    </td>
+                </tr>
+            }
+        </table>
+
+        @{
+            string classe_pagina_ante;
+            string classe_pagina_prox;
+        }
+
+        @if (ViewBag.desejos.Count > 0)
+        {
+            @if (ViewBag.AntePag)
+            { classe_pagina_ante = "page-item"; }
+            else
+            { classe_pagina_ante = "page-item disabled"; }
+
+            @if (ViewBag.ProxPag)
+            { classe_pagina_prox = "page-item"; }
+            else
+            { classe_pagina_prox = "page-item disabled"; }
+
+            <ul class="pagination">
+                <li class="@classe_pagina_ante">
+                    <a class="page-link" asp-area="" asp-controller="Desejos" asp-action="AntePaginaDesejo" asp-route-pagina=@ViewBag.Pagina asp-route-num_pag=@ViewBag.NumPag asp-route-max_id=@ViewBag.MaxId>Anterior</a>
+                </li>
+                <li class="page-item disabled">
+                    <a class="page-link">@ViewBag.Pagina</a>
+                </li>
+                <li class="@classe_pagina_prox">
+                    <a class="page-link" asp-area="" asp-controller="Desejos" asp-action="ProxPaginaDesejo" asp-route-pagina=@ViewBag.Pagina asp-route-num_pag=@ViewBag.NumPag asp-route-max_id=@ViewBag.MaxId>Próxima</a>
+                </li>
+            </ul>
+        }
+        else
+        {
+            @if (ViewBag.ProxPag)
+            {
+                <h5 style="color : red">Nenhum registro encontrado.</h5>
+            }
+
+        }
+
+        @if (ViewBag.responseStatusCode == "OK")
+        {
+            @if (ViewBag.erro)
+            {
+                <h4 style="color : red">@ViewBag.mensagem</h4>
+            }
+        }
+        else
+        {
+            <h4 style="color : red"> @ViewBag.responseStatusCode </h4>
+        }
+    </div>
+
+@section Scripts{
+    <script type="text/javascript" src="~/lib/jquery-typeahead/bootstrap3-typeahead.js"></script>
+
+    <script>
+        var url = '@Url.Action("ConsultarCidadesAutoCompletar", "Cidades")';
+
+        $('#nome_cidade').typeahead({
+            source: function (query, process) {
+                post(url, query, process);
+            },
+            minLength: 2,
+            afterSelect: function (item) {
+                $("#id_cidade").val(item.id);
+            }
+        });
+
+        function post(url, query, process) {
+            $.ajax({
+                type: "POST",
+                url: url,
+                dataType: "json",
+                data: { nome: query },
+                success: function (response) {
+                    process(response);
+                },
+                failure: function (response) {
+                    alert(response);
+                }
+            });
+        }
+
+    </script>
+}
+

@@ -1,0 +1,81 @@
+﻿@{
+    ViewData["Title"] = "BaixarFaturas";
+}
+
+
+<div style="padding-left: 5%; padding-top: 1%; padding-right: 5%">
+    <div>
+        <a id="fechar" asp-controller="Home" asp-action="Index"> <img style="width: 28px;" src="~/images/fechar.svg" /></a>
+        <h4>Baixar Faturas<img style="width: 20px;" src="~/images/loader.gif" id="loaderImg" hidden></h4>
+    </div>
+    <hr />
+    @if (@ViewBag.id != 0)
+    {
+        <form asp-controller="Faturas" asp-action="BaixarFaturasPost" method="post" onsubmit="disableObj(BaixarBtn);disableObj(CancelarBtn);showObj(loaderImg)">
+            <h6 for="id">Fatura: @ViewBag.id - @ViewBag.razao_social</h6>
+            <hr />
+            <input class="form-control" autocomplete="off" id="id" name="id" type="hidden" value="@ViewBag.id" />
+            <div class="form-row">
+                <div class="form-group col-md-2">
+                    <label for="valor">Valor</label>
+                    <input class="form-control" autocomplete="off" id="valor" name="valor" type="text" value="@string.Format("{0:##0.00}", ViewBag.valor)" disabled />
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="data_vct">Data vct.</label>
+                    <input class="form-control" autocomplete="off" id="data_vct" name="data_vct" type="date" value="@ViewBag.data_vct" disabled />
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="data_vct">Data pg.</label>
+                    <input class="form-control" autocomplete="off" id="data_pg" name="data_pg" type="date" value="@ViewBag.data_pg" />
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="multa">Multa</label>
+                    <input class="form-control" autocomplete="off" id="multa" name="multa" type="text" onkeyup="return formatarMoeda(multa);" value="@string.Format("{0:##0.00}", ViewBag.multa)" />
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="juros">Juros</label>
+                    <br />
+                    <input class="form-control" autocomplete="off" id="juros" name="juros" type="text" onkeyup="return formatarMoeda(juros);" value="@string.Format("{0:##0.00}", ViewBag.juros)" />
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="valor_pg">Valor pg.</label>
+                    <input class="form-control" autocomplete="off" id="valor_pg" name="valor_pg" type="text" onkeyup="return formatarMoeda(valor_pg);" value="@string.Format("{0:##0.00}", ViewBag.valor_pg)" />
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-md-2">
+                    <button class="btn btn-success col-5" id="BaixarBtn" type="submit"><i class="fas fa-check"></i> Baixar</button>
+                    <button class="btn btn-danger col-5" id="CancelarBtn" type="button" value="Cancelar" onclick="location.href='@Url.Action("RefazerUltimaConsultaFatura", "Faturas")'"><i class="fas fa-times"></i> Cancelar</button>
+                </div>
+            </div>
+        </form>
+    }
+    else
+    {
+        <div class="row">
+            <div class="col-md-2">
+                <button class="btn btn-info col-5" type="button" value="Voltar" onclick="location.href='@Url.Action("RefazerUltimaConsultaFatura", "Faturas")'"><i class="fas fa-arrow-left"></i> Voltar</button>
+            </div>
+        </div>
+    }
+    <hr />
+    @if (ViewBag.responseStatusCode == "OK")
+    {
+        @if (ViewBag.erro || ViewBag.linhasafetadas == 0)
+        {
+            <h4 style="color : red">@ViewBag.mensagem</h4>
+        }
+        else
+        {
+            @if (ViewBag.linhasafetadas >= 1)
+            {
+                <h4 style="color : green">Fatura baixada.</h4>
+            }
+        }
+    }
+    else
+    {
+        <h4 style="color : red"> @ViewBag.responseStatusCode </h4>
+    }
+</div>

@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewData["Title"] = "IncluirPlanos";
+}
+
+
+<div style="padding-left: 5%; padding-top: 1%; padding-right: 5%">
+    <div>
+        <a id="fechar" asp-controller="Home" asp-action="Index"> <img style="width: 28px;" src="~/images/fechar.svg" /></a>
+        <h4>Incluir Planos <img style="width: 20px;" src="~/images/loader.gif" id="loaderImg" hidden></h4>
+    </div>
+    <hr />
+
+    <form asp-controller="Planos" asp-action="IncluirPlanosPost" method="post" onsubmit="disableObj(InlcuirBtn);showObj(loaderImg)">
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="descricao">Nome</label>
+                <input class="form-control" autocomplete="off" id="descricao" name="descricao" type="text" value="@ViewBag.descricao" />
+            </div>
+            <div class="form-group col-md-1">
+                <label for="qtd_ofertas">Qtd. ofertas</label>
+                <input class="form-control" autocomplete="off" id="qtd_ofertas" name="qtd_ofertas" type="number" value="@ViewBag.qtd_ofertas" />
+            </div>
+            <div class="form-group col-md-1">
+                <label for="valor_mensal">Valor mensal</label>
+                <input class="form-control" autocomplete="off" id="valor_mensal" name="valor_mensal" type="text" onkeyup="return formatarMoeda(valor_mensal);" value="@ViewBag.valor_mensal" />
+            </div>
+            <div class="form-group col-md-1">
+                <label for="valor_oferta">Valor oferta</label>
+                <input class="form-control" autocomplete="off" id="valor_oferta" name="valor_oferta" type="text" onkeyup="return formatarMoeda(valor_oferta);" value="@ViewBag.valor_oferta" />
+            </div>
+            <div class="form-group col-md-2">
+                <label for="visualizacao">Visualização</label>
+                <select class="form-control" name="visualizacao">
+                    <option value="" selected disabled hidden></option>
+                    <option value="N">Sem visualização</option>
+                    <option value="P">Visualização de Preço</option>
+                    <option value="E">Visualização Empresa e Preço</option>
+                </select>
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-md-2">
+                <button class="btn btn-success col-5" id="InlcuirBtn" type="submit"><i class="fas fa-check"></i> Incluir</button>
+            </div>
+        </div>
+    </form>
+    <hr />
+    @if (ViewBag.responseStatusCode == "OK")
+    {
+        @if (ViewBag.erro || ViewBag.id == 0)
+        {
+            <h4 style="color : red">@ViewBag.mensagem</h4>
+        }
+        else
+        {
+            <h4 style="color : green">Plano incluído. Código: @ViewBag.id</h4>
+        }
+    }
+    else
+    {
+        <h4 style="color : red"> @ViewBag.responseStatusCode </h4>
+    }
+</div>

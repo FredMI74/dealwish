@@ -1,0 +1,173 @@
+﻿body {
+    padding-bottom: 20px;
+}
+
+/* Wrapping element */
+/* Set some basic padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Carousel */
+.carousel-caption p {
+    font-size: 20px;
+    line-height: 1.4;
+}
+
+/* Make .svg files in the carousel display properly in older browsers */
+.carousel-inner .item img[src$=".svg"] {
+    width: 100%;
+}
+
+/* QR code generator */
+#qrCode {
+    margin: 15px;
+}
+
+/* Hide/rearrange for smaller screens */
+@media screen and (max-width: 767px) {
+    /* Hide captions */
+    .carousel-caption {
+        display: none;
+    }
+}
+
+body {
+    margin: 0;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: left bottom;
+}
+
+#consultas {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+    #consultas td, #consultas th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    #consultas tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    #consultas tr:nth-child(odd) {
+        background-color: #fff;
+    }
+
+    #consultas tr:hover {
+        background-color: #ddd;
+    }
+
+    #consultas th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: black;
+        color: white;
+    }
+
+#formularios td, #formularios th {
+    border: 0px;
+    padding: 8px;
+}
+
+#fechar {
+    float: right;
+}
+
+.table-fixed tbody {
+    height: 500px;
+    overflow-y: auto;
+    width: 100%;
+}
+
+.table-fixed thead,
+.table-fixed tbody,
+.table-fixed tr,
+.table-fixed td,
+.table-fixed th {
+    display: block;
+}
+
+    .table-fixed tr:after {
+        content: "";
+        display: block;
+        visibility: hidden;
+        clear: both;
+    }
+
+    .table-fixed tbody td,
+    .table-fixed thead > tr > th {
+        float: left;
+    }
+
+.table > thead > tr > th,
+.table > thead > tr > td {
+    font-size: .9em;
+    font-weight: 400;
+    border-bottom: 0;
+    letter-spacing: 1px;
+    vertical-align: top;
+    padding: 8px;
+    background: #51596a;
+    color: #ffffff;
+}
+
+.table-fixed-extra-small tbody {
+    height: 400px;
+    overflow-y: auto;
+    width: 100%;
+}
+
+
+.table-fixed-extra-small thead,
+.table-fixed-extra-small tbody,
+.table-fixed-extra-small tr,
+.table-fixed-extra-small td,
+.table-fixed-extra-small th {
+    display: block;
+}
+
+    .table-fixed-extra-small tr:after {
+        content: "";
+        display: block;
+        visibility: hidden;
+        clear: both;
+    }
+
+    .table-fixed-extra-small tbody td,
+    .table-fixed-extra-small thead > tr > th {
+        float: left;
+    }
+
+
+.table-fixed-large tbody {
+    height: 586px;
+    overflow-y: auto;
+    width: 100%;
+}
+
+.table-fixed-large thead,
+.table-fixed-large tbody,
+.table-fixed-large tr,
+.table-fixed-large td,
+.table-fixed-large th {
+    display: block;
+}
+
+    .table-fixed-large tr:after {
+        content: "";
+        display: block;
+        visibility: hidden;
+        clear: both;
+    }
+
+    .table-fixed-large tbody td,
+    .table-fixed-large thead > tr > th {
+        float: left;
+    }

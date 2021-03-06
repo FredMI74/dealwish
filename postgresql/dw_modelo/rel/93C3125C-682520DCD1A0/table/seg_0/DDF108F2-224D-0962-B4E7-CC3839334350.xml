@@ -1,0 +1,188 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="DDF108F2-224D-0962-B4E7-CC3839334350" schemaObject="CC7D603D-7CCC-CCE9-FD85-FFC055EC548B" name="tp_produtos">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-24 23:11:00 UTC</createdTime>
+<commentInRDBMS>Tipos de produtos (TV, Notebook, Geladeira, Tênis, etc)</commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<ordsAlias>table_3</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="F0CC879C-4771-4099-5BE6-52222191E468">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-24 23:13:23 UTC</createdTime>
+<commentInRDBMS>Identificação do tipo de produto</commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_tp_produtos_tp_produtos_ID</notNullConstraintName>
+</Column>
+<Column name="descricao" id="332C82EF-6C20-CC23-AB69-F6614CB264A8">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-24 23:13:23 UTC</createdTime>
+<commentInRDBMS>Descrição do tipo de produto</commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_tp_produtos_descricao</notNullConstraintName>
+</Column>
+<Column name="id_grp_prod" id="8D892110-02B0-DDA5-682E-2A361974F6F6">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-24 23:43:56 UTC</createdTime>
+<commentInRDBMS>ID do grupo de produto (grp_produtos.id)</commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_tp_produtos_id_grp_prod</notNullConstraintName>
+<associations>
+<colAssociation fkAssociation="F7186363-869F-8DE4-C7F5-F6C60E004EE0" referredColumn="81F09A37-FFAF-D363-5954-2F634FDBC8BD"/>
+</associations>
+</Column>
+<Column name="icone" id="978F3ACC-32E7-A5E9-75D7-970AC8087598">
+<createdBy>fredm</createdBy>
+<createdTime>2018-08-19 13:22:33 UTC</createdTime>
+<commentInRDBMS>Ícone - PNG 64x64 - Base64 </commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT028</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="preenchimento" id="ECB10C8D-D1F0-EFF0-7E4F-0ABC5D6E5C40">
+<createdBy>fredm</createdBy>
+<createdTime>2018-10-28 12:26:57 UTC</createdTime>
+<commentInRDBMS>Dica de preenchimento</commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>4000</dataTypeSize>
+<defaultValue>Informe a marca, modelo, tipo, cor e outras características importantes.</defaultValue>
+<ownDataTypeParameters>4000,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="id_situacao" id="1BFB5429-3E3F-5E84-22D7-A3B83566DB8D">
+<createdBy>fredm</createdBy>
+<createdTime>2018-11-03 10:20:49 UTC</createdTime>
+<commentInRDBMS>Identificação da situação (SITUACOES)</commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<defaultValue>2</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="907A3A7C-8899-43A9-54D1-8782A1521B1F" referredColumn="55EF855D-8619-4B9A-74BE-5AFE232D36F9"/>
+</associations>
+</Column>
+<Column name="ordem" id="EDB26FA4-CA40-4FCB-C86C-BC861633ED2C">
+<createdBy>fredm</createdBy>
+<createdTime>2019-02-12 09:01:32 UTC</createdTime>
+<commentInRDBMS>Ordem</commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>4</dataTypePrecision>
+<defaultValue>9999</defaultValue>
+<ownDataTypeParameters>,4,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="id_usuario_log" id="79C454C4-0E8D-3AB3-CAED-50D6A22E6092">
+<createdBy>fredm</createdBy>
+<createdTime>2019-03-21 23:42:30 UTC</createdTime>
+<commentInRDBMS>usuário que incluiu ou alterou o registro</commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="2205876D-4D77-780D-1092-D996E0E29B85" referredColumn="FAF6DDC2-B3EC-CCC2-B60E-A133DB87D21B"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="9298AD71-DE27-AD06-124E-768330B6E25A" name="tp_produtos_PK">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-24 23:14:34 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F0CC879C-4771-4099-5BE6-52222191E468"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="459D5D08-632B-FA0D-DED0-2E0677DEA18C" name="tp_produtos_descricao_UN">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-24 23:32:03 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="332C82EF-6C20-CC23-AB69-F6614CB264A8"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="35DD5832-4402-7FEF-10E5-E47CA3F328DD" name="tp_produtos_tp_produtos_ID_IDX">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-24 23:32:03 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F0CC879C-4771-4099-5BE6-52222191E468"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="657F06A9-911D-5098-3519-E983D29E6AA5" name="tp_produtos_grp_produtos_FK">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-24 23:43:56 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8D892110-02B0-DDA5-682E-2A361974F6F6"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="597D817A-C3BD-254D-E1E0-E65C517535BB" name="tp_produtos_situacoes_FK">
+<createdBy>fredm</createdBy>
+<createdTime>2018-11-03 10:20:49 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="1BFB5429-3E3F-5E84-22D7-A3B83566DB8D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="75C25A2A-FE07-5B3E-7ED3-C4C45F1AAC59" name="tp_produtos_usuarios_FK">
+<createdBy>fredm</createdBy>
+<createdTime>2019-03-21 23:42:30 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="79C454C4-0E8D-3AB3-CAED-50D6A22E6092"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

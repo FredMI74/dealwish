@@ -1,0 +1,88 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="336D4FAE-023D-38C3-45EE-2CD32F9D1A9A" schemaObject="CC7D603D-7CCC-CCE9-FD85-FFC055EC548B" name="perm_grp">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-28 23:39:19 UTC</createdTime>
+<commentInRDBMS>Relacionamento N para M de Grp_Permissoes com Permissões</commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<ordsAlias>table_19</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="BA8DE334-7217-0F3F-56C5-1D2F49DD42A6">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-28 23:41:54 UTC</createdTime>
+<commentInRDBMS>identificação do grupo permissões e permissões</commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="id_grp_permissao" id="F627DEB0-31F5-1FB8-72ED-7263AF4760EC">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-28 23:42:45 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="F0BACFD9-A586-B8A9-6109-1CBAB147F764" referredColumn="87266F4F-2C67-E546-B0ED-87A700D95030"/>
+</associations>
+</Column>
+<Column name="id_permissao" id="2AA9BBA1-64C4-2A36-2DA5-ABE5D67E8F1C">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-28 23:42:53 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="F0582382-F746-7F7A-FF1F-2ED79B18D5DE" referredColumn="58A557A5-B706-1F97-7909-933C769F6CD9"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="C3C3FF47-45AB-CEE9-F076-E7E71AE43FE1" name="grp_perm_PK">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-28 23:42:08 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="BA8DE334-7217-0F3F-56C5-1D2F49DD42A6"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="C4EA31A3-5B37-F026-40C3-620C3D4957D3" name="grp_perm_grp_permissoes_FK">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-28 23:42:45 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F627DEB0-31F5-1FB8-72ED-7263AF4760EC"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="198D1893-4EB2-E43B-3C4F-A9DE87275A02" name="grp_perm_permissoes_FK">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-28 23:42:53 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="2AA9BBA1-64C4-2A36-2DA5-ABE5D67E8F1C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

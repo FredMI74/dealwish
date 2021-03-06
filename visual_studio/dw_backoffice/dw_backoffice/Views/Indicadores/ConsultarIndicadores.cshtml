@@ -1,0 +1,60 @@
+﻿
+@{
+    ViewData["Title"] = "ConsultarIndicadores";
+}
+
+<div style="padding-left: 5%; padding-top: 1%; padding-right: 5%">
+    <div>
+        <a id="fechar" asp-controller="Home" asp-action="Index"> <img style="width: 28px;" src="~/images/fechar.svg" /></a>
+        <h4>Indicadores <img style="width: 20px;" src="~/images/loader.gif" id="loaderImg" hidden></h4>
+    </div>
+    <hr />
+    <form asp-controller="Indicadores" asp-action="ConsultarIndicadoresPost" method="post" onsubmit="disableObj(ConsultarBtn);showObj(loaderImg)">
+        <div class="row">
+            <div class="col-md-2">
+                <button class="btn btn-info col-6"  id="ConsultarBtn" type="submit"><i class="fas fa-sync-alt"></i> Atualizar</button>
+            </div>
+        </div>
+    </form>
+
+    <hr />
+    <table class="table table-fixed table-striped table-sm">
+        <thead class="thead-dark">
+            <tr>
+                <th class="col-lg-4">Ordem</th>
+                <th class="col-lg-4">Indicador</th>
+                <th class="col-lg-4">Valor</th>
+            </tr>
+        </thead>
+            @foreach (var indicador in ViewBag.Indicadores)
+            {
+                <tr>
+                    <td class="col-lg-4">@indicador.Ordem</td>
+                    <td class="col-lg-4">@indicador.Indicador</td>
+                    <td class="col-lg-4">@indicador.Valor</td>
+                </tr>
+            }
+    </table>
+    @if (ViewBag.responseStatusCode == "OK")
+    {
+        @if (ViewBag.erro)
+        {
+            <h4 style="color : red">@ViewBag.mensagem</h4>
+        }
+        else
+        {
+            @if (ViewBag.Indicadores.Count == 0)
+            {
+                <h5 style="color : red">Nenhum registro encontrado.</h5>
+            }
+        }
+
+    }
+    else
+    {
+        <h4 style="color : red"> @ViewBag.responseStatusCode </h4>
+    }
+</div>
+
+
+

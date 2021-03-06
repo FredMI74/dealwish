@@ -1,0 +1,113 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="065C5461-F4BE-1197-C98E-36D33E7459AE" schemaObject="CC7D603D-7CCC-CCE9-FD85-FFC055EC548B" name="cidades">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-26 00:14:14 UTC</createdTime>
+<commentInRDBMS>Cadastro de cidades</commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<ordsAlias>table_6</ordsAlias>
+<endOfScript>CREATE OR REPLACE TRIGGER cidades_insert_update&lt;br/&gt;BEFORE INSERT OR UPDATE ON dealwish.cidades&lt;br/&gt;         FOR EACH ROW&lt;br/&gt;BEGIN&lt;br/&gt;   :NEW.uf := UPPER(:NEW.uf);&lt;br/&gt;END;&lt;br/&gt;/</endOfScript>
+<shouldGeneratescript>true</shouldGeneratescript>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="03767F8B-2920-98E1-6890-A07D773FF24F">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-26 00:15:26 UTC</createdTime>
+<commentInRDBMS>identificação da cidade</commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="nome" id="F0898AAD-3B15-5B6C-6F1F-19A07ABE7279">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-26 00:15:26 UTC</createdTime>
+<commentInRDBMS>nome da cidade</commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="uf" id="40458F6F-7EF3-59C7-9FB6-2635B002E5FA">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-26 00:15:26 UTC</createdTime>
+<commentInRDBMS>estado</commentInRDBMS>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>2</dataTypeSize>
+<listOfValues>
+<valueDef value="AC" description=""/>
+<valueDef value="AL" description=""/>
+<valueDef value="AM" description=""/>
+<valueDef value="AP" description=""/>
+<valueDef value="BA" description=""/>
+<valueDef value="CE" description=""/>
+<valueDef value="DF" description=""/>
+<valueDef value="ES" description=""/>
+<valueDef value="GO" description=""/>
+<valueDef value="MA" description=""/>
+<valueDef value="MG" description=""/>
+<valueDef value="MS" description=""/>
+<valueDef value="MT" description=""/>
+<valueDef value="PA" description=""/>
+<valueDef value="PB" description=""/>
+<valueDef value="PE" description=""/>
+<valueDef value="PI" description=""/>
+<valueDef value="PR" description=""/>
+<valueDef value="RJ" description=""/>
+<valueDef value="RN" description=""/>
+<valueDef value="RO" description=""/>
+<valueDef value="RR" description=""/>
+<valueDef value="RS" description=""/>
+<valueDef value="SC" description=""/>
+<valueDef value="SE" description=""/>
+<valueDef value="SP" description=""/>
+<valueDef value="TO" description=""/>
+</listOfValues>
+<ownDataTypeParameters>2,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="6DB34051-C4DF-99A6-CEE4-8861FDFD43B2" name="cidades_PK">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-26 00:15:26 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="03767F8B-2920-98E1-6890-A07D773FF24F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="1362D97B-8626-E4CD-9021-C0AC7A93F80D" name="cidades_UF_IDX">
+<createdBy>fredm</createdBy>
+<createdTime>2018-10-17 09:53:47 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="40458F6F-7EF3-59C7-9FB6-2635B002E5FA"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="F90E85E0-4DCC-7038-A611-15C65A1A66DB" name="cidades_NOME_UF_IDX">
+<createdBy>fredm</createdBy>
+<createdTime>2018-10-17 23:59:36 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F0898AAD-3B15-5B6C-6F1F-19A07ABE7279"/>
+<colUsage columnID="40458F6F-7EF3-59C7-9FB6-2635B002E5FA"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

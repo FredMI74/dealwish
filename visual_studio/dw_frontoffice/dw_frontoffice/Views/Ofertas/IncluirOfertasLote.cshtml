@@ -1,0 +1,69 @@
+﻿
+@{
+    ViewData["Title"] = "IncluirOfertasLote";
+}
+
+<div style="padding-left: 5%; padding-top: 1%; padding-right: 5%">
+    <div>
+        <a id="fechar" asp-controller="Home" asp-action="Index"> <img style="width: 28px;" src="~/images/fechar.svg" /></a>
+        <h4>Incluir Ofertas por Lote<img style="width: 20px;" src="~/images/loader.gif" id="loaderImg" hidden></h4>
+    </div>
+    <hr />
+
+    <form method="post" enctype="multipart/form-data" asp-controller="Ofertas" asp-action="IncluirOfertasLotePost" onsubmit="disableObj(InlcuirBtn);showObj(loaderImg)">
+        <div class="form-group">
+            <div class="row-cols-md-4">
+                <input type="file" id="file" name="file" class="file" accept=".csv"> <br>
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-md-2">
+                <button class="btn btn-success col-6" id="InlcuirBtn" type="submit"><i class="fas fa-cog"></i> Enviar</button>
+            </div>
+        </div>
+
+
+    </form>
+    <hr />
+    <label>O arquivo deve ser do tipo CSV (colunas separadas por ponto-e-vírgula)</label><br>
+    <label>Cabeçalho: ID_DESEJO;VALOR;DATA_VALIDADE;URL;DESCRICAO;DESTAQUE</label><br>
+    <label>Campos:</label><br>
+    <ul>
+        <li>ID_DESEJO: Número inteiro</li>
+        <li>VALOR: Número decimal, sem separação de milhar e separador de decimal com vírgula (,)</li>
+        <li>DATA_VALIDADE: Data de validade no formato DD/MM/AAAA</li>
+        <li>URL: Link para oferta, deve começar com http:// ou https://</li>
+        <li>DESCRICAO: Descrição da oferta</li>
+        <li>DESTAQUE: Oferta em destaque, valor deve ser S ou N</li>
+    </ul>
+
+    <hr />
+    @if (ViewBag.responseStatusCode == "OK")
+    {
+        @if (ViewBag.erro || ViewBag.id == 0)
+        {
+            <h4 style="color : red">@ViewBag.mensagem</h4>
+        }
+        else
+        {
+            if (ViewBag.mensagem == "")
+            {
+                <h4 style="color : green">Ofertas processadas: @ViewBag.linhasafetadas</h4>
+            }
+            else
+            {
+                <h4 style="color :  #ffbf00">Ofertas processadas: @ViewBag.linhasafetadas - ViewBag.mensagem</h4>
+            }
+
+            <div>
+                <a asp-area="" asp-controller="Ofertas" asp-action="BaixarRetornoCSV">Baixar retorno CSV</a>
+            </div>
+
+        }
+    }
+    else
+    {
+        <h4 style="color : red"> @ViewBag.responseStatusCode </h4>
+    }
+</div>

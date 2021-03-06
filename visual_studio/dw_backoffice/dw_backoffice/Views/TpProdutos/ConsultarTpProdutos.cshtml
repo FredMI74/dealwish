@@ -1,0 +1,153 @@
+﻿
+@{
+    ViewData["Title"] = "ConsultarTpProdutos";
+}
+
+
+<div style="padding-left: 5%; padding-top: 1%; padding-right: 5%">
+    <div>
+        <a id="fechar" asp-controller="Home" asp-action="Index"> <img style="width: 28px;" src="~/images/fechar.svg" /></a>
+        <h4>Consultar Tipos de Produtos <img style="width: 20px;" src="~/images/loader.gif" id="loaderImg" hidden></h4>
+    </div>
+    <hr />
+    <form asp-controller="TpProdutos" asp-action="ConsultarTpProdutosPost" method="post" onsubmit="disableObj(ConsultarBtn);showObj(loaderImg)">
+
+        <div class="form-row">
+            <div class="form-group col-md-1">
+                <label for="id">Código</label>
+                <input class="form-control" autocomplete="off" id="id" name="id" type="number" />
+            </div>
+            <div class="form-group col-md-4">
+                <label for="descricao">Descrição</label>
+                <input class="form-control" autocomplete="off" id="descricao" name="descricao" type="text" />
+            </div>
+            <div class="form-group col-md-2">
+                <label for="Grupo">Grupo</label>
+                <select class="form-control" name="id_grp_prod">
+                    <option value="" selected disabled hidden></option>
+                    @foreach (var grpproduto in ViewBag.grpprodutos)
+                    {
+                        <option value="@grpproduto.Id">@grpproduto.Descricao</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group col-md-2">
+                <label for="situacao">Situação</label>
+                <select class="form-control" name="id_situacao">
+                    <option value="" selected disabled hidden></option>
+                    @foreach (var situacao in ViewBag.situacoes)
+                    {
+                        <option value="@situacao.Id">@situacao.Descricao</option>
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                <button class="btn btn-info col-6" id="ConsultarBtn" type="submit"><i class="fas fa-search"></i> Consultar</button>
+            </div>
+        </div>
+    </form>
+    <hr />
+    <table class="table table-fixed table-striped table-sm">
+        <thead class="thead-dark">
+            <tr>
+                <th class="col-lg-1">Código</th>
+                <th class="col-lg-2">Nome</th>
+                <th class="col-lg-1">Cód. Grp.</th>
+                <th class="col-lg-1">Grupo</th>
+                <th class="col-lg-2">Preenchimento</th>
+                <th class="col-lg-1">Situação</th>
+                <th class="col-lg-1">Icone</th>
+                <th class="col-lg-1">Ordem</th>
+                @if (ViewBag.bka == true || ViewBag.tin == true)
+                {
+                    <th class="col-lg-2">Ação</th>
+                }
+            </tr>
+        </thead>
+        @foreach (var tpproduto in ViewBag.tpprodutos)
+        {
+            <tr>
+                <td class="col-lg-1">@tpproduto.Id</td>
+                <td class="col-lg-2">@tpproduto.Descricao</td>
+                <td class="col-lg-1">@tpproduto.Id_grp_prod</td>
+                <td class="col-lg-1">@tpproduto.Desc_grp_produto</td>
+                <td class="col-lg-2">@Html.Raw(tpproduto.Preenchimento)</td>
+                <td class="col-lg-1">@tpproduto.Desc_situacao</td>
+                <td class="col-lg-1">
+                    <img style="margin: 2px; width: 42px;" src="@tpproduto.Icone" />
+                </td>
+                <td class="col-lg-1">@tpproduto.Ordem</td>
+
+                @if (ViewBag.bka == true || ViewBag.tin == true)
+                {
+                    <td class="col-lg-2">
+                        <a asp-area="" asp-controller="TpProdutos" asp-action="AcaoEditarTpProdutos" asp-route-id="@tpproduto.Id"><img style="margin: 2px; width: 30px;" title="Editar tipo de produto" src="~/images/editar.svg"></a>
+                        <a asp-area="" asp-controller="TpProdutos" asp-action="ExcluirTpProdutos" asp-route-id="@tpproduto.Id" onclick=" return Confirmar('Excluir tipo de produto?')"><img style="margin: 2px; width: 30px;" title="Excluir tipo de produto" src="~/images/excluir.svg"></a>
+                    </td>
+                }
+
+            </tr>
+        }
+    </table>
+
+    @{
+        string classe_pagina_ante;
+        string classe_pagina_prox;
+    }
+
+    @if (ViewBag.tpprodutos.Count > 0)
+    {
+        @if (ViewBag.AntePag)
+        { classe_pagina_ante = "page-item"; }
+        else
+        { classe_pagina_ante = "page-item disabled"; }
+
+        @if (ViewBag.ProxPag)
+        { classe_pagina_prox = "page-item"; }
+        else
+        { classe_pagina_prox = "page-item disabled"; }
+
+        <ul class="pagination">
+            <li class="@classe_pagina_ante">
+                <a class="page-link" asp-area="" asp-controller="TpProdutos" asp-action="AntePaginaTpProduto" asp-route-pagina=@ViewBag.Pagina asp-route-num_pag=@ViewBag.NumPag asp-route-max_id=@ViewBag.MaxId>Anterior</a>
+            </li>
+            <li class="page-item disabled">
+                <a class="page-link">@ViewBag.Pagina</a>
+            </li>
+            <li class="@classe_pagina_prox">
+                <a class="page-link" asp-area="" asp-controller="TpProdutos" asp-action="ProxPaginaTpProduto" asp-route-pagina=@ViewBag.Pagina asp-route-num_pag=@ViewBag.NumPag asp-route-max_id=@ViewBag.MaxId>Próxima</a>
+            </li>
+        </ul>
+    }
+    else
+    {
+        @if (ViewBag.ProxPag)
+        {
+            <h5 style="color : red">Nenhum registro encontrado.</h5>
+        }
+
+    }
+    @if (ViewBag.responseStatusCode == "OK")
+    {
+        @if (ViewBag.erro || (ViewBag.linhasafetadas == 0 && ViewBag.excluindo))
+        {
+            <h4 style="color : red">@ViewBag.mensagem</h4>
+        }
+        else
+        {
+            @if (ViewBag.excluindo)
+            {
+                <h4 style="color : green">Tipo de produto excluído.</h4>
+            }
+        }
+    }
+    else
+    {
+        <h4 style="color : red"> @ViewBag.responseStatusCode </h4>
+    }
+</div>
+
+
+

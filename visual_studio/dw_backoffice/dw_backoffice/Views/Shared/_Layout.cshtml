@@ -1,0 +1,245 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - dw_backoffice</title>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+
+</head>
+<body background="@Url.Content("~/images/fundo.png")">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-fixed-top ">
+        <a class="navbar-brand">
+            <img style="margin: 5px 5px; width: 56px;" src="~/images/dw_icon.svg"> <h style="color:white">
+                Dealwish Backoffice
+        </a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"aria-haspopup="true" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="nav navbar-nav">
+
+                @if (ViewBag.logado == true)
+                {
+                    @if (ViewBag.bka == true || ViewBag.bki == true || ViewBag.tin == true || ViewBag.bkc == true || ViewBag.bkf == true)
+                    {
+                        @if (!ViewBag.bka || ViewBag.tin == true)
+                        {
+                            <li class="nav-item dropdown">
+                                <a href="#" id="navbarDropdownMenuLink" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Empresas<span class="caret"></span></a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" role="menu">
+                                    @if (ViewBag.tin == true || ViewBag.bkc == true)
+                                    {
+                                        <a class="dropdown-item" asp-area="" asp-controller="Empresas" asp-action="IncluirEmpresas">Incluir Empresas</a>
+                                    }
+                                    @if (ViewBag.bki == true || ViewBag.tin == true || ViewBag.bkc == true || ViewBag.bkf == true)
+                                    {
+                                        <a class="dropdown-item" asp-area="" asp-controller="Empresas" asp-action="ConsultarEmpresas">Consultar Empresas</a>
+                                    }
+                                </div>
+                            </li>
+
+
+                            <li class="nav-item dropdown">
+                                <a href="#" id="navbarDropdownMenuLink" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Contratos<span class="caret"></span></a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" role="menu">
+                                    @if (ViewBag.tin == true || ViewBag.bkc == true)
+                                    {
+                                        <a class="dropdown-item" asp-area="" asp-controller="Contratos" asp-action="IncluirContratos">Incluir Contratos</a>
+                                    }
+                                    @if (ViewBag.bki == true || ViewBag.tin == true || ViewBag.bkc == true || ViewBag.bkf == true)
+                                    {
+                                        <a class="dropdown-item" asp-area="" asp-controller="Contratos" asp-action="ConsultarContratos">Consultar Contratos</a>
+                                    }
+                                    @if (ViewBag.bki == true || ViewBag.tin == true || ViewBag.bkf == true)
+                                    {
+                                        <hr />
+                                        <a class="dropdown-item" asp-area="" asp-controller="Contratos" asp-action="ConsultarInadimplentes">Consultar Inadimplentes</a>
+                                    }
+                                </div>
+                            </li>
+
+                            <li class="nav-item dropdown">
+                                <a href="#" id="navbarDropdownMenuLink" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Faturas<span class="caret"></span></a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" role="menu">
+                                    @if (ViewBag.bki == true || ViewBag.tin == true || ViewBag.bkc == true || ViewBag.bkf == true)
+                                    {
+                                        <a class="dropdown-item" asp-area="" asp-controller="Faturas" asp-action="ConsultarFaturas">Consultar Faturas</a>
+                                    }
+                                    @if (ViewBag.bki == true || ViewBag.tin == true || ViewBag.bkf == true)
+                                    {
+                                        <a class="dropdown-item" asp-area="" asp-controller="Faturas" asp-action="ConsultarFaturasAbertas">Consultar Faturas Abertas</a>
+                                    }
+
+                                    @if (ViewBag.tin == true || ViewBag.bkf == true)
+                                    {
+                                        <hr />
+                                        <a class="dropdown-item" asp-area="" asp-controller="Faturas" asp-action="ProcessarRetornoBoleto">Processar retorno Boleto</a>
+                                    }
+
+                                    @if (ViewBag.tin == true || ViewBag.bkf == true)
+                                    {
+                                        <a class="dropdown-item" asp-area="" asp-controller="Faturas" asp-action="ProcessarRetornoNF">Processar retorno Notas Fiscais</a>
+                                    }
+                                </div>
+                            </li>
+
+                            <li class="nav-item dropdown">
+                                <a href="#" id="navbarDropdownMenuLink" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Planos<span class="caret"></span></a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" role="menu">
+                                    @if (ViewBag.bka == true || ViewBag.tin == true || ViewBag.bkf == true)
+                                    {
+                                        <a class="dropdown-item" asp-area="" asp-controller="Planos" asp-action="IncluirPlanos">Incluir Planos</a>
+                                    }
+                                    @if (ViewBag.bki == true || ViewBag.bka == true || ViewBag.tin == true || ViewBag.bkc == true || ViewBag.bkf == true)
+                                    {
+                                        <a class="dropdown-item" asp-area="" asp-controller="Planos" asp-action="ConsultarPlanos">Consultar Planos</a>
+                                    }
+
+                                </div>
+                            </li>
+                        }
+
+                        @if (ViewBag.bki == true || ViewBag.bka == true || ViewBag.tin == true)
+                        {
+                            <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Desejos" asp-action="ConsultarDesejos">Desejos</a></li>
+                        }
+
+                        @if (ViewBag.bki == true || ViewBag.bka == true || ViewBag.bkc == true || ViewBag.tin == true)
+                        {
+                            <li class="nav-item dropdown">
+                                <a href="#" id="navbarDropdownMenuLink" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Produtos <span class="caret"></span></a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" role="menu">
+                                    @if (ViewBag.bka == true || ViewBag.tin == true)
+                                    {
+                                        <a class="dropdown-item" asp-area="" asp-controller="GrpProdutos" asp-action="IncluirGrpProdutos">Incluir Grupos de Produtos</a>
+                                    }
+                                    <a class="dropdown-item" asp-area="" asp-controller="GrpProdutos" asp-action="ConsultarGrpProdutos">Consultar Grupos de Produtos</a>
+                                    <hr />
+                                    @if (ViewBag.bka == true || ViewBag.tin == true)
+                                    {
+                                        <a class="dropdown-item" asp-area="" asp-controller="TpProdutos" asp-action="IncluirTpProdutos">Incluir Tipos de Produtos</a>
+                                    }
+                                    <a class="dropdown-item" asp-area="" asp-controller="TpProdutos" asp-action="ConsultarTpProdutos">Consultar Tipos de Produtos</a>
+                                </div>
+                            </li>
+                        }
+                        @if (ViewBag.bka == true || ViewBag.tin == true)
+                        {
+                            <li class="nav-item dropdown">
+                                <a href="#" id="navbarDropdownMenuLink" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Usuários<span class="caret"></span></a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" role="menu">
+                                    <a class="dropdown-item" asp-area="" asp-controller="Usuarios" asp-action="IncluirUsuarios">Incluir Usuários</a>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Usuarios" asp-action="ConsultarUsuarios">Consultar Usuários</a>
+                                </div>
+                            </li>
+
+                            <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Configuracoes" asp-action="ConsultarConfiguracoes">Configurações</a></li>
+
+                            <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Indicadores" asp-action="ConsultarIndicadores">Indicadores</a></li>
+
+                        }
+                    }
+
+                    <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Auth" asp-action="Logout">Sair</a></li>
+
+                    <li class="nav-item"><a class="nav-link" href="~/manual_usuario_dw_backoffice.pdf" target="_blank">?</a></li>
+
+                    <li class="nav-item px-5"><a class="nav-link" asp-area="" asp-controller="Usuarios" asp-action="AtualizarSenhaUsuarios" asp-route-id_usuario="@ViewBag.id_usuario">@ViewBag.nome_usuario</a></li>
+
+                }
+            </ul>
+        </div>
+    </nav>
+    <div class="container-fluid body-content">
+        @RenderBody()
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <script type="text/javascript" src="~/lib/jquery-mask/masked_input_1.4.1.js"></script>
+
+    @RenderSection("Scripts", required: false)
+
+    <script>
+        function disableObj(obj) {
+            obj.disabled = true;
+        }
+
+        function unabledObj(obj) {
+            obj.disabled = false;
+        }
+
+        function showObj(obj) {
+            obj.hidden = null;
+        }
+
+        function Confirmar(mensagem) {
+            if (confirm(mensagem))
+                return true;
+            else
+                return false;
+        }
+
+        function formatarMoeda(obj) {
+            var valor = obj.value;
+
+            if (valor == '') {
+                valor = '0';
+            }
+
+            valor = valor + '';
+            valor = parseInt(valor.replace(/[\D]+/g, ''));
+            valor = valor + '';
+            valor = valor.replace(/([0-9]{2})$/g, ",$1");
+
+            obj.value = valor;
+
+        }
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            MaskedInput({
+                elm: document.getElementById('cpf'),
+                format: '___.___.___-__', separator: '-.'
+            });
+
+            MaskedInput({
+                elm: document.getElementById('cnpj'),
+                format: '__.___.___/____-__', separator: '/-.'
+            });
+
+            MaskedInput({
+                elm: document.getElementById('cep'),
+                format: '__.___-___', separator: '-.'
+            });
+
+            MaskedInput({
+                elm: document.getElementById('cep_cob'),
+                format: '__.___-___', separator: '-.'
+            });
+
+            MaskedInput({
+                elm: document.getElementById('fone_com'),
+                format: '(__) ____-____', separator: '(). '
+            });
+
+            MaskedInput({
+                elm: document.getElementById('fone_sac'),
+                format: '____ ___ ____', separator: '-.'
+            });
+
+
+        });
+    </script>
+
+</body>
+</html>

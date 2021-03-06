@@ -1,0 +1,141 @@
+﻿
+@{
+    ViewData["Title"] = "ConsultarEmpresas";
+}
+
+<div style="padding-left: 5%; padding-top: 1%; padding-right: 5%">
+    <div>
+        <a id="fechar" asp-controller="Home" asp-action="Index"> <img style="width: 28px;" src="~/images/fechar.svg" /></a>
+        <h4>Dados da Empresa <img style="width: 20px;" src="~/images/loader.gif" id="loaderImg" hidden></h4>
+    </div>
+    <hr />
+
+    <form>
+        <h6 for="id">Código: @ViewBag.id</h6>
+        <hr />
+        <input class="form-control" autocomplete="off" id="id" name="id" type="hidden" value="@ViewBag.id" readonly />
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="fantasia">Nome fantasia</label>
+                    <input style="width:100%" class="form-control" autocomplete="off" id="nfantasia" name="fantasia" type="text" value="@ViewBag.fantasia" readonly />
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="razao_social">Razão Social</label>
+                    <input style="width:100%" class="form-control" autocomplete="off" id="razao_social" name="razao_social" type="text" value="@ViewBag.razao_social" readonly />
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="cnpj">CNPJ</label>
+                    <input style="width:100%" class="form-control" autocomplete="off" id="cnpj" name="cnpj" type="text" value="@ViewBag.cnpj" readonly />
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label for="insc_est">Insc. Est.</label>
+                    <input style="width:100%" class="form-control" autocomplete="off" id="insc_est" name="insc_est" type="text" value="@ViewBag.insc_est" readonly />
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label for="url">Url</label>
+                    <input style="width:100%" class="form-control" autocomplete="off" id="url" name="url" type="text" value="@ViewBag.url" readonly />
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="email_com">e-mail comercial</label>
+                    <input style="width:100%" class="form-control" autocomplete="off" id="email_com" name="email_com" type="text" value="@ViewBag.email_com" readonly />
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="email_sac">e-mail SAC</label>
+                    <input style="width:100%" class="form-control" autocomplete="off" id="email_sac" name="email_sac" type="text" value="@ViewBag.email_sac" readonly />
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <label for="endereco">Endereço</label>
+                    <input style="width:100%" class="form-control" autocomplete="off" id="endereco" name="endereco" type="text" value="@ViewBag.endereco" readonly />
+                </div>
+
+                <div class="form-group col-md-1">
+                    <label for="numero">Número</label>
+                    <input style="width:100%" class="form-control" autocomplete="off" id="numero" name="numero" type="text" value="@ViewBag.numero" readonly />
+                </div>
+
+                <div class="form-group col-md-2">
+                    <label for="complemento">Complemento</label>
+                    <input style="width:100%" class="form-control" autocomplete="off" id="complemento" name="complemento" type="text" value="@ViewBag.complemento" readonly />
+                </div>
+
+                <div class="form-group col-md-2">
+                    <label for="bairro">Bairro</label>
+                    <br />
+                    <input style="width:100%" class="form-control" autocomplete="off" id="bairro" name="bairro" type="text" value="@ViewBag.bairro" readonly />
+                </div>
+
+                <div class="form-group col-md-2">
+                    <label for="cidade">Cidade</label>
+                    <input style="width:100%" class="form-control" autocomplete="off" id="bairro" name="bairro" type="text" value="@ViewBag.nome_cidade" readonly />
+                </div>
+
+                <div class="form-group col-md-2">
+                    <label for="cep">cep</label>
+                    <input style="width:100%" class="form-control" autocomplete="off" id="cep" name="cep" type="text" value="@ViewBag.cep" readonly />
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <label for="endereco_cob">Endereço cob.</label>
+                    <input style="width:100%" class="form-control" autocomplete="off" id="endereco_cob" name="endereco_cob" type="text" value="@ViewBag.endereco_cob" readonly />
+                </div>
+
+                <div class="form-group col-md-1">
+                    <label for="numero_cob">Número cob.</label>
+                    <input style="width:100%" class="form-control" autocomplete="off" id="numero_cob" name="numero_cob" type="text" value="@ViewBag.numero_cob" readonly />
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="complemento_cob">Complemento cob.</label>
+                    <input style="width:100%" class="form-control" autocomplete="off" id="complemento_cob" name="complemento_cob" type="text" value="@ViewBag.complemento_cob" readonly />
+                </div>
+
+                <div class="form-group col-md-2">
+                    <label for="bairro_cob">Bairro cob.</label>
+                    <input style="width:100%" class="form-control" autocomplete="off" id="bairro_cob" name="bairro_cob" type="text" value="@ViewBag.bairro_cob" readonly />
+                </div>
+
+                <div class="form-group col-md-2">
+                    <label for="cidade_cob">Cidade cob.</label>
+                    <input style="width:100%" class="form-control" autocomplete="off" id="bairro" name="bairro" type="text" value="@ViewBag.nome_cidade_cob" readonly />
+                </div>
+
+                <div class="form-group col-md-2">
+                    <label for="cep_cob">CEP cob.</label>
+                    <input style="width:100%" class="form-control" autocomplete="off" id="cep_cob" name="cep_cob" type="text" value="@ViewBag.cep_cob" readonly />
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="fone_com">Fone Comercial</label>
+                    <input style="width:100%" class="form-control" autocomplete="off" id="fone_com" name="fone_com" type="text" value="@ViewBag.fone_com" readonly />
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label for="fone_com">Fone SAC</label>
+                    <input style="width:100%" class="form-control" autocomplete="off" id="fone_sac" name="fone_sac" type="text" value="@ViewBag.fone_sac" readonly />
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="qualificacao">Qualificação</label>
+                    <input style="width:100%" class="form-control" autocomplete="off" id="qualificacao" name="qualificacao" type="text" value="@ViewBag.desc_qualificacao" readonly />
+                </div>
+            </div>
+
+
+    </form>
+    <hr />
+</div>
+

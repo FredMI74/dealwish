@@ -1,0 +1,37 @@
+﻿@{
+    ViewData["Title"] = "Login";
+}
+
+
+<div style="padding-left: 5%; padding-top: 1%; padding-right: 5%">
+    <h2>Login <img style="width: 28px;" src="~/images/loader.gif" id="loaderImg" hidden></h2>
+    <hr />
+    <form class="form-group" asp-controller="Auth" asp-action="Login" method="post" onsubmit="disableObj(EntrarBtn);showObj(loaderImg)">
+
+        <div class="form-group">
+            <div class="row-cols-md-4">
+                <label for="username">Usuário</label>
+                <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">@@</span>
+                    </div>
+                    <input type="text" class="form-control" autocomplete="off" id="username" name="username" autofocus>
+                </div>
+            </div>
+
+            <div class="row-cols-md-4">
+                <label for="password">Senha</label>
+                <input type="password" class="form-control" autocomplete="off" id="password" name="password">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                <button class="btn btn-info col-5" id="EntrarBtn" type="submit"><i class="fas fa-sign-in-alt"></i> Entrar</button>
+            </div>
+        </div>
+
+    </form>
+
+    <hr />
+    <h4 style="color : red">@ViewData["Message"]</h4>
+</div>

@@ -1,0 +1,164 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - dw_frontoffice</title>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+
+</head>
+<body background="@Url.Content("~/images/fundo.png")">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-fixed-top ">
+
+        @if (ViewBag.logado == true)
+        {
+
+            <a class="navbar-brand">
+                <img style="margin: 5px 5px; width: 56px;" src=@ViewBag.logo> <h style="color:white">
+                    @ViewBag.fantasia
+            </a>
+
+        }
+        else
+        {
+            <a class="navbar-brand">
+                <img style="margin: 5px 5px; width: 56px;" src="~/images/dw_icon.svg"> <h style="color:white">
+                    Dealwish Frontoffice
+            </a>
+        }
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="nav navbar-nav">
+
+                @if (ViewBag.logado == true)
+                {
+
+                    @if (ViewBag.fto == true || ViewBag.tin == true) // Grupos Frontoffice Operação e Tecnologia da Informação
+                    {
+                        <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Desejos" asp-action="ConsultarDesejos">Desejos</a></li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Ofertas
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" asp-area="" asp-controller="Ofertas" asp-route-tipo_consulta="M" asp-action="ConsultarOfertas">Consultar Ofertas</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Ofertas" asp-action="IncluirOfertasLote">Ofertas por Lote</a>
+                            </div>
+                        </li>
+                    }
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Produtos
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" asp-area="" asp-controller="GrpProdutos" asp-action="ConsultarGrpProdutos">Consultar Departamentos</a>
+                            <a class="dropdown-item" asp-area="" asp-controller="TpProdutos" asp-action="ConsultarTpProdutos">Consultar Produtos</a>
+                        </div>
+                    </li>
+
+                    @if (ViewBag.fta == true || ViewBag.tin == true) // Grupos Frontoffice Admin e Tecnologia da Informação
+                    {
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Usuários
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" asp-area="" asp-controller="Usuarios" asp-action="IncluirUsuarios">Incluir Usuários</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Usuarios" asp-action="ConsultarUsuarios">Consultar Usuários</a>
+                            </div>
+                        </li>
+
+                        <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Faturas" asp-action="ConsultarFaturas">Faturas</a></li>
+
+                        <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Empresas" asp-action="ConsultarEmpresas" asp-route-id="@ViewBag.id_empresa">Empresa</a></li>
+
+                    }
+
+                    <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Auth" asp-action="Logout">Sair</a></li>
+
+                    <li class="nav-item"><a class="nav-link" href="~/manual_usuario_dw_frontoffice.pdf" target="_blank">?</a></li>
+
+
+                    <li class="nav-item px-5"><a class="nav-link" asp-area="" asp-controller="Usuarios" asp-action="AtualizarSenhaUsuarios" asp-route-id_usuario="@ViewBag.id_usuario">@ViewBag.nome_usuario</a></li>
+
+                }
+            </ul>
+
+
+        </div>
+    </nav>
+    <div class="container-fluid body-content">
+        @RenderBody()
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @RenderSection("Scripts", required: false)
+
+    <script type="text/javascript" src="~/lib/jquery-mask/masked_input_1.4.1.js"></script>
+
+    <script>
+        function disableObj(obj) {
+            obj.disabled = true;
+        }
+
+        function unabledObj(obj) {
+            obj.disabled = false;
+        }
+
+        function showObj(obj) {
+            obj.hidden = null;
+        }
+
+        function Confirmar(mensagem) {
+            if (confirm(mensagem))
+                return true;
+            else
+                return false;
+        }
+
+        function formatarMoeda(obj) {
+            var valor = obj.value;
+
+            if (valor == '') {
+                valor = '0';
+            }
+
+            valor = valor + '';
+            valor = parseInt(valor.replace(/[\D]+/g, ''));
+            valor = valor + '';
+            valor = valor.replace(/([0-9]{2})$/g, ",$1");
+
+            obj.value = valor;
+
+        }
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            MaskedInput({
+                elm: document.getElementById('cpf'),
+                format: '___.___.___-__', separator: '-.'
+            });
+
+            MaskedInput({
+                elm: document.getElementById('cnpj'),
+                format: '__.___.___/____-__', separator: '/-.'
+            });
+
+        });
+    </script>
+
+</body>
+</html>

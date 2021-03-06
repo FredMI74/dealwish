@@ -1,0 +1,84 @@
+﻿
+@{
+    ViewData["Title"] = "GrupoPermissoesUsuarios";
+}
+
+<div style="padding-left: 5%; padding-top: 1%; padding-right: 5%">
+    <div>
+        <a id="fechar" asp-controller="Home" asp-action="Index"> <img style="width: 28px;" src="~/images/fechar.svg" /></a>
+        <h4>Grupo de Permissões do Usuário <img style="width: 20px;" src="~/images/loader.gif" id="loaderImg" hidden></h4>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-md-1">
+            <h6 for="id_usuario">Código: @ViewBag.id_usuario</h6>
+        </div>
+        <div class="col-md-3">
+            <h6 for="nome">Nome: @ViewBag.nome</h6>
+        </div>
+        <div class="col-md-3">
+            <h6 for="email">e-mail: @ViewBag.email</h6>
+        </div>
+    </div>
+    <hr />
+
+    <form asp-controller="Usuarios" asp-action="IncluirGrpPermissoesUsuarioPost" method="post" onsubmit="disableObj(ExcluirBtn);disableObj(CancelarBtn);showObj(loaderImg)">
+        <div class="form-row">
+            <div class="form-group col-lg-3">
+                <input class="form-control" autocomplete="off" id="id_usuario" name="id_usuario" type="hidden" value="@ViewBag.id_usuario" />
+                <input class="form-control" autocomplete="off" id="nome" name="nome" type="hidden" value="@ViewBag.nome" />
+                <input class="form-control" autocomplete="off" id="email" name="email" type="hidden" value="@ViewBag.email" />
+                <label for="Grupo">Grupo</label>
+                <select class="form-control" name="id_grp_permissao">
+                    <option value="" selected disabled hidden></option>
+                    @foreach (var grppermissao in ViewBag.grppermissoes)
+                    {
+                        <option value="@grppermissao.Id">@grppermissao.Descricao</option>
+                    }
+                </select>
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-md-2">
+                <button class="btn btn-success col-5" id="IncluirBtn" type="submit"><i class="fas fa-check"></i> Incluir</button>
+                <button class="btn btn-danger col-5" id="ConsultaBtn" asp-area="" asp-controller="Usuarios" asp-action="RefazerUltimaConsultaUsuario"><i class="fas fa-times"></i> Cancelar</button>
+            </div>
+        </div>
+    </form>
+    <hr />
+
+    <table class="table table-fixed-extra-small table-striped table-sm">
+        <thead class="thead-dark">
+            <tr>
+                <th class="col-lg-1">Código</th>
+                <th class="col-lg-3">Descrição</th>
+                <th class="col-lg-8">Ação</th>
+            </tr>
+        </thead>
+        @foreach (var grp_perm_usr in ViewBag.grps_perms_usr)
+        {
+            <tr>
+                <td class="col-lg-1">@grp_perm_usr.Id_grp_permissao</td>
+                <td class="col-lg-3">@grp_perm_usr.Descricao_grp_permissao</td>
+                <td class="col-lg-8">
+                    <a asp-area="" asp-controller="Usuarios" asp-action="ExcluirGrpPermissao"
+                       asp-route-id="@grp_perm_usr.Id" asp-route-id_usuario="@ViewBag.id_usuario" asp-route-nome="@ViewBag.nome" asp-route-email="@ViewBag.email"
+                       onclick=" return Confirmar('Excluir grupo do usuário?')"><img style="margin: 5px; width: 32px;" title="Excluir grupo do usuário" src="~/images/excluir.svg"></a>
+                </td>
+            </tr>
+        }
+    </table>
+
+    @if (ViewBag.responseStatusCode == "OK")
+    {
+        @if (ViewBag.erro || ViewBag.linhasafetadas == 0)
+        {
+            <h4 style="color : red">@ViewBag.mensagem</h4>
+        }
+    }
+    else
+    {
+        <h4 style="color : red"> @ViewBag.responseStatusCode </h4>
+    }
+</div>

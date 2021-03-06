@@ -1,0 +1,7 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SchemaObject class="oracle.dbtools.crest.model.design.relational.SchemaObject" name="dealwish" directorySegmentName="seg_0" id="CC7D603D-7CCC-CCE9-FD85-FFC055EC548B">
+<createdBy>fredm</createdBy>
+<createdTime>2018-07-29 17:35:54 UTC</createdTime>
+<ownerDesignName>dw_modelo</ownerDesignName>
+<ordsAlias>schema_1</ordsAlias>
+</SchemaObject>

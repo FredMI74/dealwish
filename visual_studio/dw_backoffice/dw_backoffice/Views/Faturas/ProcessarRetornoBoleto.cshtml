@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewData["Title"] = "ProcessarRetornoBoleto";
+}
+
+<div style="padding-left: 5%; padding-top: 1%; padding-right: 5%">
+    <div>
+        <a id="fechar" asp-controller="Home" asp-action="Index"> <img style="width: 28px;" src="~/images/fechar.svg" /></a>
+        <h4>Processar Retorno Boletos<img style="width: 20px;" src="~/images/loader.gif" id="loaderImg" hidden></h4>
+    </div>
+    <hr />
+    <form method="post" enctype="multipart/form-data" asp-controller="Faturas" asp-action="ProcessarRetornoBoletoPost" onsubmit="disableObj(InlcuirBtn);showObj(loaderImg)">
+        <div class="row">
+            <div class="col-md-2">
+                <input type="file" id="file" name="file" accept=".rem">
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-md-2">
+                <button class="btn btn-success col-6" id="InlcuirBtn" type="submit"><i class="fas fa-cog"></i> Processar</button>
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-md-12">
+                <label>O arquivo deve ser do tipo REM - 400 posições</label><br>
+            </div>
+        </div>
+    </form>
+    <hr />
+    @if (ViewBag.responseStatusCode == "OK")
+    {
+        @if (ViewBag.erro || ViewBag.id == 0)
+        {
+            <h4 style="color : red">@ViewBag.mensagem</h4>
+        }
+        else
+        {
+            @if (ViewBag.mensagem == "")
+            {
+                <h4 style="color : green">Faturas processadas: @ViewBag.linhasafetadas</h4>
+            }
+            else
+            {
+                <h4 style="color :  #ffbf00">Faturas processadas: @ViewBag.linhasafetadas - @ViewBag.mensagem</h4>
+            }
+
+            <div>
+                <a asp-area="" asp-controller="Faturas" asp-action="ProcessarRetornoBoletoCSV">Baixar retorno CSV</a>
+            </div>
+
+        }
+    }
+    else
+    {
+        <h4 style="color : red"> @ViewBag.responseStatusCode </h4>
+    }
+</div>

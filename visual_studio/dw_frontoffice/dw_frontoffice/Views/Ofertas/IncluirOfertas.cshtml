@@ -1,0 +1,104 @@
+﻿@{
+    ViewData["Title"] = "IncluirOfertas";
+}
+
+    <div style="padding-left: 5%; padding-top: 1%; padding-right: 5%">
+        <div>
+            <a id="fechar" asp-controller="Home" asp-action="Index"> <img style="width: 28px;" src="~/images/fechar.svg" /></a>
+            <h4>Incluir Oferta<img style="width: 20px;" src="~/images/loader.gif" id="loaderImg" hidden></h4>
+        </div>
+        <hr />
+        <h3>@ViewBag.desejo</h3>
+        <hr />
+        <form asp-controller="Ofertas" asp-action="IncluirOfertasPost" method="post" onsubmit="disableObj(InlcuirBtn);showObj(loaderImg)">
+            @if (@ViewBag.id == 0)
+            {
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <input class="form-control" autocomplete="off" id="id_desejo" name="id_desejo" type="hidden" value="@ViewBag.id_desejo" />
+                        <input class="form-control" autocomplete="off" id="descricao_desejo" name="descricao_desejo" type="hidden" value="@ViewBag.desejo" />
+                        <label for="descricao">Descrição</label>
+                        <textarea style="width:100%" rows="4" cols="50" class="form-control" autocomplete="off" id="descricao" name="descricao">@ViewBag.descricao</textarea>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-1">
+                        <div class="form-check">
+                            @if (ViewBag.destaque == "S")
+                            {
+                                <input type="checkbox" class="form-check-input" name="destaque" value="S" checked>
+                            }
+                            else
+                            {
+                                <input type="checkbox" class="form-check-input" name="destaque" value="S">
+                            }
+                            <label class="form-check-label" for="destaque">Destaque*</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-2">
+                        <label>Valor</label>
+                        <input style="width:100%" class="form-control" autocomplete="off" id="valor" name="valor" type="text" onkeyup="return formatarMoeda(valor);" value="@ViewBag.valor" />
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label>Validade</label>
+                        <input style="width:100%" class="form-control" autocomplete="off" id="validade" name="validade" type="date" value="@ViewBag.validade" />
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="for-group col-md-4">
+                        <label>Url</label>
+                        <input style="width:100%" class="form-control" autocomplete="off" id="url" name="url" type="text" value="@ViewBag.url" />
+                    </div>
+                </div>
+
+                <hr />
+
+                <div class="row">
+                    <div class="col-md-2">
+                        <button class="btn btn-success col-5" id="InlcuirBtn" type="submit"><i class="fas fa-check"></i> Incluir</button>
+                        <button class="btn btn-danger col-5" id="CancelarBtn" type="button" value="Cancelar" onclick="location.href='@Url.Action("RefazerUltimaConsultaDesejo", "Desejos")'"><i class="fas fas fa-times"></i> Cancelar</button>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="row">
+                    <div class="col-md-2">
+                        <button class="btn btn-info col-5" type="button" value="Desejos" onclick="location.href='@Url.Action("RefazerUltimaConsultaDesejo", "Desejos")'"><i class="fas fa-arrow-left"></i> Voltar</button>
+                    </div>
+                </div>
+            }
+        </form>
+        <hr />
+        @if (ViewBag.responseStatusCode == "OK")
+        {
+            @if (ViewBag.erro || ViewBag.id == 0)
+            {
+                <h4 style="color : red">@ViewBag.mensagem</h4>
+            }
+            else
+            {
+                if (ViewBag.mensagem == "")
+                {
+                    <h4 style="color : green">Oferta incluída. Código: @ViewBag.id</h4>
+                }
+                else
+                {
+                    <h4 style="color :  #ffbf00">Oferta incluída. Código: @ViewBag.id - @ViewBag.mensagem </h4>
+                }
+
+            }
+        }
+        else
+        {
+            <h4 style="color : red"> @ViewBag.responseStatusCode </h4>
+        }
+        @if (@ViewBag.id == 0)
+        {
+            <h6><i><font color="gray">*contabilizado como duas ofertas</font></i></h6>
+        }
+</div>

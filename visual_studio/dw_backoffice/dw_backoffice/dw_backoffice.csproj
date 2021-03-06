@@ -1,0 +1,43 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <UserSecretsId>b11554ad-41fc-4740-bc4d-c1f80e69a26d</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Views\IncluirCidades\**" />
+    <Content Remove="Views\IncluirCidades\**" />
+    <EmbeddedResource Remove="Views\IncluirCidades\**" />
+    <None Remove="Views\IncluirCidades\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Controllers\HttpStringContent.cs" />
+    <Compile Remove="Models\ConstantesSessao.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Views\Configuracoes\ExcluirConfiguracoes.cshtml" />
+    <Content Remove="Views\Configuracoes\IncluirConfiguracoes.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Views\Contratos\ConsultarInadimplentes.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Faturas\ProcessarRetornoNF.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+  </ItemGroup>
+
+</Project>
