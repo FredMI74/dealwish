@@ -1,5 +1,5 @@
 class RetornoTpProduto {
-  List<TpProduto> tpProdutoList = List();
+  List<TpProduto> tpProdutoList = List.empty(growable: true);
   bool erro;
   String mensagem = '';
 

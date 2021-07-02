@@ -3,8 +3,8 @@
     public class Oferta
     {
         public int Id { get; set; }
-        public int Id_desejo { get; set; }
-        public int Id_usuario { get; set; }
+        public long Id_desejo { get; set; }
+        public long Id_usuario { get; set; }
         public int Id_empresa { get; set; }
         public string Fantasia { get; set; }
         public string Validade { get; set; }
@@ -15,7 +15,7 @@
 
         public Oferta(string[] valores)
         {
-            Id_desejo = int.Parse(valores[0]);
+            Id_desejo = long.Parse(valores[0]);
             Valor = double.Parse(valores[1]);
             Validade = valores[2];
             Url = valores[3];

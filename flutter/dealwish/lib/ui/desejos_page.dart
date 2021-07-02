@@ -12,7 +12,6 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:dealwish/helpers/hint.dart';
 
 final _scaffoldKey = GlobalKey<ScaffoldState>();
-final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
 
 class DesejosPage extends StatefulWidget {
   @override
@@ -42,24 +41,15 @@ class _DesejosPageState extends State<DesejosPage> with WidgetsBindingObserver {
 
     WidgetsBinding.instance.addObserver(this);
 
-    _firebaseMessaging.requestNotificationPermissions();
+    FirebaseMessaging.instance.requestPermission();
 
-    _firebaseMessaging.configure(
-      onMessage: (Map<String, dynamic> message) {
-        _mensagem(message['notification']['title'].toString());
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+      RemoteNotification notification = message.notification;
+      AndroidNotification android = message.notification?.android;
+      if (notification != null && android != null) {
+        _mensagem(notification.title);
         _atualizaDesejos(); //Ativos
-      },
-      onResume: (Map<String, dynamic> message) {
-        _mensagem('on resume $message');
-      },
-      onLaunch: (Map<String, dynamic> message) {
-        _mensagem('on launch $message');
-      },
-    );
-    _firebaseMessaging.requestNotificationPermissions(
-        const IosNotificationSettings(sound: true, badge: true, alert: true));
-    _firebaseMessaging.getToken().then((token) {
-      print(token);
+      }
     });
 
     @override
@@ -71,7 +61,7 @@ class _DesejosPageState extends State<DesejosPage> with WidgetsBindingObserver {
     _atualizaDesejos(); //Ativos
   }
 
-  List<Desejo> desejos = List();
+  List<Desejo> desejos = List.empty(growable: true);
 
   @override
   Widget build(BuildContext context) {

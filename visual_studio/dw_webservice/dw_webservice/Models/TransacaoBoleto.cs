@@ -40,6 +40,7 @@ namespace dw_webservice.Models
             if (banco == "237") //Bradesco
             {
                 DateTime _hoje = DateTime.Today;
+                Utils utils = new();
 
                 string id_registro = "1";
                 string ag_debito_pag = " ".PadLeft(5, ' ');
@@ -78,11 +79,11 @@ namespace dw_webservice.Models
                 string valor_iof = "0".PadLeft(13, '0');
                 string valor_abatimento = "0".PadLeft(13, '0');
                 string tipo_pessoa = "02";
-                string cpnj = Utils.SomenteNumeros(fatura["cnpj"].ToString()).PadLeft(14, '0');
+                string cpnj = utils.SomenteNumeros(fatura["cnpj"].ToString()).PadLeft(14, '0');
                 string nome_pagador = fatura["razao_social"].ToString().PadRight(40, ' ');
                 string endereco = (fatura["endereco_cob"].ToString() + ", " + fatura["numero_cob"].ToString() + " - " + fatura["cidade_cob"].ToString()).PadRight(40, ' ').Substring(0, 40);
                 string mensagem_1 = " ".PadLeft(12, ' ');
-                string cep = Utils.SomenteNumeros(fatura["cep_cob"].ToString()).PadLeft(8, '0'); 
+                string cep = utils.SomenteNumeros(fatura["cep_cob"].ToString()).PadLeft(8, '0'); 
                 string mensagem_2 = " ".PadLeft(60, ' ');
                 string seq_registro = seq.ToString().PadLeft(6, '0');
 

@@ -1,6 +1,6 @@
 class RetornoGrpProduto
 {
-  List<GrpProduto> grpProdutoList = List();
+  List<GrpProduto> grpProdutoList = List.empty(growable: true);
   bool erro;
   String mensagem = '';
 

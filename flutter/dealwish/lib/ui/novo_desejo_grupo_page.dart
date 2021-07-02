@@ -14,7 +14,7 @@ class NovoDesejoGrupo extends StatefulWidget {
 class _NovoDesejoGrupoState extends State<NovoDesejoGrupo> {
   ApiHelper api_helper = ApiHelper();
 
-  List<GrpProduto> grupos = List();
+  List<GrpProduto> grupos = List.empty(growable: true);
   bool isLoading;
 
   @override

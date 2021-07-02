@@ -2,7 +2,7 @@ import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_file.dart';
 
 class RetornoOferta {
-  List<Oferta> ofertaList = List();
+  List<Oferta> ofertaList = List.empty(growable: true);
   bool erro;
   String mensagem = '';
 

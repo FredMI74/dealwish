@@ -18,7 +18,7 @@ class Empresa extends StatefulWidget {
 class _EmpresaPageState extends State<Empresa> {
   ApiHelper api_helper = ApiHelper();
   bool isLoading = false;
-  List<EmpresaModel> lista_empresas = List();
+  List<EmpresaModel> lista_empresas = List.empty(growable: true);
 
   @override
   void initState() {

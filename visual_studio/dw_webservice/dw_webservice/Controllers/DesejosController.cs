@@ -11,8 +11,8 @@ namespace dw_webservice.Controllers
     [Route("api/")]
     public class DesejosController : Controller
     {
-        DesejosRepository desejosRepository;
-        ValidarTokenPermissao validarTokenPermissao;
+        readonly DesejosRepository desejosRepository;
+        readonly ValidarTokenPermissao validarTokenPermissao;
 
         public DesejosController(DesejosRepository _desejosRepository)
         {
@@ -23,14 +23,15 @@ namespace dw_webservice.Controllers
         [Route("consultar_desejo")]
         [HttpPost]
         [Authorize(Roles = "app,bka,bki,bko,fto,tin")]
-        public async Task<IActionResult> Consultar_desejo(int id = 0, string descricao = "", int id_usuario = 0, int id_tipo_produto = 0, int id_situacao = 0, string oferta = "", int id_empresa_oferta = 0, string uf = "", int id_cidade = 0, string token = "", string paginacao = "N", int max_id = 0, int pagina = 1, string exportar = "N")
+        public async Task<IActionResult> Consultar_desejo(int id = 0, string descricao = "", long id_usuario = 0, int id_tipo_produto = 0, int id_situacao = 0, string oferta = "", int id_empresa_oferta = 0, string uf = "", int id_cidade = 0, string token = "", string paginacao = "N", int max_id = 0, int pagina = 1, string exportar = "N")
         {
-            if (!validarTokenPermissao.Validar(out int id_usuario_login, token, "api/consultar_desejo"))
+            LoginUsuario loginUsuario = await validarTokenPermissao.ValidarAsync(token, "api/consultar_desejo");
+            if (!loginUsuario.Valido)
             {
                 return Unauthorized();
             }
 
-            var result = desejosRepository.Consultar_desejo(id_usuario_login, id, descricao, id_usuario, id_tipo_produto, id_situacao, oferta, id_empresa_oferta, uf, id_cidade, paginacao, max_id, pagina, exportar);
+            var result = await desejosRepository.ConsultarDesejoAsync(loginUsuario.Id, id, descricao, id_usuario, id_tipo_produto, id_situacao, oferta, id_empresa_oferta, uf, id_cidade, paginacao, max_id, pagina, exportar);
                         
             if (result == null)
             {
@@ -39,7 +40,7 @@ namespace dw_webservice.Controllers
 
             if (exportar == "S")
             {
-                string nome_arquivo = Path.Combine(@"temp", id_usuario_login.ToString() + Constantes.DESEJOS_CSV);
+                string nome_arquivo = Path.Combine(@"temp", loginUsuario.Id.ToString() + Constantes.DESEJOS_CSV);
                 var path = (nome_arquivo);
                 var memory = new MemoryStream();
                 using (var stream = new FileStream(path, FileMode.Open))
@@ -58,14 +59,15 @@ namespace dw_webservice.Controllers
         [Route("incluir_desejo")]
         [HttpPost]
         [Authorize(Roles = "app,tin")]
-        public ActionResult Incluir_desejo(string descricao = "", int id_usuario = 0, int id_tipo_produto = 0, int id_situacao = 0, string token = "")
+        public async Task<IActionResult> Incluir_desejo(string descricao = "", long id_usuario = 0, int id_tipo_produto = 0, int id_situacao = 0, string token = "")
         {
-            if (!validarTokenPermissao.Validar(out _, token, "api/incluir_desejo"))
+            LoginUsuario loginUsuario = await validarTokenPermissao.ValidarAsync(token, "api/incluir_desejo");
+            if (!loginUsuario.Valido)
             {
                 return Unauthorized();
             }
 
-            var result = desejosRepository.Incluir_desejo(descricao, id_usuario, id_tipo_produto, id_situacao);
+            var result = await desejosRepository.IncluirDesejoAsync(descricao, id_usuario, id_tipo_produto, id_situacao);
             if (result == null)
             {
                 return NotFound();
@@ -76,14 +78,15 @@ namespace dw_webservice.Controllers
         [Route("excluir_desejo")]
         [HttpPost]
         [Authorize(Roles = "bka,tin")]
-        public ActionResult Excluir_desejo(int id = 0, string token = "")
+        public async Task<IActionResult> Excluir_desejo(int id = 0, string token = "")
         {
-            if (!validarTokenPermissao.Validar(out _, token, "api/excluir_desejo"))
+            LoginUsuario loginUsuario = await validarTokenPermissao.ValidarAsync(token, "api/excluir_desejo");
+            if (!loginUsuario.Valido)
             {
                 return Unauthorized();
             }
 
-            var result = desejosRepository.Excluir_desejo(id);
+            var result = await desejosRepository.ExcluirDesejoAsync(id);
             if (result == null)
             {
                 return NotFound();
@@ -94,14 +97,15 @@ namespace dw_webservice.Controllers
         [Route("atualizar_desejo")]
         [HttpPost]
         [Authorize(Roles = "tin")]
-        public ActionResult Atualizar_desejo(int id = 0, string descricao = "", int id_usuario = 0, int id_tipo_produto = 0, int id_situacao = 0, string token = "")
+        public async Task<IActionResult> Atualizar_desejo(int id = 0, string descricao = "", long id_usuario = 0, int id_tipo_produto = 0, int id_situacao = 0, string token = "")
         {
-            if (!validarTokenPermissao.Validar(out _, token, "api/atualizar_desejo"))
+            LoginUsuario loginUsuario = await validarTokenPermissao.ValidarAsync(token, "api/atualizar_desejo");
+            if (!loginUsuario.Valido)
             {
                 return Unauthorized();
             }
 
-            var result = desejosRepository.Atualizar_desejo(id, descricao, id_usuario, id_tipo_produto, id_situacao);
+            var result = await desejosRepository.AtualizarDesejoAsync(id, descricao, id_usuario, id_tipo_produto, id_situacao);
             if (result == null)
             {
                 return NotFound();
@@ -112,14 +116,15 @@ namespace dw_webservice.Controllers
         [Route("atualizar_situacao_desejo")]
         [HttpPost]
         [Authorize(Roles = "app,tin")]
-        public ActionResult Atualizar_situacao_desejo(int id = 0, int id_situacao = 0, string token = "")
+        public async Task<IActionResult> Atualizar_situacao_desejo(int id = 0, int id_situacao = 0, string token = "")
         {
-            if (!validarTokenPermissao.Validar(out _, token, "api/atualizar_situacao_desejo"))
+            LoginUsuario loginUsuario = await validarTokenPermissao.ValidarAsync(token, "api/atualizar_situacao_desejo");
+            if (!loginUsuario.Valido)
             {
                 return Unauthorized();
             }
 
-            var result = desejosRepository.Atualizar_situacao_desejo(id, id_situacao);
+            var result = await desejosRepository.AtualizarSituacaoDesejoAsync(id, id_situacao);
             if (result == null)
             {
                 return NotFound();

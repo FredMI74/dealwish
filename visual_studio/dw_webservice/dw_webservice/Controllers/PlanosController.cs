@@ -1,6 +1,8 @@
 ﻿using dw_webservice.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using System.Threading.Tasks;
+using dw_webservice.Models;
 
 namespace dw_webservice.Controllers
 {
@@ -8,8 +10,8 @@ namespace dw_webservice.Controllers
     [Route("api/")]
     public class PlanosController : Controller
     {
-        PlanosRepository planosRepository;
-        ValidarTokenPermissao validarTokenPermissao;
+        readonly PlanosRepository planosRepository;
+        readonly ValidarTokenPermissao validarTokenPermissao;
 
         public PlanosController(PlanosRepository _planosRepository)
         {
@@ -20,14 +22,15 @@ namespace dw_webservice.Controllers
         [Route("consultar_plano")]
         [HttpPost]
         [Authorize(Roles = "bka,bkc,bkf,bki,tin")]
-        public ActionResult Consultar_plano(int id = 0, string descricao = "", string token = "")
+        public async Task<ActionResult> Consultar_plano(int id = 0, string descricao = "", string token = "")
         {
-            if (!validarTokenPermissao.Validar(out _, token, "api/consultar_plano"))
+            LoginUsuario loginUsuario = await validarTokenPermissao.ValidarAsync(token, "api/consultar_plano");
+            if (!loginUsuario.Valido)
             {
                 return Unauthorized();
             }
 
-            var result = planosRepository.Consultar_plano(id, descricao);
+            var result = await planosRepository.ConsultarPlanoAsync(id, descricao);
             if (result == null)
             {
                 return NotFound();
@@ -38,14 +41,15 @@ namespace dw_webservice.Controllers
         [Route("incluir_plano")]
         [HttpPost]
         [Authorize(Roles = "bka,bkf,tin")]
-        public ActionResult Incluir_plano(string descricao = "", int qtd_ofertas = 0, float valor_mensal = 0, float valor_oferta = 0, string visualizacao = "", string token = "")
+        public async Task<ActionResult> Incluir_plano(string descricao = "", int qtd_ofertas = 0, float valor_mensal = 0, float valor_oferta = 0, string visualizacao = "", string token = "")
         {
-            if (!validarTokenPermissao.Validar(out int id_usuario_login, token, "api/incluir_plano"))
+            LoginUsuario loginUsuario = await validarTokenPermissao.ValidarAsync(token, "api/incluir_plano");
+            if (!loginUsuario.Valido)
             {
                 return Unauthorized();
             }
 
-            var result = planosRepository.Incluir_plano(descricao , qtd_ofertas, valor_mensal, valor_oferta, visualizacao, id_usuario_login);
+            var result = await planosRepository.IncluirPlanoAsync(descricao , qtd_ofertas, valor_mensal, valor_oferta, visualizacao, loginUsuario.Id);
             if (result == null)
             {
                 return NotFound();
@@ -56,14 +60,15 @@ namespace dw_webservice.Controllers
         [Route("excluir_plano")]
         [HttpPost]
         [Authorize(Roles = "bka,bkf,tin")]
-        public ActionResult Excluir_plano(int id = 0, string token = "")
+        public async Task<ActionResult> Excluir_plano(int id = 0, string token = "")
         {
-            if (!validarTokenPermissao.Validar(out int id_usuario_login, token, "api/excluir_plano"))
+            LoginUsuario loginUsuario = await validarTokenPermissao.ValidarAsync(token, "api/excluir_plano");
+            if (!loginUsuario.Valido)
             {
                 return Unauthorized();
             }
 
-            var result = planosRepository.Excluir_plano(id, id_usuario_login);
+            var result = await planosRepository.ExcluirPlanoAsync(id, loginUsuario.Id);
             if (result == null)
             {
                 return NotFound();
@@ -74,14 +79,15 @@ namespace dw_webservice.Controllers
         [Route("atualizar_plano")]
         [HttpPost]
         [Authorize(Roles = "bka,bkf,tin")]
-        public ActionResult Atualizar_plano(int id = 0, string descricao = "", int qtd_ofertas = 0, float valor_mensal = 0, float valor_oferta = 0, string visualizacao = "", string token = "")
+        public async Task<ActionResult> Atualizar_plano(int id = 0, string descricao = "", int qtd_ofertas = 0, float valor_mensal = 0, float valor_oferta = 0, string visualizacao = "", string token = "")
         {
-            if (!validarTokenPermissao.Validar(out int id_usuario_login, token, "api/atualizar_plano"))
+            LoginUsuario loginUsuario = await validarTokenPermissao.ValidarAsync(token, "api/atualizar_plano");
+            if (!loginUsuario.Valido)
             {
                 return Unauthorized();
             }
 
-            var result = planosRepository.Atualizar_plano(id, descricao, qtd_ofertas, valor_mensal, valor_oferta, visualizacao, id_usuario_login);
+            var result = await planosRepository.AtualizarPlanoAsync(id, descricao, qtd_ofertas, valor_mensal, valor_oferta, visualizacao, loginUsuario.Id);
             if (result == null)
             {
                 return NotFound();

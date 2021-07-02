@@ -1,5 +1,5 @@
 class RetornoDesejo {
-  List<Desejo> desejoList = List();
+  List<Desejo> desejoList = List.empty(growable: true);
   bool erro;
   String mensagem = '';
 

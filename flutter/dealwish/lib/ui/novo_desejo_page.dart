@@ -188,7 +188,7 @@ class _NovoDesejoState extends State<NovoDesejo> {
 
   Widget _atributoInput(BuildContext context, int index) {
     if (_atributos[index].valores.length > 2) {
-      List<DropdownMenuItem<String>> _valores = new List();
+      List<DropdownMenuItem<String>> _valores = new List.empty(growable: true);
       for (var _valor in _atributos[index].valores) {
         _valores
             .add(new DropdownMenuItem(value: _valor, child: new Text(_valor)));
@@ -234,7 +234,7 @@ class _NovoDesejoState extends State<NovoDesejo> {
             title: Text("Dica"),
             content: Text("Não é necessário preeencher tudo."),
             actions: <Widget>[
-              FlatButton(
+              TextButton(
                 child: new Text("OK, entendi"),
                 onPressed: () {
                   _salvarDica();

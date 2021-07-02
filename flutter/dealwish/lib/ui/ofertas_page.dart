@@ -21,7 +21,7 @@ class Ofertas extends StatefulWidget {
 class _OfertasState extends State<Ofertas> {
   ApiHelper api_helper = ApiHelper();
 
-  List<Oferta> ofertas = List();
+  List<Oferta> ofertas = List.empty(growable: true);
   bool isLoading = true;
 
   @override
@@ -265,13 +265,13 @@ class _OfertasState extends State<Ofertas> {
             content: Text("O seu desejo será excluído."),
             actions: <Widget>[
               // usually buttons at the bottom of the dialog
-              FlatButton(
+              TextButton(
                 child: new Text("Cancelar"),
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
               ),
-              FlatButton(
+              TextButton(
                 child: new Text("OK"),
                 onPressed: () {
                   widget.desejo.id_situacao = 7; // Não Realizado
@@ -333,13 +333,13 @@ class _OfertasState extends State<Ofertas> {
             content: Text("O seu desejo foi realizado."),
             actions: <Widget>[
               // usually buttons at the bottom of the dialog
-              FlatButton(
+              TextButton(
                 child: new Text("Cancelar"),
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
               ),
-              FlatButton(
+              TextButton(
                 child: new Text("OK"),
                 onPressed: () {
                   widget.desejo.id_situacao = 6; // Realizado

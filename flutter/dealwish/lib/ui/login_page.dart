@@ -9,8 +9,7 @@ import 'package:dealwish/models/usuario_model.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_masked_text/flutter_masked_text.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-
-final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
+import 'package:firebase_core/firebase_core.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -45,7 +44,6 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomPadding: false,
       key: _scaffoldKey,
       appBar: AppBar(
           centerTitle: true,
@@ -137,32 +135,44 @@ class _LoginPageState extends State<LoginPage> {
                   padding: EdgeInsets.only(top: 20.0),
                   child: Column(
                     children: <Widget>[
-                      RaisedButton(
-                        child: Text("Entrar",
-                            style: TextStyle(color: Colors.white)),
-                        color: Color.fromARGB(255, 255, 127, 0),
-                        onPressed: () {
-                          reiniciandoSenha = false;
-                          if (_formKey.currentState.validate()) {
-                            usuario.email = _emailController.value.text;
-                            usuario.senha1 = _senhaController.value.text;
-                            _loginUsusario(usuario);
-                          }
-                        },
+                      SizedBox(
+                          width: 100,
+                          child: ElevatedButton(
+                            child: Text("Entrar",
+                                style: TextStyle(color: Colors.white)),
+                            style: ElevatedButton.styleFrom(
+                              primary: Color.fromARGB(255, 255, 127, 0),
+                              onPrimary: Colors.white, // foreground
+                            ),
+                            onPressed: () {
+                              reiniciandoSenha = false;
+                              if (_formKey.currentState.validate()) {
+                                usuario.email = _emailController.value.text;
+                                usuario.senha1 = _senhaController.value.text;
+                                _loginUsusario(usuario);
+                              }
+                            },
+                          )
                       ),
-                      RaisedButton(
-                        child: Text("Cadastrar",
-                            style: TextStyle(color: Colors.black)),
-                        color: Color.fromARGB(255, 230, 230, 230),
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      UsuarioPage(novousuario: true)));
-                        },
+                      SizedBox(
+                        width: 100,
+                        child: ElevatedButton(
+                          child: Text("Cadastrar",
+                              style: TextStyle(color: Colors.black)),
+                          style: ElevatedButton.styleFrom(
+                              primary: Color.fromARGB(255, 230, 230, 230),
+                              onPrimary: Colors.white
+                          ),
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        UsuarioPage(novousuario: true)));
+                          },
+                        )
                       ),
-                      FlatButton(
+                      TextButton(
                         child: Text("esqueci minha senha",
                             style: TextStyle(
                                 color: Colors.black26,
@@ -188,9 +198,9 @@ class _LoginPageState extends State<LoginPage> {
     });
 
     try {
-      _firebaseMessaging.configure();
+      await Firebase.initializeApp();
 
-      String _token_app = await _firebaseMessaging.getToken();
+      String _token_app = await FirebaseMessaging.instance.getToken();
 
       usuario = await api_helper
           .loginUsuario(usuario.email, usuario.senha1, _token_app);
@@ -238,13 +248,13 @@ class _LoginPageState extends State<LoginPage> {
           ),
           actions: <Widget>[
             // usually buttons at the bottom of the dialog
-            FlatButton(
+            TextButton(
               child: new Text("Cancelar"),
               onPressed: () {
                 Navigator.of(context).pop();
               },
             ),
-            FlatButton(
+            TextButton(
               child: new Text("OK"),
               onPressed: () {
                 if (_cpfController.value.text != '') {

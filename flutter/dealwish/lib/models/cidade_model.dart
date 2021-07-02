@@ -1,5 +1,5 @@
 class RetornoCidade {
-  List<Cidade> cidadeList = List();
+  List<Cidade> cidadeList = List.empty(growable: true);
   bool erro;
   String mensagem = '';
 

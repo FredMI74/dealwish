@@ -48,7 +48,7 @@ class ApiHelper {
     _login['token'] = TOKEN_ANONIMO;
 
     final response =
-        await http.post(URLDW + '/api/login_usuario', body: _login).timeout(
+        await http.post(Uri.http(URLDW,'api/login_usuario'), body: _login).timeout(
             Duration(seconds: TIMEOUT),
             onTimeout: () {
               throw Exception('Timeout.');
@@ -88,7 +88,7 @@ class ApiHelper {
     _login['token'] = TOKEN_ANONIMO;
 
     final response =
-        await http.post(URLDW + '/api/reiniciar_senha', body: _login).timeout(
+        await http.post(Uri.http(URLDW,'api/reiniciar_senha'), body: _login).timeout(
             Duration(seconds: TIMEOUT),
             onTimeout: () {
               throw Exception('Timeout.');
@@ -112,7 +112,7 @@ class ApiHelper {
     _grpProdutos['token'] = usuario.token;
 
       final response = await http.post(
-          URLDW + '/api/consultar_ultima_atualizacao_produtos',
+          Uri.http(URLDW,'api/consultar_ultima_atualizacao_produtos'),
           headers: {HttpHeaders.authorizationHeader: "Bearer " + usuario.token_jwt},
           body: _grpProdutos).timeout(
           Duration(seconds: TIMEOUT),
@@ -140,7 +140,7 @@ class ApiHelper {
     if(storage.getItem('grpproduto') == null)
     {
       final response = await http.post(
-          URLDW + '/api/consultar_todos_grp_produto',
+          Uri.http(URLDW,'api/consultar_todos_grp_produto'),
           headers: {HttpHeaders.authorizationHeader: "Bearer " + usuario.token_jwt},
           body: _grpProdutos).timeout(
           Duration(seconds: TIMEOUT),
@@ -179,7 +179,7 @@ class ApiHelper {
       await renovartoken();
 
       final response =
-      await http.post(URLDW + '/api/consultar_tp_produto',
+      await http.post(Uri.http(URLDW,'api/consultar_tp_produto'),
           headers: {HttpHeaders.authorizationHeader: "Bearer " + usuario.token_jwt},
           body: _tpProdutos).timeout(
           Duration(seconds: TIMEOUT),
@@ -216,7 +216,7 @@ class ApiHelper {
     _desejo['token'] = usuario.token;
 
     final response =
-        await http.post(URLDW + '/api/incluir_desejo',
+        await http.post(Uri.http(URLDW,'api/incluir_desejo'),
             headers: {HttpHeaders.authorizationHeader: "Bearer " + usuario.token_jwt},
             body: _desejo).timeout(
             Duration(seconds: TIMEOUT),
@@ -243,7 +243,7 @@ class ApiHelper {
     _desejos['token'] = usuario.token;
 
     final response =
-        await http.post(URLDW + '/api/consultar_desejo',
+        await http.post(Uri.http(URLDW , 'api/consultar_desejo'),
             headers: {HttpHeaders.authorizationHeader: "Bearer " + usuario.token_jwt},
             body: _desejos).timeout(
     Duration(seconds: TIMEOUT),
@@ -274,7 +274,7 @@ class ApiHelper {
     _ofertas['token'] = usuario.token;
 
     final response =
-        await http.post(URLDW + '/api/consultar_oferta',
+        await http.post(Uri.http(URLDW,'api/consultar_oferta'),
             headers: {HttpHeaders.authorizationHeader: "Bearer " + usuario.token_jwt},
             body: _ofertas).timeout(
             Duration(seconds: TIMEOUT),
@@ -303,7 +303,7 @@ class ApiHelper {
     _desejo['id_situacao'] = desejo.id_situacao.toString();
     _desejo['token'] = usuario.token;
 
-    final response = await http.post(URLDW + '/api/atualizar_situacao_desejo',
+    final response = await http.post(Uri.http(URLDW,'api/atualizar_situacao_desejo'),
         headers: {HttpHeaders.authorizationHeader: "Bearer " + usuario.token_jwt},
         body: _desejo).timeout(
         Duration(seconds: TIMEOUT),
@@ -336,7 +336,7 @@ class ApiHelper {
     _cidades['token'] = TOKEN_ANONIMO;
 
     final response =
-    await http.post(URLDW + '/api/consultar_cidade', body: _cidades).timeout(
+    await http.post(Uri.http(URLDW,'api/consultar_cidade'), body: _cidades).timeout(
         Duration(seconds: TIMEOUT),
         onTimeout: () {
           throw Exception('Timeout.');
@@ -371,7 +371,7 @@ class ApiHelper {
     _usuario['token'] = TOKEN_ANONIMO;
 
     final response =
-        await http.post(URLDW + '/api/incluir_usuario', body: _usuario).timeout(
+        await http.post(Uri.http(URLDW,'api/incluir_usuario'), body: _usuario).timeout(
             Duration(seconds: TIMEOUT),
             onTimeout: () {
               throw Exception('Timeout.');
@@ -404,7 +404,7 @@ class ApiHelper {
     _usuario['token'] = usuario.token;
 
     final response =
-    await http.post(URLDW + '/api/atualizar_usuario',
+    await http.post(Uri.http(URLDW,'api/atualizar_usuario'),
         headers: {HttpHeaders.authorizationHeader: "Bearer " + usuario.token_jwt},
         body: _usuario).timeout(
         Duration(seconds: TIMEOUT),
@@ -431,7 +431,7 @@ class ApiHelper {
     _usuario['token'] = usuario.token;
 
     final response =
-    await http.post(URLDW + '/api/excluir_usuario',
+    await http.post(Uri.http(URLDW,'api/excluir_usuario'),
         headers: {HttpHeaders.authorizationHeader: "Bearer " + usuario.token_jwt},
         body: _usuario).timeout(
         Duration(seconds: TIMEOUT),
@@ -454,7 +454,7 @@ class ApiHelper {
     _termo['token'] = TOKEN_ANONIMO;
 
     final response =
-        await http.post(URLDW + '/api/consultar_termo_servico', body: _termo).timeout(
+        await http.post(Uri.http(URLDW,'api/consultar_termo_servico'), body: _termo).timeout(
             Duration(seconds: TIMEOUT),
             onTimeout: () {
               throw Exception('Timeout.');
@@ -484,7 +484,7 @@ class ApiHelper {
     _trocar['senha_nova_conf'] = senha_nova_conf;
     _trocar['token'] = usuario.token;
 
-    final response = await http.post(URLDW + '/api/trocar_senha',
+    final response = await http.post(Uri.http(URLDW,'api/trocar_senha'),
         headers: {HttpHeaders.authorizationHeader: "Bearer " + usuario.token_jwt},
         body: _trocar).timeout(
         Duration(seconds: TIMEOUT),
@@ -523,7 +523,7 @@ class ApiHelper {
     _oferta['id'] = id_oferta.toString();
     _oferta['token'] = usuario.token;
 
-    final response = await http.post(URLDW + '/api/atualizar_lida_oferta',
+    final response = await http.post(Uri.http(URLDW,'api/atualizar_lida_oferta'),
         headers: {HttpHeaders.authorizationHeader: "Bearer " + usuario.token_jwt},
         body: _oferta).timeout(
         Duration(seconds: TIMEOUT),
@@ -550,7 +550,7 @@ class ApiHelper {
     _oferta['like_unlike'] = like_unlike;
     _oferta['token'] = usuario.token;
 
-    final response = await http.post(URLDW + '/api/atualizar_like_unlike_oferta',
+    final response = await http.post(Uri.http(URLDW,'api/atualizar_like_unlike_oferta'),
         headers: {HttpHeaders.authorizationHeader: "Bearer " + usuario.token_jwt},
         body: _oferta).timeout(
         Duration(seconds: TIMEOUT),
@@ -577,7 +577,7 @@ class ApiHelper {
     _empresas['token'] = usuario.token;
 
     final response =
-    await http.post(URLDW + '/api/consultar_empresa',
+    await http.post(Uri.http(URLDW,'api/consultar_empresa'),
         headers: {HttpHeaders.authorizationHeader: "Bearer " + usuario.token_jwt},
         body: _empresas).timeout(
         Duration(seconds: TIMEOUT),

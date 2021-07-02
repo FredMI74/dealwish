@@ -10,6 +10,7 @@ namespace dw_webservice.Models
         public DetalheNF(IDictionary<string, object> fatura, string serie_rps, string cod_servico, string discriminacao)
         { 
             DateTime _hoje = DateTime.Today;
+            Utils utils = new();
 
             string tipo_registro = "2";
             string tipo_rps = "RPS";
@@ -42,7 +43,7 @@ namespace dw_webservice.Models
             string pais_tomador = " ".PadLeft(3, ' ');
             string servico_exportado = "2";
             string tipo_pessoa_tomador = "2";
-            string cnpj = Utils.SomenteNumeros(fatura["cnpj"].ToString()).PadLeft(14, '0');
+            string cnpj = utils.SomenteNumeros(fatura["cnpj"].ToString()).PadLeft(14, '0');
             string razao_social = fatura["razao_social"].ToString().PadRight(60, ' ').Substring(0, 60);
             string endereco_tomador = fatura["endereco"].ToString().PadRight(75, ' ').Substring(0, 75);
             string num_logradouro_tomador = fatura["numero"].ToString().PadRight(9, ' ').Substring(0, 9);

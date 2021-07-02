@@ -1,6 +1,8 @@
 ﻿using dw_webservice.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using System.Threading.Tasks;
+using dw_webservice.Models;
 
 namespace dw_webservice.Controllers
 {
@@ -8,8 +10,8 @@ namespace dw_webservice.Controllers
     [Route("api/")]
     public class ConfigController : Controller
     {
-        ConfigRepository configRepository;
-        ValidarTokenPermissao validarTokenPermissao;
+        readonly ConfigRepository configRepository;
+        readonly ValidarTokenPermissao validarTokenPermissao;
 
         public ConfigController(ConfigRepository _configRepository)
         {
@@ -20,14 +22,15 @@ namespace dw_webservice.Controllers
         [Route("consultar_config")]
         [HttpPost]
         [Authorize(Roles = "bka, bkc, bkf, bki, tin")]
-        public ActionResult Consultar_config(int id = 0, string codigo = "", string valor = "", string token = "")
+        public async Task<ActionResult> Consultar_config(int id = 0, string codigo = "", string valor = "", string token = "")
         {
-            if (!validarTokenPermissao.Validar(out _, token, "api/consultar_config"))
+            LoginUsuario loginUsuario = await validarTokenPermissao.ValidarAsync(token, "api/consultar_config");
+            if (!loginUsuario.Valido)
             {
                 return Unauthorized();
             }
 
-            var result = configRepository.Consultar_config(id, codigo, valor);
+            var result = await configRepository.ConsultarConfigAsync(id, codigo, valor);
             if (result == null)
             {
                 return NotFound();
@@ -38,14 +41,15 @@ namespace dw_webservice.Controllers
         [Route("atualizar_config")]
         [HttpPost]
         [Authorize(Roles = "bka,tin")]
-        public ActionResult Atualizar_config(int id = 0, string codigo = "", string valor = "", string token = "")
+        public async Task<ActionResult> Atualizar_config(int id = 0, string codigo = "", string valor = "", string token = "")
         {
-            if (!validarTokenPermissao.Validar(out int id_usuario_login, token, "api/atualizar_config"))
+            LoginUsuario loginUsuario = await validarTokenPermissao.ValidarAsync(token, "api/atualizar_config");
+            if (!loginUsuario.Valido)
             {
                 return Unauthorized();
             }
 
-            var result = configRepository.Atualizar_config(id, codigo, valor, id_usuario_login);
+            var result = await configRepository.AtualizarConfigAsync(id, codigo, valor, loginUsuario.Id);
             if (result == null)
             {
                 return NotFound();

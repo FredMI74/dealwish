@@ -118,7 +118,7 @@ class _UsuarioPageState extends State<UsuarioPage> {
   }
 
   List<DropdownMenuItem<String>> getDropDownMenuItemsCidade() {
-    List<DropdownMenuItem<String>> items = new List();
+    List<DropdownMenuItem<String>> items = new List.empty(growable: true);
     _cidades.insert(0, _cidadeIni);
     for (Cidade cidade in _cidades) {
       items.add(new DropdownMenuItem(
@@ -128,7 +128,7 @@ class _UsuarioPageState extends State<UsuarioPage> {
   }
 
   List<DropdownMenuItem<String>> getDropDownMenuItemsUF() {
-    List<DropdownMenuItem<String>> items = new List();
+    List<DropdownMenuItem<String>> items = new List.empty(growable: true);
     for (String uf in _ufs) {
       items.add(new DropdownMenuItem(value: uf, child: new Text(uf)));
     }
@@ -240,73 +240,80 @@ class _UsuarioPageState extends State<UsuarioPage> {
                           padding: EdgeInsets.only(top: 10.0),
                           child: Column(
                             children: <Widget>[
-                              RaisedButton(
-                                child: Text(
-                                    widget.novousuario ? 'Criar' : 'Atualizar',
-                                    style: TextStyle(color: Colors.white)),
-                                color: Color.fromARGB(255, 255, 127, 0),
-                                onPressed: () {
-                                  if (_formKey.currentState.validate()) {
-                                    if (widget.novousuario) {
-                                      usuario.limpar();
 
-                                      usuario.email =
-                                          _emailController.value.text;
-                                      usuario.nome = _nomeController.value.text;
-                                      usuario.senha1 =
-                                          _senhaController.value.text;
-                                      usuario.senha2 =
-                                          _confsenhaController.value.text;
-                                      usuario.data_nasc = DateTime.parse(
-                                          _datanascController.value.text
+                              SizedBox(
+                                  width: 100,
+                                  child: ElevatedButton(
+                                    child: Text(
+                                        widget.novousuario ? 'Criar' : 'Atualizar',
+                                        style: TextStyle(color: Colors.white)),
+                                    style: ElevatedButton.styleFrom(
+                                      primary: Color.fromARGB(255, 255, 127, 0),
+                                      onPrimary: Colors.white,
+                                    ),
+                                    onPressed: () {
+                                      if (_formKey.currentState.validate()) {
+                                        if (widget.novousuario) {
+                                          usuario.limpar();
+
+                                          usuario.email =
+                                              _emailController.value.text;
+                                          usuario.nome = _nomeController.value.text;
+                                          usuario.senha1 =
+                                              _senhaController.value.text;
+                                          usuario.senha2 =
+                                              _confsenhaController.value.text;
+                                          usuario.data_nasc = DateTime.parse(
+                                              _datanascController.value.text
                                                   .substring(6, 10) +
-                                              '-' +
+                                                  '-' +
+                                                  _datanascController.value.text
+                                                      .substring(3, 5) +
+                                                  '-' +
+                                                  _datanascController.value.text
+                                                      .substring(0, 2));
+                                          usuario.cpf = _cpfController.value.text;
+                                          usuario.id_cidade_ap =
+                                              int.parse(_cidadeSel);
+                                          usuario.uf = _ufSel;
+                                          usuario.cidade = retornaNomeCidade(
+                                              usuario.id_cidade_ap);
+                                          _incluirUsuario(usuario);
+                                        } else {
+                                          Usuario _usuario_atu = new Usuario();
+                                          _usuario_atu.id = usuario.id;
+                                          _usuario_atu.token = usuario.token;
+                                          _usuario_atu.token_jwt =
+                                              usuario.token_jwt;
+                                          _usuario_atu.email =
+                                              _emailController.value.text;
+                                          _usuario_atu.nome =
+                                              _nomeController.value.text;
+                                          _usuario_atu.senha1 =
+                                              _senhaController.value.text;
+                                          _usuario_atu.senha2 =
+                                              _confsenhaController.value.text;
+                                          _usuario_atu.data_nasc = DateTime.parse(
                                               _datanascController.value.text
-                                                  .substring(3, 5) +
-                                              '-' +
-                                              _datanascController.value.text
-                                                  .substring(0, 2));
-                                      usuario.cpf = _cpfController.value.text;
-                                      usuario.id_cidade_ap =
-                                          int.parse(_cidadeSel);
-                                      usuario.uf = _ufSel;
-                                      usuario.cidade = retornaNomeCidade(
-                                          usuario.id_cidade_ap);
-                                      _incluirUsuario(usuario);
-                                    } else {
-                                      Usuario _usuario_atu = new Usuario();
-                                      _usuario_atu.id = usuario.id;
-                                      _usuario_atu.token = usuario.token;
-                                      _usuario_atu.token_jwt =
-                                          usuario.token_jwt;
-                                      _usuario_atu.email =
-                                          _emailController.value.text;
-                                      _usuario_atu.nome =
-                                          _nomeController.value.text;
-                                      _usuario_atu.senha1 =
-                                          _senhaController.value.text;
-                                      _usuario_atu.senha2 =
-                                          _confsenhaController.value.text;
-                                      _usuario_atu.data_nasc = DateTime.parse(
-                                          _datanascController.value.text
                                                   .substring(6, 10) +
-                                              '-' +
-                                              _datanascController.value.text
-                                                  .substring(3, 5) +
-                                              '-' +
-                                              _datanascController.value.text
-                                                  .substring(0, 2));
-                                      _usuario_atu.cpf =
-                                          _cpfController.value.text;
-                                      _usuario_atu.id_cidade_ap =
-                                          int.parse(_cidadeSel);
-                                      _usuario_atu.uf = _ufSel;
-                                      _usuario_atu.cidade = retornaNomeCidade(
-                                          _usuario_atu.id_cidade_ap);
-                                      _atualizarUsuario(_usuario_atu);
-                                    }
-                                  }
-                                },
+                                                  '-' +
+                                                  _datanascController.value.text
+                                                      .substring(3, 5) +
+                                                  '-' +
+                                                  _datanascController.value.text
+                                                      .substring(0, 2));
+                                          _usuario_atu.cpf =
+                                              _cpfController.value.text;
+                                          _usuario_atu.id_cidade_ap =
+                                              int.parse(_cidadeSel);
+                                          _usuario_atu.uf = _ufSel;
+                                          _usuario_atu.cidade = retornaNomeCidade(
+                                              _usuario_atu.id_cidade_ap);
+                                          _atualizarUsuario(_usuario_atu);
+                                        }
+                                      }
+                                    },
+                                  )
                               ),
                               widget.novousuario
                                   ? Column(children: <Widget>[
@@ -317,7 +324,7 @@ class _UsuarioPageState extends State<UsuarioPage> {
                                             style: TextStyle(
                                                 fontStyle: FontStyle.italic)),
                                       ),
-                                      FlatButton(
+                                      TextButton(
                                         child: Text("Termo de Serviço",
                                             style: TextStyle(
                                                 color: Colors.indigo,
@@ -332,7 +339,7 @@ class _UsuarioPageState extends State<UsuarioPage> {
                                     ])
                                   : Column(children: <Widget>[
                                       Container(height: 10),
-                                      FlatButton(
+                                      TextButton(
                                         child: Text("Excluir",
                                             style: TextStyle(
                                                 color: Colors.indigo,
@@ -828,13 +835,13 @@ class _UsuarioPageState extends State<UsuarioPage> {
               "Seu usuário, desejos e ofertas serão permanentemente excluídos. Para voltar a utilizar o aplicativo você deverá fazer um novo cadastro."),
           actions: <Widget>[
             // usually buttons at the bottom of the dialog
-            FlatButton(
+            TextButton(
               child: new Text("Cancelar"),
               onPressed: () {
                 Navigator.of(context).pop();
               },
             ),
-            FlatButton(
+            TextButton(
               child: new Text("OK"),
               onPressed: () {
                 _excluirUsuario();

@@ -96,10 +96,13 @@ class _TrocarSenhaPageState extends State<TrocarSenhaPage> {
                           padding: EdgeInsets.only(top: 20.0),
                           child: Column(
                             children: <Widget>[
-                              RaisedButton(
+                              ElevatedButton(
                                 child: Text('Confirmar',
                                     style: TextStyle(color: Colors.white)),
-                                color: Color.fromARGB(255, 255, 127, 0),
+                                style: ElevatedButton.styleFrom(
+                                  primary: Color.fromARGB(255, 255, 127, 0),
+                                  onPrimary: Colors.white,
+                                ),
                                 onPressed: () {
                                   FocusScope.of(context).requestFocus(new FocusNode());
                                   if (_formKey.currentState.validate()) {

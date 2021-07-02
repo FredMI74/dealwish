@@ -1,6 +1,8 @@
 ﻿using dw_webservice.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using System.Threading.Tasks;
+using dw_webservice.Models;
 
 namespace dw_webservice.Controllers
 {
@@ -8,8 +10,8 @@ namespace dw_webservice.Controllers
     [Route("api/")]
     public class PermissoesController : Controller
     {
-        PermissoesRepository permissoesRepository;
-        ValidarTokenPermissao validarTokenPermissao;
+        readonly PermissoesRepository permissoesRepository;
+        readonly ValidarTokenPermissao validarTokenPermissao;
 
         public PermissoesController(PermissoesRepository _permissoesRepository)
         {
@@ -20,14 +22,15 @@ namespace dw_webservice.Controllers
         [Route("consultar_permissao")]
         [HttpPost]
         [Authorize(Roles = "bki,tin")]
-        public ActionResult Consultar_permissao(int id = 0, string descricao = "", string codigo = "", string token = "")
+        public async Task<ActionResult> Consultar_permissao(int id = 0, string descricao = "", string codigo = "", string token = "")
         {
-            if (!validarTokenPermissao.Validar(out _, token, "api/consultar_permissao"))
+            LoginUsuario loginUsuario = await validarTokenPermissao.ValidarAsync(token, "api/consultar_permissao");
+            if (!loginUsuario.Valido)
             {
                 return Unauthorized();
             }
 
-            var result = permissoesRepository.Consultar_permissao(id, descricao, codigo);
+            var result = await permissoesRepository.ConsultarPermissaoAsync(id, descricao, codigo);
             if (result == null)
             {
                 return NotFound();

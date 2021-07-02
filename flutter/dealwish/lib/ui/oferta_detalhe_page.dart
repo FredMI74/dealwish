@@ -134,8 +134,11 @@ class _OfertaDetalheState extends State<OfertaDetalhe> {
                       fontWeight: FontWeight.bold,
                       fontStyle: FontStyle.italic),
                 ) : Container()) ,
-            RaisedButton(
-                color: Color.fromARGB(255, 255, 127, 0),
+            ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  primary: Color.fromARGB(255, 255, 127, 0),
+                  onPrimary: Colors.white,
+                ),
                 child: Text(
                   'Ir para Oferta',
                   style: TextStyle(

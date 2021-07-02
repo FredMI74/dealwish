@@ -1,6 +1,8 @@
 ﻿using dw_webservice.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using System.Threading.Tasks;
+using dw_webservice.Models;
 
 namespace dw_webservice.Controllers
 {
@@ -8,8 +10,8 @@ namespace dw_webservice.Controllers
     [Route("api/")]
     public class GrpProdutosController : Controller
     {
-        GrpProdutosRepository grpprodutosRepository;
-        ValidarTokenPermissao validarTokenPermissao;
+        readonly GrpProdutosRepository grpprodutosRepository;
+        readonly ValidarTokenPermissao validarTokenPermissao;
 
         public GrpProdutosController(GrpProdutosRepository _grpprodutosRepository)
         {
@@ -20,14 +22,15 @@ namespace dw_webservice.Controllers
         [Route("consultar_todos_grp_produto")]
         [HttpPost]
         [Authorize(Roles = "app,bki,tin")]
-        public ActionResult Consultar_todos_grp_produto(string token = "")
+        public async Task<ActionResult> Consultar_todos_grp_produto(string token = "")
         {
-            if (!validarTokenPermissao.Validar(out _, token, "api/consultar_todos_grp_produto"))
+            LoginUsuario loginUsuario = await validarTokenPermissao.ValidarAsync(token, "api/consultar_todos_grp_produto");
+            if (!loginUsuario.Valido)
             {
                 return Unauthorized();
             }
 
-            var result = grpprodutosRepository.Consultar_todos_grp_produto();
+            var result = await grpprodutosRepository.ConsultarTodosGrpProdutoAsync();
             if (result == null)
             {
                 return NotFound();
@@ -38,14 +41,15 @@ namespace dw_webservice.Controllers
         [Route("consultar_grp_produto")]
         [HttpPost]
         [Authorize(Roles = "bka,bkc,bki,bko,fta,fto,tin")]
-        public ActionResult Consultar_grp_produto(int id = 0, string descricao = "", int id_situacao = 0, string token = "")
+        public async Task<ActionResult> Consultar_grp_produto(int id = 0, string descricao = "", int id_situacao = 0, string token = "")
         {
-            if (!validarTokenPermissao.Validar(out _, token, "api/consultar_grp_produto"))
+            LoginUsuario loginUsuario = await validarTokenPermissao.ValidarAsync(token, "api/consultar_grp_produto");
+            if (!loginUsuario.Valido)
             {
                 return Unauthorized();
             }
 
-            var result = grpprodutosRepository.Consultar_grp_produto(id, descricao, id_situacao);
+            var result = await grpprodutosRepository.ConsultarGrpProdutoAsync(id, descricao, id_situacao);
             if (result == null)
             {
                 return NotFound();
@@ -57,14 +61,15 @@ namespace dw_webservice.Controllers
         [Route("consultar_ultima_atualizacao_produtos")]
         [HttpPost]
         [Authorize(Roles = "app,bki,tin")]
-        public ActionResult Consultar_ultima_atualizacao_produto(string token = "")
+        public async Task<ActionResult> Consultar_ultima_atualizacao_produto(string token = "")
         {
-            if (!validarTokenPermissao.Validar(out _, token, "api/consultar_ultima_atualizacao_produtos"))
+            LoginUsuario loginUsuario = await validarTokenPermissao.ValidarAsync(token, "api/consultar_ultima_atualizacao_produtos");
+            if (!loginUsuario.Valido)
             {
                 return Unauthorized();
             }
 
-            var result = grpprodutosRepository.Consultar_ultima_atualizacao_produtos();
+            var result = await grpprodutosRepository.ConsultarUltimaAtualizacaoProdutosAsync();
             if (result == null)
             {
                 return NotFound();
@@ -75,14 +80,15 @@ namespace dw_webservice.Controllers
         [Route("incluir_grp_produto")]
         [HttpPost]
         [Authorize(Roles = "bka,tin")]
-        public ActionResult Incluir_grp_produto(string descricao = "", string icone = "", int ordem = 0, string token = "")
+        public async Task<ActionResult> Incluir_grp_produto(string descricao = "", string icone = "", int ordem = 0, string token = "")
         {
-            if (!validarTokenPermissao.Validar(out int id_usuario_login, token, "api/incluir_grp_produto"))
+            LoginUsuario loginUsuario = await validarTokenPermissao.ValidarAsync(token, "api/incluir_grp_produto");
+            if (!loginUsuario.Valido)
             {
                 return Unauthorized();
             }
 
-            var result = grpprodutosRepository.Incluir_grp_produto(descricao, icone, ordem, id_usuario_login);
+            var result = await grpprodutosRepository.IncluirGrpProdutoAsync(descricao, icone, ordem, loginUsuario.Id);
             if (result == null)
             {
                 return NotFound();
@@ -93,14 +99,15 @@ namespace dw_webservice.Controllers
         [Route("excluir_grp_produto")]
         [HttpPost]
         [Authorize(Roles = "bka,tin")]
-        public ActionResult Excluir_grp_produto(int id = 0, string token = "")
+        public async Task<ActionResult> Excluir_grp_produto(int id = 0, string token = "")
         {
-            if (!validarTokenPermissao.Validar(out int id_usuario_login, token, "api/excluir_grp_produto"))
+            LoginUsuario loginUsuario = await validarTokenPermissao.ValidarAsync(token, "api/excluir_grp_produto");
+            if (!loginUsuario.Valido)
             {
                 return Unauthorized();
             }
 
-            var result = grpprodutosRepository.Excluir_grp_produto(id, id_usuario_login);
+            var result = await grpprodutosRepository .ExcluirGrpProdutoAsync(id, loginUsuario.Id);
             if (result == null)
             {
                 return NotFound();
@@ -111,14 +118,15 @@ namespace dw_webservice.Controllers
         [Route("atualizar_grp_produto")]
         [HttpPost]
         [Authorize(Roles = "bka,tin")]
-        public ActionResult Atualizar_grp_produto(int id = 0, string descricao = "", string icone = "", int id_situacao = 0, int ordem = 0, string token = "")
+        public async Task<ActionResult> Atualizar_grp_produto(int id = 0, string descricao = "", string icone = "", int id_situacao = 0, int ordem = 0, string token = "")
         {
-            if (!validarTokenPermissao.Validar(out int id_usuario_login, token, "api/atualizar_grp_produto"))
+            LoginUsuario loginUsuario = await validarTokenPermissao.ValidarAsync(token, "api/atualizar_grp_produto");
+            if (!loginUsuario.Valido)
             {
                 return Unauthorized();
             }
 
-            var result = grpprodutosRepository.Atualizar_grp_produto(id, descricao, id_situacao, icone, ordem, id_usuario_login);
+            var result = await grpprodutosRepository .AtualizarGrpProdutoAsync(id, descricao, id_situacao, icone, ordem, loginUsuario.Id);
             if (result == null)
             {
                 return NotFound();

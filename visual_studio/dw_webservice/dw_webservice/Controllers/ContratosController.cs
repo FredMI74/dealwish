@@ -1,6 +1,8 @@
 ﻿using dw_webservice.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using System.Threading.Tasks;
+using dw_webservice.Models;
 
 namespace dw_webservice.Controllers
 {
@@ -8,8 +10,8 @@ namespace dw_webservice.Controllers
     [Route("api/")]
     public class ContratosController : Controller
     {
-        ContratosRepository contratosRepository;
-        ValidarTokenPermissao validarTokenPermissao;
+        readonly ContratosRepository contratosRepository;
+        readonly ValidarTokenPermissao validarTokenPermissao;
 
         public ContratosController(ContratosRepository _contratosRepository)
         {
@@ -20,14 +22,15 @@ namespace dw_webservice.Controllers
         [Route("consultar_contrato")]
         [HttpPost]
         [Authorize(Roles = "bkc,bkf,bki,tin")]
-        public ActionResult Consultar_contrato(int id = 0, int id_empresa = 0, int id_plano = 0, int id_situacao = 0, int dia_vct = 0, string data_inicio = "", string data_bloqueio = "", string data_termino = "", string inadimplentes = "" , string token = "")
+        public async Task<ActionResult> Consultar_contrato(int id = 0, int id_empresa = 0, int id_plano = 0, int id_situacao = 0, int dia_vct = 0, string data_inicio = "", string data_bloqueio = "", string data_termino = "", string inadimplentes = "" , string token = "")
         {
-            if (!validarTokenPermissao.Validar(out _, token, "api/consultar_contrato"))
+            LoginUsuario loginUsuario = await validarTokenPermissao.ValidarAsync(token, "api/consultar_contrato");
+            if (!loginUsuario.Valido)
             {
                 return Unauthorized();
             }
 
-            var result = contratosRepository.Consultar_contrato(id, id_empresa,id_plano, id_situacao, dia_vct,data_inicio, data_bloqueio, data_termino, inadimplentes);
+            var result = await contratosRepository.ConsultarContratoAsync(id, id_empresa,id_plano, id_situacao, dia_vct,data_inicio, data_bloqueio, data_termino, inadimplentes);
             if (result == null)
             {
                 return NotFound();
@@ -38,14 +41,15 @@ namespace dw_webservice.Controllers
         [Route("incluir_contrato")]
         [HttpPost]
         [Authorize(Roles = "bkc,tin")]
-        public ActionResult Incluir_contrato(int id_empresa = 0, int id_plano = 0, int id_situacao = 0, int dia_vct = 0, string data_inicio = "", string token = "")
+        public async Task<ActionResult> Incluir_contrato(int id_empresa = 0, int id_plano = 0, int id_situacao = 0, int dia_vct = 0, string data_inicio = "", string token = "")
         {
-            if (!validarTokenPermissao.Validar(out int id_usuario_login, token, "api/incluir_contrato"))
+            LoginUsuario loginUsuario = await validarTokenPermissao.ValidarAsync(token, "api/incluir_contrato");
+            if (!loginUsuario.Valido)
             {
                 return Unauthorized();
             }
 
-            var result = contratosRepository.Incluir_contrato(id_empresa, id_plano, id_situacao, dia_vct, data_inicio, id_usuario_login);
+            var result = await contratosRepository.IncluirContratoAsync(id_empresa, id_plano, id_situacao, dia_vct, data_inicio, loginUsuario.Id);
             if (result == null)
             {
                 return NotFound();
@@ -56,15 +60,15 @@ namespace dw_webservice.Controllers
         [Route("excluir_contrato")]
         [HttpPost]
         [Authorize(Roles = "bkc,tin")]
-        public ActionResult Excluir_contrato(int id = 0, string token = "")
+        public async Task<ActionResult> Excluir_contrato(int id = 0, string token = "")
         {
-
-            if (!validarTokenPermissao.Validar(out int id_usuario_login, token, "api/excluir_contrato"))
+            LoginUsuario loginUsuario = await validarTokenPermissao.ValidarAsync(token, "api/excluir_contrato");
+            if (!loginUsuario.Valido)
             {
                 return Unauthorized();
             }
 
-            var result = contratosRepository.Excluir_contrato(id, id_usuario_login);
+            var result = await contratosRepository.ExcluirContratoAsync(id, loginUsuario.Id);
             if (result == null)
             {
                 return NotFound();
@@ -75,14 +79,15 @@ namespace dw_webservice.Controllers
         [Route("bloquear_contratos_inadimplentes")]
         [HttpPost]
         [Authorize(Roles = "bkf,tin")]
-        public ActionResult Efetivar_faturas_abertas(string token = "")
+        public async Task<ActionResult> Efetivar_faturas_abertas(string token = "")
         {
-            if (!validarTokenPermissao.Validar(out int id_usuario_login, token, "api/bloquear_contratos_inadimplentes"))
+            LoginUsuario loginUsuario = await validarTokenPermissao.ValidarAsync(token, "api/bloquear_contratos_inadimplentes");
+            if (!loginUsuario.Valido)
             {
                 return Unauthorized();
             }
 
-            var result = contratosRepository.Bloquear_contratos_inadimplentes(id_usuario_login);
+            var result = await contratosRepository.BloquearContratosInadimplentesAsync(loginUsuario.Id);
             if (result == null)
             {
                 return NotFound();
@@ -93,15 +98,15 @@ namespace dw_webservice.Controllers
         [Route("desbloquear_contrato")]
         [HttpPost]
         [Authorize(Roles = "bkf,tin")]
-        public ActionResult Desbloquear_contrato(int id = 0, string token = "")
+        public async Task<ActionResult> Desbloquear_contrato(int id = 0, string token = "")
         {
-
-            if (!validarTokenPermissao.Validar(out int id_usuario_login, token, "api/desbloquear_contrato"))
+            LoginUsuario loginUsuario = await validarTokenPermissao.ValidarAsync(token, "api/desbloquear_contrato");
+            if (!loginUsuario.Valido)
             {
                 return Unauthorized();
             }
 
-            var result = contratosRepository.Desbloquear_contrato(id, id_usuario_login);
+            var result = await contratosRepository.DesbloquearContratoAsync(id, loginUsuario.Id);
             if (result == null)
             {
                 return NotFound();
@@ -112,14 +117,15 @@ namespace dw_webservice.Controllers
         [Route("atualizar_contrato")]
         [HttpPost]
         [Authorize(Roles = "bkc,tin")]
-        public ActionResult Atualizar_contrato(int id = 0, int id_empresa = 0, int id_plano = 0, int id_situacao = 0, int dia_vct = 0, string data_inicio = "", string data_bloqueio = "", string data_termino = "", string token = "")
+        public async Task<ActionResult> Atualizar_contrato(int id = 0, int id_empresa = 0, int id_plano = 0, int id_situacao = 0, int dia_vct = 0, string data_inicio = "", string data_bloqueio = "", string data_termino = "", string token = "")
         {
-            if (!validarTokenPermissao.Validar(out int id_usuario_login, token, "api/atualizar_contrato"))
+            LoginUsuario loginUsuario = await validarTokenPermissao.ValidarAsync(token, "api/atualizar_contrato");
+            if (!loginUsuario.Valido)
             {
                 return Unauthorized();
             }
 
-            var result = contratosRepository.Atualizar_contrato(id, id_empresa, id_plano, id_situacao, dia_vct, data_inicio, data_bloqueio, data_termino, id_usuario_login);
+            var result = await contratosRepository.AtualizarContratoAsync(id, id_empresa, id_plano, id_situacao, dia_vct, data_inicio, data_bloqueio, data_termino, loginUsuario.Id);
             if (result == null)
             {
                 return NotFound();

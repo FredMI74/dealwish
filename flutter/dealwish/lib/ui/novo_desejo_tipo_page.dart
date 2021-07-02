@@ -18,7 +18,7 @@ class NovoDesejoTipo extends StatefulWidget {
 class _NovoDesejoTipoState extends State<NovoDesejoTipo> {
   ApiHelper api_helper = ApiHelper();
 
-  List<TpProduto> tipos = List();
+  List<TpProduto> tipos = List.empty(growable: true);
   bool isLoading;
 
   @override

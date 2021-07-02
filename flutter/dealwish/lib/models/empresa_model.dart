@@ -1,5 +1,5 @@
 class RetornoEmpresa {
-  List<EmpresaModel> empresaList = List();
+  List<EmpresaModel> empresaList = List.empty(growable: true);
   bool erro;
   String mensagem = '';
 

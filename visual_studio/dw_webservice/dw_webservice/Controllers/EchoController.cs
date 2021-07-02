@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Authorization;
+using System.Threading.Tasks;
+using dw_webservice.Models;
 
 namespace dw_webservice.Controllers
 {
@@ -8,7 +10,7 @@ namespace dw_webservice.Controllers
     [Route("api/")]
     public class EchoController : Controller
     {
-        IConfiguration configuration;
+        readonly IConfiguration configuration;
         public EchoController(IConfiguration _configuration)
         {
             configuration = _configuration;

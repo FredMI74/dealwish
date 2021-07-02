@@ -1,6 +1,8 @@
 ﻿using dw_webservice.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using System.Threading.Tasks;
+using dw_webservice.Models;
 
 namespace dw_webservice.Controllers
 {
@@ -8,8 +10,8 @@ namespace dw_webservice.Controllers
     [Route("api/")]
     public class SituacoesController : Controller
     {
-        SituacoesRepository situacoesRepository;
-        ValidarTokenPermissao validarTokenPermissao;
+        readonly SituacoesRepository situacoesRepository;
+        readonly ValidarTokenPermissao validarTokenPermissao;
 
         public SituacoesController(SituacoesRepository _situacoesRepository)
         {
@@ -20,14 +22,15 @@ namespace dw_webservice.Controllers
         [Route("consultar_situacao")]
         [HttpPost]
         [Authorize(Roles = "bka,bkc,bkf,bki,bko,fta,fto,tin")]
-        public ActionResult Consultar_situacao(int id = 0, string descricao = "", string contratos = "", string usuarios = "", string desejos = "", string faturas = "", string produtos = "", string ofertas = "", string origem = "", string token = "")
+        public async Task<ActionResult> Consultar_situacao(int id = 0, string descricao = "", string contratos = "", string usuarios = "", string desejos = "", string faturas = "", string produtos = "", string ofertas = "", string origem = "", string token = "")
         {
-            if (!validarTokenPermissao.Validar(out _, token, "api/consultar_situacao"))
+            LoginUsuario loginUsuario = await validarTokenPermissao.ValidarAsync(token, "api/consultar_situacao");
+            if (!loginUsuario.Valido)
             {
                 return Unauthorized();
             }
 
-            var result = situacoesRepository.Consultar_situacao(id, descricao, contratos,  usuarios, desejos, faturas, produtos, ofertas, origem);
+            var result = await situacoesRepository.ConsultarSituacaoAsync(id, descricao, contratos,  usuarios, desejos, faturas, produtos, ofertas, origem);
             if (result == null)
             {
                 return NotFound();
